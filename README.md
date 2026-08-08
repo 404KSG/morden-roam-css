@@ -8,7 +8,7 @@ This repository preserves the current working theme as one reproducible styleshe
 
 Copy the contents of [`roam.css`](./roam.css) into a CSS code block on your `roam/css` page.
 
-The initial release contains 37 active CSS modules in the same order as the source graph. Keeping the order intact preserves the current cascade and appearance.
+The current release contains 34 active CSS modules in the same order as the source graph. Keeping the order intact preserves the current cascade and appearance.
 
 ## Export again
 
