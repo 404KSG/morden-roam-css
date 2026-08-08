@@ -62,7 +62,7 @@
   ) !important;
 }
 
-#right-sidebar .sidebar-content > .rm-sidebar-window {
+#right-sidebar .sidebar-content > div {
   box-sizing: border-box;
   margin: 10px 10px 10px 15px !important;
   padding-block: 2px;
@@ -81,12 +81,12 @@
 
 /* The card border replaces Roam default window dividers. */
 #roam-right-sidebar-content
-  .sidebar-content > .rm-sidebar-window > div[style*="border-bottom"] {
+  .sidebar-content > div > div[style*="border-bottom"] {
   border-bottom: 0 !important;
 }
 
-#right-sidebar .sidebar-content > .rm-sidebar-window:hover,
-#right-sidebar .sidebar-content > .rm-sidebar-window:focus-within {
+#right-sidebar .sidebar-content > div:hover,
+#right-sidebar .sidebar-content > div:focus-within {
   border-color: var(
     --rr-linear-hairline-active,
     rgba(82, 82, 91, 0.11)
@@ -95,7 +95,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #right-sidebar .sidebar-content > .rm-sidebar-window {
+  #right-sidebar .sidebar-content > div {
     transition: none;
   }
 }
