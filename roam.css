@@ -235,6 +235,29 @@ div.rm-block[data-page-links*="DONE"]:not(
   -moz-osx-font-smoothing: grayscale;
   }
 
+/* Roam search · restore native typography */
+.roam-topbar .rm-find-or-create-wrapper .bp3-input {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* Search results live in a menu and need their own override. */
+.rm-find-or-create-wrapper .bp3-menu-item,
+.rm-find-or-create__menu .bp3-menu-item {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* Advanced search is a separate modal component. */
+.rm-find-or-create-modal-body__list,
+.rm-find-or-create-modal-body__list .rm-search-query__page-row-title,
+.rm-find-or-create-modal-body__list .rm-search-query__semantic-result,
+.rm-find-or-create-modal-body__list .rm-search-list-item-detail,
+.rm-find-or-create-modal-body__list .rm-block-text {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
 /* --------------------------------------------------------------------------
  * Module 06
  * -------------------------------------------------------------------------- */
@@ -942,7 +965,7 @@ fill: #FFFFFF;
   border: none; /* 移除默认边框 */
   border-top: 1px solid #eee; /* 只保留我们需要的顶部线条作为分割线 */
   /* 关键：添加垂直外边距来撑起高度，防止编辑时下方块移动 */
-  margin-top: 0.6em;
+  margin-top: 0.65em;
   margin-bottom: 0em;
   /* 你可以根据自己的喜好，微调 margin 的值，比如 0.8em 或 1.2em */
 }
