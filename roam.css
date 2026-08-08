@@ -1,0 +1,1187 @@
+/*
+ * Morden Roam CSS
+ * Generated from 37 active CSS blocks in Roam Research.
+ * Source order is preserved so later rules retain their original precedence.
+ */
+
+/* --------------------------------------------------------------------------
+ * Module 01
+ * -------------------------------------------------------------------------- */
+/* Shared Roam · Linear-inspired design tokens */
+.roam-app {
+  --rr-linear-shell-tint: #6b6f76;
+  --rr-linear-hairline: rgba(82, 82, 91, 0.075);
+  --rr-linear-hairline-active: rgba(82, 82, 91, 0.11);
+  --rr-linear-radius: 12px;
+  --rr-linear-motion: 160ms ease;
+}
+
+/* Main workspace · Linear-inspired open surface */
+.roam-center {
+  background-color: var(--main-area-background-color) !important;
+  background-color: color-mix(
+    in srgb,
+    var(--main-area-background-color) 96%,
+    var(--rr-linear-shell-tint, #6b6f76) 4%
+  ) !important;
+}
+
+.roam-body-main {
+  box-sizing: border-box;
+  margin: 14px 8px 0;
+  border: 0 !important;
+  border-top: 1px solid var(
+    --rr-linear-hairline,
+    rgba(82, 82, 91, 0.075)
+  ) !important;
+  border-right: 1px solid var(
+    --rr-linear-hairline,
+    rgba(82, 82, 91, 0.075)
+  ) !important;
+  border-left: 1px solid var(
+    --rr-linear-hairline,
+    rgba(82, 82, 91, 0.075)
+  ) !important;
+  border-radius: var(--rr-linear-radius, 12px)
+    var(--rr-linear-radius, 12px) 0 0 !important;
+  background: var(--main-area-background-color) !important;
+  background-clip: padding-box;
+  box-shadow: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 02
+ * -------------------------------------------------------------------------- */
+/* Right sidebar · Linear-inspired quiet panels */
+#right-sidebar {
+  background-color: var(--main-area-background-color) !important;
+  background-color: color-mix(
+    in srgb,
+    var(--main-area-background-color) 96%,
+    var(--rr-linear-shell-tint, #6b6f76) 4%
+  ) !important;
+}
+
+#right-sidebar .sidebar-content > div {
+  box-sizing: border-box;
+  margin: 10px 10px 10px 15px !important;
+  padding-block: 2px;
+  border: 1px solid var(
+    --rr-linear-hairline,
+    rgba(82, 82, 91, 0.075)
+  ) !important;
+  border-radius: var(--rr-linear-radius, 12px) !important;
+  background: var(--main-area-background-color) !important;
+  background-clip: padding-box;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.025);
+  transition:
+    border-color var(--rr-linear-motion, 160ms ease),
+    box-shadow var(--rr-linear-motion, 160ms ease);
+}
+
+/* The card border replaces Roam default window dividers. */
+#roam-right-sidebar-content
+  .sidebar-content > div > div[style*="border-bottom"] {
+  border-bottom: 0 !important;
+}
+
+#right-sidebar .sidebar-content > div:hover,
+#right-sidebar .sidebar-content > div:focus-within {
+  border-color: var(
+    --rr-linear-hairline-active,
+    rgba(82, 82, 91, 0.11)
+  ) !important;
+  box-shadow: 0 2px 6px rgba(16, 24, 40, 0.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #right-sidebar .sidebar-content > div {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Module 03
+ * -------------------------------------------------------------------------- */
+/* Left sidebar · original dark surface */
+.roam-body .roam-app .roam-sidebar-container {
+  --rr-left-sidebar-bg: #18212a;
+  --rr-left-sidebar-fg: #dadada;
+  --rr-left-sidebar-fg-active: #ffffff;
+  --rr-left-sidebar-focus: rgba(255, 255, 255, 0.2);
+
+  isolation: isolate;
+  background: var(--rr-left-sidebar-bg, #18212a) !important;
+  background-image: none !important;
+  border-right: 0 !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content {
+  background: var(--rr-left-sidebar-bg, #18212a) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .log-button,
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper,
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper .starred-pages .page,
+.roam-body .roam-app .roam-sidebar-container .bp3-minimal > div {
+  color: var(--rr-left-sidebar-fg, #dadada) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  transition: color var(--rr-linear-motion, 160ms ease);
+}
+
+.roam-body .roam-app .roam-sidebar-container .log-button:hover,
+.roam-body .roam-app .roam-sidebar-container .starred-pages .page:hover,
+.roam-body .roam-app .roam-sidebar-container .bp3-minimal > div:hover {
+  color: var(--rr-left-sidebar-fg-active, #ffffff) !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container .log-button:focus-visible,
+.roam-body .roam-app .roam-sidebar-container .starred-pages .page:focus-visible,
+.roam-body .roam-app .roam-sidebar-container .bp3-button.bp3-minimal:focus-visible {
+  color: var(--rr-left-sidebar-fg-active, #ffffff) !important;
+  outline: 1px solid var(
+    --rr-left-sidebar-focus,
+    rgba(255, 255, 255, 0.2)
+  );
+  outline-offset: -1px;
+  border-radius: 6px;
+}
+
+#roam-sidebar-logo {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .log-button,
+  .roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper,
+  .roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper .starred-pages .page,
+  .roam-body .roam-app .roam-sidebar-container .bp3-minimal > div {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Module 04
+ * -------------------------------------------------------------------------- */
+/* TODO checkbox · Linear-inspired, layout-safe */
+.check-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding-right: 2px;
+}
+
+/* Preserve the existing size and position; refine paint only. */
+.checkmark {
+  transform: scale(1.2);
+  transform-origin: center;
+  border: 1px solid var(--references, rgba(92, 112, 128, 0.48));
+  border-radius: 3px;
+  background-color: transparent;
+  box-shadow: inset 0 0 0 0 transparent;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.check-container:hover .checkmark {
+  border-color: rgba(72, 86, 99, 0.68);
+}
+
+.check-container input:checked ~ .checkmark {
+  background-color: #1b9f1c;
+  border-color: #1b9f1c;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.check-container input:focus-visible ~ .checkmark {
+  border-color: #5e6b76;
+  box-shadow: 0 0 0 2px rgba(94, 107, 118, 0.16);
+}
+
+div.rm-block[data-page-links*="DONE"]:not(
+  [data-page-links*="query"]
+) > .rm-block-main {
+  color: #7b8791;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkmark {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Module 05
+ * -------------------------------------------------------------------------- */
+/* Global Font — optimized */
+  html, body,
+  .roam-app,
+  .roam-body,
+  .roam-article,
+  .roam-sidebar-content,
+  .roam-topbar {
+  font-family: var(--global-font), 'Inter', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  }
+
+/* --------------------------------------------------------------------------
+ * Module 06
+ * -------------------------------------------------------------------------- */
+/*
+ * === 页面标题与侧边栏标题 (最终优化版) ===
+ * 解决了单行标题编辑时跳动的问题。
+ *
+ * 核心思路：
+ * 通过 box-sizing, padding, border 等属性，强制统一“显示状态”和“编辑状态”的盒模型，
+ * 确保两者在任何情况下都占据完全相同的高度，从而根除跳动问题。
+*/
+.roam-article .rm-title-display,
+.roam-article .rm-title-textarea,
+.roam-article .roam-log-page h1.level2,
+.rm-sidebar-outline .rm-title-display,
+.rm-sidebar-outline .rm-title-textarea,
+.rm-sidebar-outline .roam-log-page h1.level2 {
+  /* --- 你的原始样式 --- */
+  font-size: 18px !important;
+  font-weight: 800 !important;
+
+  /* --- 要求 1: 标题内部的行间距 --- */
+  line-height: 1.5 !important;
+
+  /* --- 新增：强制统一盒模型 (解决单行跳动问题的关键) --- */
+  box-sizing: border-box !important; /* 让 padding 和 border 不会增加元素总高度 */
+  padding-top: 0px !important;      /* 统一的内边距 */
+  padding-bottom: 11px !important;   /* 统一的内边距 */
+  border: 1px solid transparent !important; /* 用透明边框为编辑框的边框预留位置 */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 07
+ * -------------------------------------------------------------------------- */
+/* 主页面 PDF 图标 */
+.roam-article svg[viewBox="0 0 1920 1920"]{
+  transform: translate(0px, -9px) !important; /* 改这里：X, Y */
+}
+
+/* 侧边栏 PDF 图标 */
+.rm-sidebar-outline svg[viewBox="0 0 1920 1920"]{
+  transform: translate(0px, -9px) !important; /* 改这里：X, Y */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 08
+ * -------------------------------------------------------------------------- */
+.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn {
+    display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 09
+ * -------------------------------------------------------------------------- */
+/* KAN BAN */
+.kanban-board {
+background-color: #f2f5f9;
+max-height: 600px;
+overflow-x: auto;
+overflow-y: auto;
+}
+.kanban-column {
+  background-color: transparent;
+}
+.kanban-card {
+  box-shadow: 0 1px 4px 0 rgba(21, 27, 38, 0.08);
+  border-radius: 4px;
+  box-shadow: 0 1px 4px 0 rgba(21, 27, 38, 0.08);
+}
+.kanban-card:hover {
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+.kanban-title {
+  text-align: left;
+  margin: 0px 8px;
+  font-weight: 700px;
+  border-bottom: none;
+}
+
+/* 宽度（未知） */
+.roam-block-container .rm-block-main .rm-block-separator {
+flex: 1 0 0px;
+min-width: 0px;
+}
+
+/* 删除线 */
+del.rm-strikethrough {
+  color: hsl(0deg 0% 0% / 40%);
+}
+.rm-bq {
+  border-left-color: #9b9b9b;
+  padding: 4px 10px;
+  margin: 0px;
+}
+
+/* hidden Tag: {{=:xxx| 2222 }} */
+.rm-block__part--equals {
+  background-color: #8cdde1;
+  border-radius: 4px;
+  padding: 0px 2px;
+  cursor: pointer;
+}
+.rm-block__part--equals:hover {
+  background-color: #8cdde1;
+}
+
+/* ((可折迭文本)) */
+.rm-paren {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.rm-paren--closed {
+  background: #FCF0A9;
+}
+
+.block-highlight {
+  margin: 0px;
+}
+
+/* 行内高亮^^...^^ */
+.rm-highlight {
+  margin: 0;
+}
+
+/* 块引用显示父面包屑时的背景色 */
+.block-highlight-yellow {
+  background-color: hsl(60deg 100% 43%);
+}
+
+/* 段落缩进 */
+.block-border-left {
+border-left:1px solid #ECECEC;
+}
+
+/* block/page/alias/link/referencecolor */
+/*.rm-block-ref::before {
+content: '';
+display: inline-block;
+width: 10px;
+border-radius: 40px;
+height: 10px;
+background: #33bdea4d;
+margin-right: 5px;
+}*/
+
+/* embed */
+.inline-embed .rm-embed-container {
+  display: inline-flex;
+}
+
+/* alias */
+.rm-alias--page,
+.rm-alias--block {
+  //border: 1px dashed currentColor;
+  //color: hsl(321deg 100% 50%);
+}
+
+
+/* ALIAS PAGE */
+.rm-alias-page{
+background-color: #f6eef0;
+border-radius: 4px;
+padding-left: 2px;
+padding-right: 2px;
+}
+.rm-alias-page:hover{
+}
+
+/* ALIAS BLOCK */
+.rm-alias-block{
+background-color: #f6eef0;
+border-radius: 4px;
+padding-left: 2px;
+padding-right: 2px;
+}
+.rm-alias-block:hover{
+}
+
+/* QUERY */
+.rm-query .rm-query-title {
+display: flex;
+align-items: center;
+}
+
+/*.query-flatten: 只显示条目*/
+.roam-block-container.query-flatten .rm-title-arrow-wrapper,
+.roam-block-container.query-flatten .rm-zoom.zoom-mentions-view {
+  display: none;
+}
+.roam-block-container.query-flatten .rm-mentions .rm-ref-page-view {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/*.query-only-title: 只显示标题*/
+.roam-block-container.query-only-title .rm-ref-page-view > div:nth-child(2) {
+  display: none;
+}
+
+.roam-block-container.query-only-title .rm-ref-page-view:last-child {
+  padding-bottom: 0 !important;
+}
+
+/* 去广告 */
+css
+.intercom-lightweight-app {
+ display: none !important;
+}
+
+
+/* don't need "SHORTCUTS" heading */
+.starred-pages-wrapper .flex-h-box {
+  //display: none;
+  font-size: 12px !important;
+}
+
+/* bullet color */
+//.roam-block-container:focus-within > .rm-block-main > div:nth-child(1) .rm-bullet .rm-bullet__inner {
+   background-color: #FF0000;
+}
+
+///* Don't let images and iframes extend outside box */
+.rm-inline-img__resize, .react-resizable, .hoverparent {
+  max-width: 100%;
+  margin: 0 !important;
+}
+
+/* quote */
+.rm-bq {
+//background-color:#E7E7E7 !important; var(--quote-background);
+font-size: 16px !important;
+}
+
+/* 引用： :hiccup[:div {:class "quote"} qwer] */
+.quote {
+border-left: 4px solid #ddd;
+padding-left: 0.5em;
+}
+
+/* dynamic-images */
+/*
+Images in the right sidebar will be scaled dynamically to fit the width of the bar.
+Images in the content area will be scaled to 100% once the reach the max width of 580px
+*/
+
+#roam-right-sidebar-content .rm-inline-img__resize,
+#roam-right-sidebar-content .react-resizable {
+	width: unset!important;
+}
+
+.rm-inline-img__resize[style*="width: 580px"],
+.react-resizable[style*="width: 580px"] {
+	width: 100%!important;
+}
+
+/* hide-shortcuts */
+.starred-pages-wrapper > .title {
+  display: none;
+}
+
+/* hide-video-comment-button */
+//.rm-video-player__comment-button {
+	background-color: none;
+}
+
+/* move video Mask */
+.rm-video-player__comment-button {
+  opacity:0;
+  left: 96%;
+  border-radius: 2px;
+}
+.rm-video-player__comment-button:hover {
+  opacity:.3;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 10
+ * -------------------------------------------------------------------------- */
+/*自定义"bp3-icon-chart" 的按钮*/
+.bp3-button.bp3-icon-chart {
+    /* --- 调整间距 --- */
+    margin-left: -2px !important;
+   position: relative;
+  top: -1px;  */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 11
+ * -------------------------------------------------------------------------- */
+/*
+ * 这段代码专门寻找那个包含“grid-view”图标的按钮
+ * 注意：:has() 是一个较新的选择器，在极少数旧版本的软件中可能不被支持
+ * 但在 Roam Research 目前的环境下通常是有效的
+*/
+.bp3-button:has(.bp3-icon-grid-view) {
+    margin-left: -2px !important; /* 同样，你可以按需修改这个数值 */
+  position: relative;
+  top: -1px;  */
+}
+
+.bp3-button:has(.bp3-icon-grid-view) .bp3-icon > svg {
+  width: 15px !important;
+  height: 15px !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 12
+ * -------------------------------------------------------------------------- */
+/* --- Workbench 微调图标本身 --- */
+.bp3-icon-vertical-distribution {
+  position: relative;
+  top: 1px;  */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 13
+ * -------------------------------------------------------------------------- */
+.rm-jump-date-picker .DayPicker-Day--today {
+    outline: 2px dashed;
+    border-radius: 2rem;
+    outline-offset: -3px;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 14
+ * -------------------------------------------------------------------------- */
+.rm-page-ref.rm-page-ref--tag:hover,
+.rm-page-ref.rm-page-ref--tag:focus,
+.rm-page-ref.rm-page-ref--tag:active{
+ font-weight: inherit !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 15
+ * -------------------------------------------------------------------------- */
+.speech-ui-row1 .speech-record-button{ display:none !important; }
+
+/* --------------------------------------------------------------------------
+ * Module 16
+ * -------------------------------------------------------------------------- */
+/* 针对引用框内的标签进行优化 */
+div.rm-ref-page-view > div > div span.rm-page-ref:not(.bp3-icon) {
+//display: inline-block; /* 将标签设置为内联块元素 */
+  margin-top: 0px; /* 顶部外边距设为 0 */
+  margin-left: 0px; /* 左侧外边距设为 0 以保持正文不变 */
+}
+
+/* 优化引用框内的复选框 */
+div.rm-ref-page-view > div > div .check-container {
+  margin-left: 1px; /* 为复选框添加左侧外边距，以防止被隐藏 */
+  position: relative; /* 设置复选框相对定位，以便进行调整 */
+  left: 0px; /* 调整复选框左侧位置以保持正文不变 */
+}
+
+/* 通用优化引用内容里的面包屑标签主题样式 */
+.rm-reference-container .rm-zoom-item-content .rm-page-ref {
+  font-size: 1em; /* 设置标签的字体大小 */
+  border-radius: 5px; /* 添加圆角效果 */
+  position: relative; /* 设置复选框相对定位，以便进行调整 */
+width: auto; /* 自动调整宽度 */
+  height: auto; /* 自动调整高度 */
+  display: inline-block; /* 保持内联块元素 */
+  max-width: 100%; /* 防止宽度超过父元素 */
+  box-sizing: border-box; /* 包含内边距和边框在宽度和高度内 */
+}
+
+/* 通用复选框优化 */
+.check-container {
+  margin-left: 1px; /* 为复选框添加左侧外边距 */
+  position: relative; /* 设置复选框相对定位 */
+  left: 0px; /* 调整复选框左侧位置以保持正文不变 */
+}
+
+/* 针对特定选择器优化 diagram 标签样式 */
+.rm-diagram-title {
+  font-size: 1em; /* 设置字体大小 */
+  border-radius: 4px; /* 添加圆角效果 */
+  padding: 2px 4px; /* 调整标签的内边距 */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 17
+ * -------------------------------------------------------------------------- */
+.bp3-tooltip .bp3-popover-content {
+background: #FFFFFF;
+color: #202B33;
+}
+
+.bp3-tooltip .bp3-popover-arrow-fill {
+fill: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 18
+ * -------------------------------------------------------------------------- */
+.rm-multibar {
+  z-index: 4;
+  border-width: 2px; /* 增加大纲线粗细 */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 19
+ * -------------------------------------------------------------------------- */
+/*
+ * === Roam Bullet 呼吸特效 (最终版 V3) ===
+ * * 结合了 V2 的 CSS 变量、GPU 加速、辅助功能
+ * 并加入了“平滑启动”过渡 (Scheme 2)
+ */
+
+:root {
+  /* 动画关键帧参数 */
+  --bullet-breathe-scale: 1.28;
+  --bullet-breathe-opacity: 0.82;
+  --bullet-breathe-duration: 1.8s;
+
+  /* (新增) 动画“平滑启动”的过渡时间 */
+  --bullet-start-duration: 0.2s;
+}
+
+/* 1. 定义 "呼吸" 动画 (来自 V2, 使用 scale3d) */
+@keyframes bullet-breathe {
+  0% {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale3d(var(--bullet-breathe-scale), var(--bullet-breathe-scale), 1);
+    opacity: var(--bullet-breathe-opacity);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+}
+
+/* 2. Bullet 默认、悬停、聚焦 (来自 V2) */
+.rm-block .rm-bullet {
+  opacity: 0.4;
+  border-radius: 50%;
+  transition: opacity 0.25s ease;
+  transform-origin: center; /* 确保缩放居中 */
+}
+
+.rm-block:hover > .rm-block-main > .controls > .rm-bullet,
+.rm-focused > .rm-block-main > .controls > .rm-bullet {
+  opacity: 1;
+}
+
+/* 3. Bullet 键入 (focused) 时的呼吸效果 (核心优化) */
+.rm-focused > .rm-block-main > .controls > .rm-bullet > .bp3-popover-wrapper .rm-bullet__inner {
+  border-radius: 50%;
+
+  /* * (来自 V2) 应用呼吸动画 */
+  animation: bullet-breathe var(--bullet-breathe-duration) ease-in-out infinite;
+
+  /* * (来自 V2) 性能优化：告知浏览器即将发生变化 */
+  will-change: transform, opacity;
+
+  /* * (来自 方案2) 启动优化：
+   * 平滑地从默认状态过渡到动画的第一帧，消除"跳跃感"。
+   */
+  transition: transform var(--bullet-start-duration) ease,
+              opacity var(--bullet-start-duration) ease;
+}
+
+/* 4. (来自 V2) 辅助功能：减少动态效果 */
+@media (prefers-reduced-motion: reduce) {
+  .rm-focused > .rm-block-main > .controls > .rm-bullet > .bp3-popover-wrapper .rm-bullet__inner {
+    animation: none;
+    transition: none; /* 同时禁用启动过渡 */
+  }
+}
+
+/* 5. 你原来的其他代码 (保持不变) */
+.rm-block .rm-multibar {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rm-block:hover > .rm-block-children > .rm-multibar,
+.rm-focused > .rm-block-children > .rm-multibar {
+  opacity: 1;
+}
+
+.rm-ref-page-view .rm-title-arrow-wrapper > .rm-caret {
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
+}
+
+.rm-ref-page-view:hover .rm-title-arrow-wrapper > .rm-caret {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 20
+ * -------------------------------------------------------------------------- */
+/* Bullet effect */
+.rm-bullet:hover .rm-bullet__inner {
+  width: 9px;
+  height: 9px;
+  border: 2px solid transparent;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); /* 更平滑的过渡效果 */
+  transform: scale(1.2); /* 添加缩放效果 */
+}
+
+.sidebar-content .rm-bullet.rm-bullet--closed:hover .rm-bullet__inner,
+.rm-bullet.rm-bullet--closed:hover .rm-bullet__inner {
+  border: 2px solid transparent;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); /* 更平滑的过渡效果 */
+  transform: scale(1.2); /* 添加缩放效果 */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 21
+ * -------------------------------------------------------------------------- */
+/* Headings */
+
+.rm-level1, .rm-heading-level-1>.rm-block__self .rm-block__input{
+    color: #FF9800;
+    font-size: 18px !important;
+    font-weight: bold;
+}
+
+.rm-level2, .rm-heading-level-2>.rm-block__self .rm-block__input{
+    color: #673AB7;
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+.rm-level3, .rm-heading-level-3>.rm-block__self .rm-block__input{
+    color: #2196F3;
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 22
+ * -------------------------------------------------------------------------- */
+/* 同步小圆点 */
+@keyframes blinkDot {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+.rm-sync__icon {
+  position: relative;
+}
+.rm-sync__icon[class*="rm-sync--saving"]::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  z-index: 1;
+  animation: blinkDot 1s 1.2s ease-in-out infinite;
+}
+.rm-sync--saving-local {
+  background: orange;
+}
+.rm-sync--saving-local::before {
+  background: orange;
+}
+.rm-sync--saving-remote {
+  background: red;
+}
+.rm-sync--saving-remote::before {
+  background: red;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 23
+ * -------------------------------------------------------------------------- */
+/* 侧边栏固定按钮 */
+.pinned:before {
+  transform: rotate(-45deg);
+  color: #5c6f80 !important;
+}
+
+.pinned-to-top:before {
+  transform: rotate(-45deg);
+}
+
+/* --------------------------------------------------------------------------
+ * Module 24
+ * -------------------------------------------------------------------------- */
+.bp3-icon.bp3-icon-pin svg path {
+    /* 设置星星图标的颜色 */
+    fill: #5c6f80 !important;
+    /* 设置星星图标的SVG路径 */
+    d: path("M8 .25l2.363 4.787L16 5.75l-4 3.887.943 5.488L8 12.812l-4.943 2.313L4 9.637 0 5.75l5.637-.713L8 .25z") !important;
+    /* 优化星星形状的代码 */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 25
+ * -------------------------------------------------------------------------- */
+/* Bold with underline */
+.rm-bold {
+  text-decoration: underline;
+  text-underline-position: under;
+}
+.rm-block-ref .rm-bold,
+.rm-block-ref .rm-highlight .rm-bold {
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 26
+ * -------------------------------------------------------------------------- */
+/* Highlight – 固定背景 + 加粗黄色下划线，无圆角 */
+.rm-highlight {
+  background-color: #FEF6D7 !important;
+
+  /* 去圆角与可能的边线/阴影 */
+  border-radius: 0 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+
+  /* 让多行换行时每一行都有背景 */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+
+  /* 轻微内边距（可按需调整或删除） */
+  padding: 0em;
+
+  /* 下划线样式 */
+  text-decoration-line: underline !important;
+  text-decoration-color: #FFD400 !important;
+  text-decoration-style: solid !important;
+  text-decoration-thickness: 2px !important; /* 加粗 */
+  text-underline-offset: 4px;
+}
+
+/* 清除高亮内部链接/引用自带的边界式下划线，继承你的下划线 */
+.rm-highlight a,
+.rm-highlight .rm-page-ref,
+.rm-highlight .rm-alias,
+.rm-highlight .rm-alias--external,
+.rm-highlight > * {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  text-decoration: inherit !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 27
+ * -------------------------------------------------------------------------- */
+/* Block quote - Light Sky Blue Theme */
+.rm-block-ref {
+  /* 采用了您指定的非常轻柔的蓝色渐变 */
+  background: linear-gradient(135deg, #B8EAFF 0%, #CFF1FF 100%);
+  border-radius: 4px;
+  /* 修正了拼写错误 */
+  padding: 0.1em 0.2em;
+  margin-left: 0em;
+  margin-right: 0.5em;
+  cursor: alias;
+  position: relative;
+  /* 为背景颜色添加平滑过渡效果 */
+  transition: background 0.3s ease;
+}
+
+/* Hover 效果 */
+.rm-block-ref:hover {
+  /* 悬停时，背景色非常微妙地加深一点，保持整体的轻柔感 */
+  background: linear-gradient(135deg, #A8E0FF 0%, #BFE6FF 100%);
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 28
+ * -------------------------------------------------------------------------- */
+/* --- 方案四：浅绿 -> 深绿 --- */
+
+/* 外部链接 - 默认状态 (浅绿色) */
+.rm-alias--external {
+  color: #28a745; /* 一个充满活力的亮绿色，视觉上很醒目 */
+  text-decoration: none; /* 移除默认下划线 */
+  transition: color 0.2s ease-in-out; /* 平滑的颜色过渡效果 */
+}
+
+/* 外部链接 - 鼠标悬停状态 (深绿色) */
+.rm-alias--external:hover {
+  color: #1a7431; /* 悬停时变为更沉稳、易读的深绿色 */
+  text-decoration: underline; /* 悬停时显示下划线，增强可点击性 */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 29
+ * -------------------------------------------------------------------------- */
+/* --- 分隔线 (优化版) --- */
+.rm-hr {
+  border: none; /* 移除默认边框 */
+  border-top: 1px solid #eee; /* 只保留我们需要的顶部线条作为分割线 */
+  /* 关键：添加垂直外边距来撑起高度，防止编辑时下方块移动 */
+  margin-top: 0.6em;
+  margin-bottom: 0em;
+  /* 你可以根据自己的喜好，微调 margin 的值，比如 0.8em 或 1.2em */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 30
+ * -------------------------------------------------------------------------- */
+.rm-block__ref-count-footnote {
+    font-size: 10px; /* Adjust the size as you prefer */
+    color: #74898A; /* Change to your desired color */
+    font-weight:800; /* Makes the text bold */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 31
+ * -------------------------------------------------------------------------- */
+/* 1. 隐藏中间缝隙 (保持不变) */
+span.rm-page-ref[data-tag="Relevant Notes"] + span {
+    display: none !important;
+}
+
+/* 2. 角标重置：自然跟随 (保持不变) */
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] + sup,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] ~ .rm-page-ref-count {
+    position: static !important;
+    display: inline !important;
+    vertical-align: super !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 0 0 2px !important;
+    color: #888 !important;
+    font-size: smaller !important;
+    z-index: 1 !important;
+}
+
+/* 3. 公共参数 (已修改：高度变小) */
+span.rm-page-ref[data-tag="Relevant Notes"],
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] {
+    display: inline-flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+
+    /* 【修改点 1】上下内边距从 3px 减小为 1px */
+    padding: 3px 8px !important;
+
+    font-size: 14px !important;
+    font-weight: 700 !important;
+
+    /* 【修改点 2】行高从 1.3em 收紧为 1.1em，防止文字撑高 */
+    line-height: 1.1em !important;
+
+    margin-top: -2px !important;
+    margin-bottom: -2px !important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+    text-decoration: none !important;
+}
+
+/* 4. 左半部分：标签头 (白底) */
+span.rm-page-ref[data-tag="Relevant Notes"] {
+    background: white !important;
+    /* color: #333 !important; */
+
+    border: 1px solid #bae6fd !important;
+    border-right: 1px solid #bae6fd !important;
+
+    border-radius: 5px 0 0 5px !important;
+
+    margin-right: 0 !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* 5. 右半部分：内容体 (冰蓝底 - 紧凑版) (已修改：高度变小) */
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] {
+    background: linear-gradient(135deg, #f0f9ff, #dbeafe) !important;
+    color: #0b345b !important;
+
+    /* 【修改点 3】上下内边距同步减小为 1px */
+    padding: 3px 4px !important;
+
+    border: 1px solid #bae6fd !important;
+    border-left: none !important;
+    border-right: 1px solid #bae6fd !important;
+
+    border-radius: 0 5px 5px 0 !important;
+
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: -2px !important;
+    margin-bottom: -2px !important;
+
+    position: relative !important;
+    z-index: 5 !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 32
+ * -------------------------------------------------------------------------- */
+span.rm-page-ref[data-tag="Instant Notes"] {
+  background: linear-gradient(to right, #483D8B, #6A5ACD,#8472FF);
+  background-size: 100%;
+  color: #FFFFFF;
+  padding: 3px 8px 3px 8px;
+  font-size: 14px;
+  line-height: 1.2em;
+  font-weight: bold;
+  border-radius: 5px;
+  border-style: none;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.05), 0 -1px 3px rgba(0, 0, 0, 0.02);
+}
+
+span.rm-page-ref[data-tag="Instant Notes"]::before {
+  content: "🫧";
+  margin-right: 4px;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 33
+ * -------------------------------------------------------------------------- */
+span.rm-page-ref[data-tag="Project Notes"] {
+  background: linear-gradient(to right, #000000, #252525,#545454);
+  background-size: 100%;
+  color: #FFFFFF;
+  padding: 3px 8px 3px 8px;
+  font-size: 14px;
+  line-height: 1.2em;
+  font-weight: bold;
+  border-radius: 5px;
+  border-style: none;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.05), 0 -1px 3px rgba(0, 0, 0, 0.02);
+}
+
+span.rm-page-ref[data-tag="Project Notes"]::before {
+  content: "🦾";
+  margin-right: 4px;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 34
+ * -------------------------------------------------------------------------- */
+span.rm-page-ref[data-tag="Plateau Notes"] {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  background-size: 100%;
+  color: #FFFFFF;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  padding: 3px 8px 3px 8px;
+  font-size: 14px;
+  line-height: 1.2em;
+  font-weight: bold;
+  border-radius: 5px;
+  border-style: none;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.05), 0 -1px 3px rgba(0, 0, 0, 0.02);
+}
+
+span.rm-page-ref[data-tag="Plateau Notes"]::before {
+  content: "✨";
+  margin-right: 4px;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 35
+ * -------------------------------------------------------------------------- */
+span.rm-page-ref[data-tag="Evergreen Notes"] {
+  background: linear-gradient(to right, #355C7D, #03b1fc, #00ECFF);
+  background-size: 100%;
+  color: #FFFFFF;
+  padding: 3px 8px 3px 8px;
+  font-size: 14px;
+  line-height: 1.2em;
+  font-weight: bold;
+  border-radius: 5px;
+  border-style: none;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.05), 0 -1px 3px rgba(0, 0, 0, 0.02);
+}
+
+/* --------------------------------------------------------------------------
+ * Module 36
+ * -------------------------------------------------------------------------- */
+span.rm-page-ref[data-tag="Literature Notes"] {
+  /* Background: 极淡的冰蓝渐变 */
+  background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+  color: #0284c7; /* 晴空蓝，清晰且有活力 */
+
+  /* Padding & Font */
+  padding: 3px 8px;
+  font-size: 14px;
+  line-height: 1.3em;
+  font-weight: 700;
+
+  /* Border & BorderRadius */
+  border: 1px solid #bae6fd; /* 柔和的天蓝边框 */
+  border-radius: 5px;
+
+  /* Box Shadow: 带一点点蓝色的投影 */
+  box-shadow: 0 3px 6px rgba(2, 132, 199, 0.05), 0 1px 2px rgba(2, 132, 199, 0.08);
+
+  /* Transition */
+  transition: all 0.2s ease-in-out;
+}
+
+span.rm-page-ref[data-tag="Literature Notes"]:hover {
+  /* Hover: 稍微加深的渐变 */
+  background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
+  box-shadow: 0 4px 7px rgba(2, 132, 199, 0.06), 0 2px 4px rgba(2, 132, 199, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+ * Module 37
+ * -------------------------------------------------------------------------- */
+span.rm-page-ref[data-tag="Fleeting Notes"] {
+  /* Background: 极淡的冰蓝渐变 */
+  background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+  color: #0284c7; /* 晴空蓝，清晰且有活力 */
+
+  /* Padding & Font */
+  padding: 3px 8px;
+  font-size: 14px;
+  line-height: 1.3em;
+  font-weight: 700;
+
+  /* Border & BorderRadius */
+  border: 1px solid #bae6fd; /* 柔和的天蓝边框 */
+  border-radius: 5px;
+
+  /* Box Shadow: 带一点点蓝色的投影 */
+  box-shadow: 0 3px 6px rgba(2, 132, 199, 0.05), 0 1px 2px rgba(2, 132, 199, 0.08);
+
+  /* Transition */
+  transition: all 0.2s ease-in-out;
+}
+
+span.rm-page-ref[data-tag="Fleeting Notes"]:hover {
+  /* Hover: 稍微加深的渐变 */
+  background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
+  box-shadow: 0 4px 7px rgba(2, 132, 199, 0.06), 0 2px 4px rgba(2, 132, 199, 0.1);
+}
