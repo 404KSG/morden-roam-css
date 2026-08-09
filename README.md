@@ -16,6 +16,8 @@ Copy the contents of [`roam.css`](./roam.css) into a CSS code block on your `roa
 
 The current release contains 34 active CSS modules in the same order as the source graph. Keeping the order intact preserves the current cascade and appearance.
 
+For accurate back/forward availability, also place [`roam-history-availability.js`](./roam-history-availability.js) in an enabled `{{[[roam/js]]}}` code block. It only marks an unavailable history direction so the stylesheet can dim and disable it.
+
 ## Export again
 
 With the official Roam CLI configured:

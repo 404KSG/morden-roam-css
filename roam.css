@@ -315,6 +315,17 @@ div.rm-block[data-page-links*="DONE"]:not(
   content: "\e695" !important;
 }
 
+.rm-electron-nav-back-btn.rm-history-unavailable::before,
+.rm-electron-nav-forward-btn.rm-history-unavailable::before {
+  opacity: 0.3 !important;
+}
+
+.rm-electron-nav-back-btn.rm-history-unavailable,
+.rm-electron-nav-forward-btn.rm-history-unavailable {
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
 /* --------------------------------------------------------------------------
  * Module 09
  * -------------------------------------------------------------------------- */
