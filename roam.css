@@ -306,7 +306,7 @@ div.rm-block[data-page-links*="DONE"]:not(
 /* --------------------------------------------------------------------------
  * Module 08
  * -------------------------------------------------------------------------- */
-/* Navigation buttons · visible Linear-style controls */
+/* Navigation buttons · quiet Linear-style toolbar controls */
 :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) {
   -webkit-appearance: none !important;
   appearance: none !important;
@@ -314,57 +314,61 @@ div.rm-block[data-page-links*="DONE"]:not(
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  flex: 0 0 30px !important;
-  width: 30px !important;
-  min-width: 30px !important;
-  height: 30px !important;
-  min-height: 30px !important;
-  margin: 0 2px !important;
+  flex: 0 0 28px !important;
+  width: 28px !important;
+  min-width: 28px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  margin: 0 1px !important;
   padding: 0 !important;
-  border: 1px solid #dfe6ec !important;
-  border-radius: 8px !important;
-  background: #f7f9fb !important;
-  color: #536b7d !important;
-  box-shadow: 0 1px 2px rgba(24, 39, 56, 0.08) !important;
+  border: 1px solid transparent !important;
+  border-radius: 7px !important;
+  background: transparent !important;
+  color: #61758a !important;
+  box-shadow: none !important;
+  outline: 2px solid transparent !important;
+  outline-offset: 1px !important;
   line-height: 1 !important;
   transition:
     background-color 160ms ease,
     border-color 160ms ease,
     color 160ms ease,
-    box-shadow 160ms ease,
     transform 120ms ease !important;
 }
 
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn):hover {
-  background: #edf2f6 !important;
-  border-color: #cfd9e2 !important;
-  color: #1f2b35 !important;
-  box-shadow: 0 2px 5px rgba(24, 39, 56, 0.12) !important;
+:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn):hover,
+:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn):focus-visible {
+  background: #f1f4f7 !important;
+  border-color: #e2e8ed !important;
+  color: #34495a !important;
 }
 
 :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn):active {
-  transform: translateY(1px) scale(0.97) !important;
-  box-shadow: 0 1px 2px rgba(24, 39, 56, 0.08) !important;
+  transform: scale(0.96) !important;
+}
+
+:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn):focus-visible {
+  outline-color: rgba(47, 128, 190, 0.32) !important;
 }
 
 :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn):disabled,
 :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn)[aria-disabled="true"] {
-  opacity: 0.38 !important;
+  opacity: 0.36 !important;
   cursor: default !important;
-  background: #f7f9fb !important;
-  border-color: #e7edf2 !important;
+  background: transparent !important;
+  border-color: transparent !important;
   box-shadow: none !important;
 }
 
 :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) .bp3-icon,
 :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) .bp3-icon::before,
 :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) svg {
-  width: 18px !important;
-  min-width: 18px !important;
-  height: 18px !important;
-  min-height: 18px !important;
-  font-size: 18px !important;
-  line-height: 18px !important;
+  width: 16px !important;
+  min-width: 16px !important;
+  height: 16px !important;
+  min-height: 16px !important;
+  font-size: 16px !important;
+  line-height: 16px !important;
   color: currentColor !important;
   fill: currentColor !important;
   stroke: currentColor !important;
