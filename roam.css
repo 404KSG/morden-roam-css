@@ -306,12 +306,12 @@ div.rm-block[data-page-links*="DONE"]:not(
 /* --------------------------------------------------------------------------
  * Module 08
  * -------------------------------------------------------------------------- */
-/* Match the Electron history icons to Roam's adjacent Daily Notes chevrons. */
-:where(.rm-electron-nav-back-btn) .bp3-icon-arrow-left::before {
+/* Match Electron history icons to Roam's Daily Notes chevrons. */
+.rm-electron-nav-back-btn::before {
   content: "\e694" !important;
 }
 
-:where(.rm-electron-nav-forward-btn) .bp3-icon-arrow-right::before {
+.rm-electron-nav-forward-btn::before {
   content: "\e695" !important;
 }
 
