@@ -3,40 +3,33 @@
   window[KEY]?.destroy?.();
 
   const CLASS = "rm-history-unavailable";
-  let retryTimer = null;
-  let retries = 0;
+  const controller = new AbortController();
+  const buttons = [
+    [".rm-electron-nav-back-btn", "canGoBack"],
+    [".rm-electron-nav-forward-btn", "canGoForward"],
+  ];
 
   const sync = () => {
-    const back = document.querySelector(".rm-electron-nav-back-btn");
-    const forward = document.querySelector(".rm-electron-nav-forward-btn");
-
-    if (!back || !forward) {
-      if (retries < 20) {
-        retries += 1;
-        clearTimeout(retryTimer);
-        retryTimer = setTimeout(sync, 250);
-      }
-      return;
-    }
-
-    retries = 0;
     const nav = window.navigation;
-    back.classList.toggle(CLASS, Boolean(nav && !nav.canGoBack));
-    forward.classList.toggle(CLASS, Boolean(nav && !nav.canGoForward));
+    return buttons
+      .map(([selector, state]) => {
+        const button = document.querySelector(selector);
+        button?.classList.toggle(CLASS, Boolean(nav && !nav[state]));
+        return button;
+      })
+      .every(Boolean);
   };
 
-  const schedule = () => requestAnimationFrame(sync);
-  window.navigation?.addEventListener("currententrychange", schedule);
-  window.addEventListener("popstate", schedule);
-  window.addEventListener("hashchange", schedule);
-  sync();
+  const observer = new MutationObserver(() => sync() && observer.disconnect());
+  if (!sync()) observer.observe(document.body, { childList: true, subtree: true });
+  window.navigation?.addEventListener("currententrychange", sync, {
+    signal: controller.signal,
+  });
 
   window[KEY] = {
     destroy() {
-      window.navigation?.removeEventListener("currententrychange", schedule);
-      window.removeEventListener("popstate", schedule);
-      window.removeEventListener("hashchange", schedule);
-      clearTimeout(retryTimer);
+      controller.abort();
+      observer.disconnect();
       document
         .querySelectorAll(`.${CLASS}`)
         .forEach((element) => element.classList.remove(CLASS));
