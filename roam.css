@@ -306,88 +306,13 @@ div.rm-block[data-page-links*="DONE"]:not(
 /* --------------------------------------------------------------------------
  * Module 08
  * -------------------------------------------------------------------------- */
-/* Restore both Electron history controls with the same quiet native arrow treatment as Daily Notes navigation. */
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) {
-  -webkit-appearance: none !important;
-  appearance: none !important;
-  box-sizing: border-box !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex: 0 0 26px !important;
-  width: 26px !important;
-  min-width: 26px !important;
-  height: 26px !important;
-  min-height: 26px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: #61758a !important;
-  opacity: 1 !important;
-  box-shadow: none !important;
-  outline: 1px solid transparent !important;
-  outline-offset: 1px !important;
-  line-height: 1 !important;
-  transition: color 120ms ease !important;
+/* Match the Electron history icons to Roam's adjacent Daily Notes chevrons. */
+:where(.rm-electron-nav-back-btn) .bp3-icon-arrow-left::before {
+  content: "\e694" !important;
 }
 
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn):hover,
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn):focus-visible {
-  background: transparent !important;
-  border-color: transparent !important;
-  color: #506577 !important;
-  opacity: 1 !important;
-}
-
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn):active {
-  background: transparent !important;
-  transform: none !important;
-}
-
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn):focus-visible {
-  outline-color: rgba(47, 128, 190, 0.24) !important;
-}
-
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn):disabled,
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn)[aria-disabled="true"] {
-  opacity: 0.32 !important;
-  cursor: default !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn)::before,
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn)::after {
-  content: none !important;
-  display: none !important;
-}
-
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) .bp3-icon,
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) svg {
-  display: block !important;
-  color: currentColor !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) .bp3-icon::before {
-  color: currentColor !important;
-  line-height: 1 !important;
-}
-
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) svg path,
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) svg polyline,
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) svg line {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) {
-    transition: none !important;
-  }
+:where(.rm-electron-nav-forward-btn) .bp3-icon-arrow-right::before {
+  content: "\e695" !important;
 }
 
 /* --------------------------------------------------------------------------
