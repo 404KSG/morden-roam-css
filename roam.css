@@ -362,29 +362,38 @@ div.rm-block[data-page-links*="DONE"]:not(
   box-shadow: none !important;
 }
 
+/* Replace Blueprint's heavier arrow glyph with a small, crisp chevron.
+ * The native button remains intact, so its click and keyboard behavior stay native. */
 :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) .bp3-icon,
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) .bp3-icon::before,
 :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) svg {
-  width: 14px !important;
-  min-width: 14px !important;
-  height: 14px !important;
-  min-height: 14px !important;
-  font-size: 14px !important;
-  line-height: 14px !important;
-  color: currentColor !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
+  display: none !important;
 }
 
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) svg path,
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) svg polyline,
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) svg line {
-  fill: currentColor !important;
-  stroke: currentColor !important;
+:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn)::before {
+  content: "" !important;
+  display: block !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-left: 1.35px solid currentColor !important;
+  border-bottom: 1.35px solid currentColor !important;
+  transform-origin: center !important;
+  transition: transform 120ms ease !important;
+}
+
+:where(.rm-electron-nav-back-btn)::before {
+  transform: rotate(45deg) !important;
+}
+
+:where(.rm-electron-nav-forward-btn)::before {
+  transform: rotate(225deg) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) {
+    transition: none !important;
+  }
+
+  :where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn)::before {
     transition: none !important;
   }
 }
