@@ -1,6 +1,6 @@
 /*
  * Morden Roam CSS
- * Generated from 34 active CSS blocks in Roam Research.
+ * Generated from 35 active CSS blocks in Roam Research.
  * Source order is preserved so later rules retain their original precedence.
  */
 
@@ -262,6 +262,24 @@ div.rm-block[data-page-links*="DONE"]:not(
 /* --------------------------------------------------------------------------
  * Module 06
  * -------------------------------------------------------------------------- */
+/* Match Electron history icons to Roam's Daily Notes chevrons. */
+.rm-electron-nav-back-btn::before {
+  content: "\e694" !important;
+}
+
+.rm-electron-nav-forward-btn::before {
+  content: "\e695" !important;
+}
+
+:is(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn).rm-history-unavailable {
+  opacity: 0.3 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 07
+ * -------------------------------------------------------------------------- */
 /*
  * === 页面标题与侧边栏标题 (最终优化版) ===
  * 解决了单行标题编辑时跳动的问题。
@@ -291,7 +309,7 @@ div.rm-block[data-page-links*="DONE"]:not(
 }
 
 /* --------------------------------------------------------------------------
- * Module 07
+ * Module 08
  * -------------------------------------------------------------------------- */
 /* 主页面 PDF 图标 */
 .roam-article svg[viewBox="0 0 1920 1920"]{
@@ -301,24 +319,6 @@ div.rm-block[data-page-links*="DONE"]:not(
 /* 侧边栏 PDF 图标 */
 .rm-sidebar-outline svg[viewBox="0 0 1920 1920"]{
   transform: translate(0px, -9px) !important; /* 改这里：X, Y */
-}
-
-/* --------------------------------------------------------------------------
- * Module 08
- * -------------------------------------------------------------------------- */
-/* Match Electron history icons to Roam's Daily Notes chevrons. */
-.rm-electron-nav-back-btn::before {
-  content: "\e694" !important;
-}
-
-.rm-electron-nav-forward-btn::before {
-  content: "\e695" !important;
-}
-
-:is(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn).rm-history-unavailable {
-  opacity: 0.3 !important;
-  cursor: default !important;
-  pointer-events: none !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -1186,4 +1186,13 @@ span.rm-page-ref[data-tag="Fleeting Notes"]:hover {
   /* Hover: 稍微加深的渐变 */
   background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
   box-shadow: 0 4px 7px rgba(2, 132, 199, 0.06), 0 2px 4px rgba(2, 132, 199, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+ * Module 35
+ * -------------------------------------------------------------------------- */
+/* References search · icon-only collapsed state */
+.rm-mentions-search.rm-mentions-search--hidden .rm-mentions-search__input {
+  background: transparent !important;
+  box-shadow: none !important;
 }
