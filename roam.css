@@ -306,8 +306,64 @@ div.rm-block[data-page-links*="DONE"]:not(
 /* --------------------------------------------------------------------------
  * Module 08
  * -------------------------------------------------------------------------- */
-.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn {
-    display: none !important;
+/* Navigation buttons · Linear-inspired icon controls */
+.rm-electron-nav-back-btn,
+.rm-electron-nav-forward-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0 !important;
+  margin: 0 2px;
+  border: 0 !important;
+  border-radius: 8px;
+  background: transparent !important;
+  color: #61758a !important;
+  box-shadow: none !important;
+  opacity: 1;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 120ms ease;
+}
+
+.rm-electron-nav-back-btn:hover,
+.rm-electron-nav-forward-btn:hover {
+  background: rgba(92, 112, 128, 0.12) !important;
+  color: #202b33 !important;
+}
+
+.rm-electron-nav-back-btn:active,
+.rm-electron-nav-forward-btn:active {
+  transform: scale(0.96);
+}
+
+.rm-electron-nav-back-btn:disabled,
+.rm-electron-nav-forward-btn:disabled,
+.rm-electron-nav-back-btn[aria-disabled="true"],
+.rm-electron-nav-forward-btn[aria-disabled="true"] {
+  opacity: 0.35;
+  cursor: default;
+  background: transparent !important;
+}
+
+.rm-electron-nav-back-btn .bp3-icon,
+.rm-electron-nav-forward-btn .bp3-icon,
+.rm-electron-nav-back-btn svg,
+.rm-electron-nav-forward-btn svg {
+  width: 20px;
+  height: 20px;
+  color: currentColor !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rm-electron-nav-back-btn,
+  .rm-electron-nav-forward-btn {
+    transition: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
