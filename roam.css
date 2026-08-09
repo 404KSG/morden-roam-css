@@ -306,9 +306,94 @@ div.rm-block[data-page-links*="DONE"]:not(
 /* --------------------------------------------------------------------------
  * Module 08
  * -------------------------------------------------------------------------- */
-/* Remove duplicate Electron history arrows; keep Daily Notes navigation beside the calendar. */
-:where(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn) {
+/* Keep one quiet Electron history back control; keep Daily Notes navigation beside the calendar. */
+:where(.rm-electron-nav-forward-btn) {
   display: none !important;
+}
+
+:where(.rm-electron-nav-back-btn) {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 26px !important;
+  width: 26px !important;
+  min-width: 26px !important;
+  height: 26px !important;
+  min-height: 26px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid transparent !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: #718392 !important;
+  opacity: 0.86 !important;
+  box-shadow: none !important;
+  outline: 1px solid transparent !important;
+  outline-offset: 1px !important;
+  line-height: 1 !important;
+  transition:
+    background-color 140ms ease,
+    color 160ms ease,
+    transform 120ms ease !important;
+}
+
+:where(.rm-electron-nav-back-btn):hover,
+:where(.rm-electron-nav-back-btn):focus-visible {
+  background: rgba(97, 117, 138, 0.07) !important;
+  color: #506577 !important;
+  opacity: 1 !important;
+}
+
+:where(.rm-electron-nav-back-btn):active {
+  transform: scale(0.96) !important;
+}
+
+:where(.rm-electron-nav-back-btn):focus-visible {
+  outline-color: rgba(47, 128, 190, 0.24) !important;
+}
+
+:where(.rm-electron-nav-back-btn):disabled,
+:where(.rm-electron-nav-back-btn)[aria-disabled="true"] {
+  opacity: 0.32 !important;
+  cursor: default !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+:where(.rm-electron-nav-back-btn) .bp3-icon,
+:where(.rm-electron-nav-back-btn) svg {
+  display: none !important;
+}
+
+:where(.rm-electron-nav-back-btn)::before {
+  content: "" !important;
+  display: block !important;
+  width: 11px !important;
+  height: 1.35px !important;
+  border-radius: 999px !important;
+  background: currentColor !important;
+}
+
+:where(.rm-electron-nav-back-btn)::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 6px !important;
+  top: 8px !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-left: 1.35px solid currentColor !important;
+  border-bottom: 1.35px solid currentColor !important;
+  transform: rotate(45deg) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.rm-electron-nav-back-btn) {
+    transition: none !important;
+  }
 }
 
 /* --------------------------------------------------------------------------
