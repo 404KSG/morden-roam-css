@@ -6,15 +6,15 @@ This repository preserves the current working theme as one reproducible styleshe
 
 ## Preview
 
-The theme uses a minimal, Linear-inspired visual language for Roam's writing surface, navigation, and help UI.
+The latest preview shows the shared workspace shell, light left navigation, right-sidebar cards, and Roam Help using the same minimal, Linear-inspired visual language.
 
-![Roam Help with the Linear-inspired theme](./assets/roam-help-linear-style.png)
+![Latest Morden Roam CSS interface](./assets/roam-help-linear-style.png)
 
 ## Use
 
 Copy the contents of [`roam.css`](./roam.css) into a CSS code block on your `roam/css` page.
 
-The current release contains 35 active CSS modules in the same order as the source graph. Keeping the order intact preserves the current cascade and appearance.
+The current release contains 36 active CSS modules in the same order as the source graph. Keeping the order intact preserves the current cascade and appearance.
 
 For accurate back/forward availability, also place [`roam-history-availability.js`](./roam-history-availability.js) in an enabled `{{[[roam/js]]}}` code block. It only marks an unavailable history direction so the stylesheet can dim and disable it.
 

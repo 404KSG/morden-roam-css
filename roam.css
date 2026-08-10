@@ -1,6 +1,6 @@
 /*
  * Morden Roam CSS
- * Generated from 35 active CSS blocks in Roam Research.
+ * Generated from 36 active CSS blocks in Roam Research.
  * Source order is preserved so later rules retain their original precedence.
  */
 
@@ -13,59 +13,106 @@
   --rr-linear-hairline: rgba(82, 82, 91, 0.075);
   --rr-linear-hairline-active: rgba(82, 82, 91, 0.11);
   --rr-linear-radius: 12px;
+  --rr-linear-inset: 12px;
+  --rr-linear-shell-top: 45px;
   --rr-linear-motion: 160ms ease;
 }
 
-/* Main workspace · Linear-inspired open surface */
-.roam-center {
-  background-color: var(--main-area-background-color) !important;
+/* Extend the original main surface across both columns. */
+.roam-app > .flex-h-box {
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+}
+
+.roam-app > .flex-h-box::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: var(--rr-linear-shell-top, 45px) 8px 8px 12px;
+  pointer-events: none;
+  border: 1px solid var(
+    --rr-linear-hairline,
+    rgba(82, 82, 91, 0.075)
+  );
+  border-radius: var(--rr-linear-radius, 12px);
+  background-color: var(--main-area-background-color);
   background-color: color-mix(
     in srgb,
     var(--main-area-background-color) 96%,
     var(--rr-linear-shell-tint, #6b6f76) 4%
-  ) !important;
+  );
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.025);
 }
 
+.roam-app > .flex-h-box > .roam-main,
+.roam-app > .flex-h-box > #right-sidebar {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+/* Align the main scroll viewport with the closed shared shell. */
 .roam-body-main {
   box-sizing: border-box;
-  margin: 14px 8px 0;
+  flex: 0 0 calc(100% - 53px) !important;
+  min-width: 0;
+  margin: 22px 8px 8px;
   border: 0 !important;
-  border-top: 1px solid var(
-    --rr-linear-hairline,
-    rgba(82, 82, 91, 0.075)
-  ) !important;
-  border-right: 1px solid var(
-    --rr-linear-hairline,
-    rgba(82, 82, 91, 0.075)
-  ) !important;
-  border-left: 1px solid var(
-    --rr-linear-hairline,
-    rgba(82, 82, 91, 0.075)
-  ) !important;
-  border-radius: var(--rr-linear-radius, 12px)
-    var(--rr-linear-radius, 12px) 0 0 !important;
+  border-radius: calc(var(--rr-linear-radius, 12px) - 1px) 0 0
+    calc(var(--rr-linear-radius, 12px) - 1px) !important;
   background: var(--main-area-background-color) !important;
-  background-clip: padding-box;
   box-shadow: none !important;
+}
+
+.roam-center {
+  min-width: 0;
+  border: 0 !important;
+  background: var(--main-area-background-color) !important;
 }
 
 /* --------------------------------------------------------------------------
  * Module 02
  * -------------------------------------------------------------------------- */
-/* Right sidebar · Linear-inspired quiet panels */
+/* Right sidebar - inset inside the shared workspace shell */
 #right-sidebar {
-  background-color: var(--main-area-background-color) !important;
-  background-color: color-mix(
-    in srgb,
-    var(--main-area-background-color) 96%,
-    var(--rr-linear-shell-tint, #6b6f76) 4%
-  ) !important;
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Match the shell top and stop one pixel before its bottom border. */
+#roam-right-sidebar-content {
+  box-sizing: border-box;
+  flex: 0 0 calc(100% - 54px) !important;
+  height: calc(100% - 54px) !important;
+  max-height: calc(100% - 54px) !important;
+  margin-top: 13px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  scrollbar-gutter: stable;
+}
+
+#right-sidebar .sidebar-content {
+  box-sizing: border-box;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 12px 0 20px !important;
+  padding: 0 !important;
+  background: transparent !important;
 }
 
 #right-sidebar .sidebar-content > div:not(.rm-dnd-separator) {
   box-sizing: border-box;
-  margin: 10px 10px 10px 15px !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 20px 10px 0 !important;
   padding-block: 2px;
+  padding-inline-start: 8px;
   border: 1px solid var(
     --rr-linear-hairline,
     rgba(82, 82, 91, 0.075)
@@ -77,6 +124,10 @@
   transition:
     border-color var(--rr-linear-motion, 160ms ease),
     box-shadow var(--rr-linear-motion, 160ms ease);
+}
+
+#right-sidebar .sidebar-content > div:not(.rm-dnd-separator):last-child {
+  margin-bottom: 0 !important;
 }
 
 /* The card border replaces Roam default window dividers. */
@@ -104,66 +155,181 @@
 /* --------------------------------------------------------------------------
  * Module 03
  * -------------------------------------------------------------------------- */
-/* Left sidebar · original dark surface */
-.roam-body .roam-app .roam-sidebar-container {
-  --rr-left-sidebar-bg: #18212a;
-  --rr-left-sidebar-fg: #dadada;
-  --rr-left-sidebar-fg-active: #ffffff;
-  --rr-left-sidebar-focus: rgba(255, 255, 255, 0.2);
-
-  isolation: isolate;
-  background: var(--rr-left-sidebar-bg, #18212a) !important;
-  background-image: none !important;
-  border-right: 0 !important;
+/* Left sidebar · Linear-inspired light navigation */
+.roam-body .roam-app .roam-sidebar-container.roam-sidebar-container {
+  --rr-left-sidebar-bg: #ffffff;
+  --rr-left-sidebar-fg: var(--primary-text-color, #202b33);
+  --rr-left-sidebar-fg-muted: var(--secondary-text-color, #69757f);
+  --rr-left-sidebar-fg-active: var(--primary-text-color, #202b33);
+  --rr-left-sidebar-hover: rgba(82, 82, 91, 0.055);
+  --rr-left-sidebar-active: rgba(82, 82, 91, 0.09);
+  --rr-left-sidebar-focus: rgba(82, 82, 91, 0.16);
+  --rr-left-sidebar-hairline: rgba(82, 82, 91, 0.075);
+  --rr-left-sidebar-embed-bg: #ffffff;
+  --rr-left-sidebar-embed-border: rgba(82, 82, 91, 0.075);
+  box-sizing: border-box;
+  align-self: flex-start;
+  height: calc(100% - var(--rr-linear-shell-top, 45px) - 8px) !important;
+  min-height: 0;
+  margin: var(--rr-linear-shell-top, 45px) 0 8px;
+  background: var(--rr-left-sidebar-bg) !important;
+  color: var(--rr-left-sidebar-fg) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
   box-shadow: none !important;
-  opacity: 1 !important;
 }
 
-.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content {
-  background: var(--rr-left-sidebar-bg, #18212a) !important;
-  background-image: none !important;
-  opacity: 1 !important;
+.roam-body .roam-app .roam-sidebar-container.roam-sidebar-container .roam-sidebar-content {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  background: var(--rr-left-sidebar-bg) !important;
+  color: var(--rr-left-sidebar-fg) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
 }
 
-.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .log-button,
-.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper,
-.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper .starred-pages .page,
-.roam-body .roam-app .roam-sidebar-container .bp3-minimal > div {
-  color: var(--rr-left-sidebar-fg, #dadada) !important;
+/* Floating hover-open state · frame is visual only */
+.roam-body .roam-app .roam-sidebar-container.roam-sidebar-container.noselect[style*="left: 0px"][style*="top: 45px"] {
+  border-radius: 0 var(--rr-linear-radius, 12px) var(--rr-linear-radius, 12px) 0 !important;
+  box-shadow: 0 8px 24px -18px rgba(16, 24, 40, 0.24) !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container.roam-sidebar-container.noselect[style*="left: 0px"][style*="top: 45px"] .roam-sidebar-content {
+  border-radius: 0 calc(var(--rr-linear-radius, 12px) - 1px) calc(var(--rr-linear-radius, 12px) - 1px) 0 !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container.roam-sidebar-container.noselect[style*="left: 0px"][style*="top: 45px"]::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  box-sizing: border-box;
+  pointer-events: none;
+  border-top: 1px solid rgba(82, 82, 91, 0.14);
+  border-right: 1px solid rgba(82, 82, 91, 0.14);
+  border-bottom: 1px solid rgba(82, 82, 91, 0.14);
+  border-left: 0;
+  border-radius: 0 var(--rr-linear-radius, 12px) var(--rr-linear-radius, 12px) 0;
+}
+
+/* Shared workspace top-edge seam · visible through the floating corner */
+.roam-body .roam-app .roam-sidebar-container.roam-sidebar-container.noselect[style*="left: 0px"][style*="top: 45px"]::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: -1px;
+  width: calc(var(--rr-linear-radius, 12px) + 1px);
+  height: 1px;
+  pointer-events: none;
+  background: var(--rr-linear-hairline, rgba(82, 82, 91, 0.075));
+}
+
+/* Workspace title · paint only; Roam keeps picker geometry */
+.roam-body .roam-app .roam-sidebar-container.roam-sidebar-container .roam-sidebar-content > .top-row,
+.roam-body .roam-app .roam-sidebar-container.roam-sidebar-container .roam-sidebar-content > .top-row > .flex-h-box,
+.roam-body .roam-app .roam-sidebar-container.roam-sidebar-container .rm-db-title-container {
+  background: var(--rr-left-sidebar-bg) !important;
+  color: var(--rr-left-sidebar-fg-active) !important;
+  box-shadow: none !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container .rm-db-title-container .rm-db-title {
+  background: transparent !important;
+  color: var(--rr-left-sidebar-fg-active) !important;
   font-size: 13px !important;
-  font-weight: 700 !important;
-  transition: color var(--rr-linear-motion, 160ms ease);
+  font-weight: 600 !important;
 }
 
-.roam-body .roam-app .roam-sidebar-container .log-button:hover,
-.roam-body .roam-app .roam-sidebar-container .starred-pages .page:hover,
-.roam-body .roam-app .roam-sidebar-container .bp3-minimal > div:hover {
-  color: var(--rr-left-sidebar-fg-active, #ffffff) !important;
+.roam-body .roam-app .roam-sidebar-container .rm-db-title-container .rm-db-title :is(.bp3-icon, .expand-icon) {
+  color: var(--rr-left-sidebar-fg-muted) !important;
 }
 
-.roam-body .roam-app .roam-sidebar-container .log-button:focus-visible,
-.roam-body .roam-app .roam-sidebar-container .starred-pages .page:focus-visible,
-.roam-body .roam-app .roam-sidebar-container .bp3-button.bp3-minimal:focus-visible {
-  color: var(--rr-left-sidebar-fg-active, #ffffff) !important;
-  outline: 1px solid var(
-    --rr-left-sidebar-focus,
-    rgba(255, 255, 255, 0.2)
-  );
+.roam-body .roam-app .roam-sidebar-container .rm-db-title-container :is(button, .bp3-button, [role="button"]):is(:hover, :focus, :active) {
+  background: transparent !important;
+  color: var(--rr-left-sidebar-fg-active) !important;
+  box-shadow: none !important;
+}
+
+/* Navigation */
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content :is(.log-button, .starred-pages-wrapper, .starred-pages .page, .sidebar-nav-item) {
+  background: transparent !important;
+  color: var(--rr-left-sidebar-fg-muted) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  box-shadow: none !important;
+  transition: color var(--rr-linear-motion, 160ms ease), background-color var(--rr-linear-motion, 160ms ease);
+}
+
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content :is(.log-button, .starred-pages .page, .sidebar-nav-item):hover {
+  background: var(--rr-left-sidebar-hover) !important;
+  color: var(--rr-left-sidebar-fg-active) !important;
+  border-radius: 6px;
+}
+
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content :is(.starred-pages-wrapper .starred-pages .page:is(.bp3-active, .active, [aria-current="page"]), .starred-pages-wrapper .bp3-active, .sidebar-nav-item.bp3-active) {
+  background: var(--rr-left-sidebar-active) !important;
+  color: var(--rr-left-sidebar-fg-active) !important;
+  border-radius: 6px;
+}
+
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content :is(.log-button, .starred-pages .page, .bp3-button.bp3-minimal):focus-visible {
+  color: var(--rr-left-sidebar-fg-active) !important;
+  outline: 1px solid var(--rr-left-sidebar-focus) !important;
   outline-offset: -1px;
   border-radius: 6px;
 }
 
-#roam-sidebar-logo {
-  display: none !important;
+/* Native separator */
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > div[style*="background"] {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+/* Sidebar embeds · same quiet surface, unchanged geometry */
+.roam-body .roam-app .roam-sidebar-container :is(.rm-embed-container, .rm-embed-container .rm-embed-inner, .rm-embed-container > .rm-block-children, .rm-ref-page-view, .rm-reference-item) {
+  background: var(--rr-left-sidebar-embed-bg) !important;
+  border-color: var(--rr-left-sidebar-embed-border) !important;
+  box-shadow: none !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container :is(.rm-embed-container, .rm-embed-container .rm-embed-inner, .rm-ref-page-view, .rm-reference-item):hover {
+  background: rgba(82, 82, 91, 0.035) !important;
+}
+
+#roam-sidebar-logo { display: none !important; }
+
+/* Graph picker · paint only; no layout or positioning */
+ul.rm-graph-dropdown.bp3-menu,
+ul.rm-graph-dropdown.bp3-menu > li,
+ul.rm-graph-dropdown.bp3-menu :is(.bp3-menu-item, .bp3-menu-header, .rm-graph-dropdown__section),
+ul.rm-graph-dropdown.bp3-menu :is(.bp3-menu-item, .bp3-menu-header, .rm-graph-dropdown__section) * {
+  background: #ffffff !important;
+  color: var(--primary-text-color, #202b33) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .log-button,
-  .roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper,
-  .roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper .starred-pages .page,
-  .roam-body .roam-app .roam-sidebar-container .bp3-minimal > div {
+  .roam-body .roam-app .roam-sidebar-container :is(.log-button, .starred-pages-wrapper, .starred-pages .page, .sidebar-nav-item) {
     transition: none;
   }
+}
+
+/* Page reference hover preview · Linear card */
+.rm-page-ref-popover {
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow:
+    0 0 0 1px rgba(82, 82, 91, 0.14),
+    0 12px 32px rgba(16, 24, 40, 0.10) !important;
+  overflow: hidden !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -622,9 +788,19 @@ fill: #FFFFFF;
 /* --------------------------------------------------------------------------
  * Module 14
  * -------------------------------------------------------------------------- */
+/* Native outline bars */
 .rm-multibar {
   z-index: 4;
-  border-width: 2px; /* 增加大纲线粗细 */
+  border-width: 2px;
+}
+
+/* Restore the native level-0 outline control in right-sidebar cards. */
+#right-sidebar .rm-level-0 > .rm-multibar {
+  left: -4 !important;
+  width: 12px !important;
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -961,238 +1137,544 @@ sup.ref-count-hidden {
 /* --------------------------------------------------------------------------
  * Module 28
  * -------------------------------------------------------------------------- */
-/* 1. 隐藏中间缝隙 (保持不变) */
-span.rm-page-ref[data-tag="Relevant Notes"] + span {
-    display: none !important;
-}
-
-/* 2. 角标重置：自然跟随 (保持不变) */
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] + sup,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] ~ .rm-page-ref-count {
-    position: static !important;
-    display: inline !important;
-    vertical-align: super !important;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 0 0 2px !important;
-    color: #888 !important;
-    font-size: smaller !important;
-    z-index: 1 !important;
-}
-
-/* 3. 公共参数 (已修改：高度变小) */
-span.rm-page-ref[data-tag="Relevant Notes"],
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] {
-    display: inline-flex !important;
-    align-items: center !important;
-    box-sizing: border-box !important;
-
-    /* 【修改点 1】上下内边距从 3px 减小为 1px */
-    padding: 3px 8px !important;
-
-    font-size: 14px !important;
-    font-weight: 700 !important;
-
-    /* 【修改点 2】行高从 1.3em 收紧为 1.1em，防止文字撑高 */
-    line-height: 1.1em !important;
-
-    margin-top: -2px !important;
-    margin-bottom: -2px !important;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
-    text-decoration: none !important;
-}
-
-/* 4. 左半部分：标签头 (白底) */
-span.rm-page-ref[data-tag="Relevant Notes"] {
-    background: white !important;
-    /* color: #333 !important; */
-
-    border: 1px solid #bae6fd !important;
-    border-right: 1px solid #bae6fd !important;
-
-    border-radius: 5px 0 0 5px !important;
-
-    margin-right: 0 !important;
-    position: relative !important;
-    z-index: 10 !important;
-}
-
-/* 5. 右半部分：内容体 (冰蓝底 - 紧凑版) (已修改：高度变小) */
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] {
-    background: linear-gradient(135deg, #f0f9ff, #dbeafe) !important;
-    color: #0b345b !important;
-
-    /* 【修改点 3】上下内边距同步减小为 1px */
-    padding: 3px 4px !important;
-
-    border: 1px solid #bae6fd !important;
-    border-left: none !important;
-    border-right: 1px solid #bae6fd !important;
-
-    border-radius: 0 5px 5px 0 !important;
-
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    margin-top: -2px !important;
-    margin-bottom: -2px !important;
-
-    position: relative !important;
-    z-index: 5 !important;
+/* References search · icon-only collapsed state */
+.rm-mentions-search.rm-mentions-search--hidden .rm-mentions-search__input {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 /* --------------------------------------------------------------------------
  * Module 29
  * -------------------------------------------------------------------------- */
-span.rm-page-ref[data-tag="Instant Notes"] {
-  background: linear-gradient(to right, #483D8B, #6A5ACD,#8472FF);
-  background-size: 100%;
-  color: #FFFFFF;
-  padding: 3px 8px 3px 8px;
-  font-size: 14px;
-  line-height: 1.2em;
-  font-weight: bold;
-  border-radius: 5px;
-  border-style: none;
-  position: relative;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.05), 0 -1px 3px rgba(0, 0, 0, 0.02);
+/* Block text · default justified alignment */
+:where(.rm-block-text, .rm-block__input, textarea.rm-block-input) {
+  text-align: justify;
+  text-justify: inter-character;
 }
 
-span.rm-page-ref[data-tag="Instant Notes"]::before {
-  content: "🫧";
-  margin-right: 4px;
+/* Keep structured content readable. */
+:where(
+  .rm-code-block,
+  .rm-code-block *,
+  .katex,
+  .katex *,
+  .roam-table,
+  .roam-table *
+) {
+  text-align: left;
+  text-justify: auto;
 }
 
 /* --------------------------------------------------------------------------
  * Module 30
  * -------------------------------------------------------------------------- */
-span.rm-page-ref[data-tag="Project Notes"] {
-  background: linear-gradient(to right, #000000, #252525,#545454);
-  background-size: 100%;
-  color: #FFFFFF;
-  padding: 3px 8px 3px 8px;
-  font-size: 14px;
-  line-height: 1.2em;
-  font-weight: bold;
-  border-radius: 5px;
-  border-style: none;
-  position: relative;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.05), 0 -1px 3px rgba(0, 0, 0, 0.02);
+/* Relevant Notes + linked topic: stable flat capsule */
+span.rm-page-ref[data-tag="Relevant Notes"] + span {
+  display: none !important;
 }
 
-span.rm-page-ref[data-tag="Project Notes"]::before {
-  content: "🦾";
-  margin-right: 4px;
+span.rm-page-ref[data-tag="Relevant Notes"],
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref[data-tag]:not([data-tag="Relevant Notes"]),
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] {
+  display: inline-flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  margin: 0 !important;
+  padding: 0 8px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: #f1f4f6 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  text-shadow: none !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  font-synthesis: none !important;
+  line-height: 24px !important;
+  vertical-align: middle !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+  transition: color 120ms ease, background-color 120ms ease !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"] {
+  color: #7f8d99 !important;
+  border-radius: 7px 0 0 7px !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref[data-tag]:not([data-tag="Relevant Notes"]),
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] {
+  color: #106ba3 !important;
+  border-left: 1px solid #d7dee4 !important;
+  border-radius: 0 7px 7px 0 !important;
+}
+
+/* Keep hover/focus/active on exactly the same box model. */
+span.rm-page-ref.rm-page-ref--tag[data-tag="Relevant Notes"]:is(:hover, :focus, :focus-visible, :active),
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref.rm-page-ref--tag[data-tag]:not([data-tag="Relevant Notes"]):is(:hover, :focus, :focus-visible, :active),
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title]:is(:hover, :focus, :focus-visible, :active) {
+  box-sizing: border-box !important;
+  width: auto !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  margin: 0 !important;
+  padding: 0 8px !important;
+  outline: 0 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 24px !important;
+  vertical-align: middle !important;
+  text-decoration: none !important;
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Relevant Notes"]:is(:hover, :focus, :focus-visible, :active) {
+  border: 0 !important;
+  color: #71808d !important;
+  background: #e9eef2 !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref.rm-page-ref--tag[data-tag]:not([data-tag="Relevant Notes"]):is(:hover, :focus, :focus-visible, :active),
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title]:is(:hover, :focus, :focus-visible, :active) {
+  border: 0 !important;
+  border-left: 1px solid #d7dee4 !important;
+  color: #0d5f93 !important;
+  background: #e9eef2 !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"]::before,
+span.rm-page-ref[data-tag="Relevant Notes"]::after,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref[data-tag]:not([data-tag="Relevant Notes"])::before,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref[data-tag]:not([data-tag="Relevant Notes"])::after,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title]::before,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title]::after {
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"] ~ sup,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ .rm-page-ref-count,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ .rm-block-ref-count,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ * sup,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ * .rm-page-ref-count,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ * .rm-block-ref-count {
+  position: relative !important;
+  top: -0.35em !important;
+  display: inline !important;
+  padding: 0 !important;
+  margin: 0 0 0 2px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  text-shadow: none !important;
+  color: #a3adb7 !important;
+  font-size: 0.68em !important;
+  font-weight: 600 !important;
+  line-height: 0 !important;
+  vertical-align: baseline !important;
+  transition: none !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"] ~ .rm-block-ref,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ * .rm-block-ref,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ .rm-block-ref:is(:hover, :focus, :active),
+span.rm-page-ref[data-tag="Relevant Notes"] ~ * .rm-block-ref:is(:hover, :focus, :active) {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  text-shadow: none !important;
+  color: #9aa5af !important;
+  text-decoration: none !important;
+  transition: none !important;
+}
+
+
+/* Reset the nested Roam page link inside the right capsule. */
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] .rm-page-ref,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] .rm-page-ref:is(:hover, :focus, :focus-visible, :active) {
+  display: inline !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  color: inherit !important;
+  font: inherit !important;
+  line-height: inherit !important;
+  vertical-align: baseline !important;
+  text-shadow: none !important;
+  text-decoration: none !important;
+  transition: none !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] .rm-page-ref::before,
+span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] .rm-page-ref::after {
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  text-shadow: none !important;
 }
 
 /* --------------------------------------------------------------------------
  * Module 31
  * -------------------------------------------------------------------------- */
-span.rm-page-ref[data-tag="Plateau Notes"] {
-  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-  background-size: 100%;
-  color: #FFFFFF;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.15);
-  padding: 3px 8px 3px 8px;
-  font-size: 14px;
-  line-height: 1.2em;
-  font-weight: bold;
-  border-radius: 5px;
-  border-style: none;
-  position: relative;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.05), 0 -1px 3px rgba(0, 0, 0, 0.02);
+/* Instant Notes · refined flat badge */
+span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 2px 7px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(to right, #483D8B, #6A5ACD, #8472FF) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  vertical-align: middle !important;
+  white-space: nowrap;
+  text-decoration: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: box-shadow 120ms ease !important;
 }
 
-span.rm-page-ref[data-tag="Plateau Notes"]::before {
-  content: "✨";
-  margin-right: 4px;
+span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]::before {
+  content: "🫧";
+  display: inline-block;
+  flex: 0 0 auto;
+  margin: 0 4px 0 0;
+  line-height: 1;
+  transform: translateY(-0.25px);
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]:is(:hover, :focus, :focus-visible, :active) {
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 2px 7px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(to right, #483D8B, #6A5ACD, #8472FF) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16) !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  filter: none !important;
+  transform: none !important;
 }
 
 /* --------------------------------------------------------------------------
  * Module 32
  * -------------------------------------------------------------------------- */
-span.rm-page-ref[data-tag="Evergreen Notes"] {
-  background: linear-gradient(to right, #355C7D, #03b1fc, #00ECFF);
-  background-size: 100%;
-  color: #FFFFFF;
-  padding: 3px 8px 3px 8px;
-  font-size: 14px;
-  line-height: 1.2em;
-  font-weight: bold;
-  border-radius: 5px;
-  border-style: none;
-  position: relative;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.05), 0 -1px 3px rgba(0, 0, 0, 0.02);
+/* Project Notes · refined flat badge */
+span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 2px 7px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(to right, #000000, #252525, #545454) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  vertical-align: middle !important;
+  white-space: nowrap;
+  text-decoration: none !important;
+
+  filter: none !important;
+  transform: none !important;
+  transition: box-shadow 120ms ease !important;
+}
+
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]::before {
+  content: "🦾";
+  display: inline-block;
+  flex: 0 0 auto;
+  margin: 0 4px 0 0;
+  line-height: 1;
+  transform: translateY(-0.25px);
+}
+
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]:is(:hover, :focus, :focus-visible, :active) {
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 2px 7px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(to right, #000000, #252525, #545454) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16) !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+
+  filter: none !important;
+  transform: none !important;
 }
 
 /* --------------------------------------------------------------------------
  * Module 33
  * -------------------------------------------------------------------------- */
-span.rm-page-ref[data-tag="Literature Notes"] {
-  /* Background: 极淡的冰蓝渐变 */
-  background: linear-gradient(135deg, #f0f9ff, #dbeafe);
-  color: #0284c7; /* 晴空蓝，清晰且有活力 */
-
-  /* Padding & Font */
-  padding: 3px 8px;
-  font-size: 14px;
-  line-height: 1.3em;
-  font-weight: 700;
-
-  /* Border & BorderRadius */
-  border: 1px solid #bae6fd; /* 柔和的天蓝边框 */
-  border-radius: 5px;
-
-  /* Box Shadow: 带一点点蓝色的投影 */
-  box-shadow: 0 3px 6px rgba(2, 132, 199, 0.05), 0 1px 2px rgba(2, 132, 199, 0.08);
-
-  /* Transition */
-  transition: all 0.2s ease-in-out;
+/* Plateau Notes · refined flat badge */
+span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 2px 7px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  vertical-align: middle !important;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: box-shadow 120ms ease !important;
 }
 
-span.rm-page-ref[data-tag="Literature Notes"]:hover {
-  /* Hover: 稍微加深的渐变 */
-  background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
-  box-shadow: 0 4px 7px rgba(2, 132, 199, 0.06), 0 2px 4px rgba(2, 132, 199, 0.1);
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]::before {
+  content: "✨";
+  display: inline-block;
+  flex: 0 0 auto;
+  margin: 0 4px 0 0;
+  line-height: 1;
+  transform: translateY(-0.25px);
+}
+
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]:is(:hover, :focus, :focus-visible, :active) {
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 2px 7px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16) !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
 }
 
 /* --------------------------------------------------------------------------
  * Module 34
  * -------------------------------------------------------------------------- */
-span.rm-page-ref[data-tag="Fleeting Notes"] {
-  /* Background: 极淡的冰蓝渐变 */
-  background: linear-gradient(135deg, #f0f9ff, #dbeafe);
-  color: #0284c7; /* 晴空蓝，清晰且有活力 */
+/* Evergreen Notes · refined flat badge */
+span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 2px 7px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(to right, #355C7D, #03b1fc, #00ECFF) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  vertical-align: middle !important;
+  white-space: nowrap;
+  text-decoration: none !important;
 
-  /* Padding & Font */
-  padding: 3px 8px;
-  font-size: 14px;
-  line-height: 1.3em;
-  font-weight: 700;
-
-  /* Border & BorderRadius */
-  border: 1px solid #bae6fd; /* 柔和的天蓝边框 */
-  border-radius: 5px;
-
-  /* Box Shadow: 带一点点蓝色的投影 */
-  box-shadow: 0 3px 6px rgba(2, 132, 199, 0.05), 0 1px 2px rgba(2, 132, 199, 0.08);
-
-  /* Transition */
-  transition: all 0.2s ease-in-out;
+  filter: none !important;
+  transform: none !important;
+  transition: box-shadow 120ms ease !important;
 }
 
-span.rm-page-ref[data-tag="Fleeting Notes"]:hover {
-  /* Hover: 稍微加深的渐变 */
-  background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
-  box-shadow: 0 4px 7px rgba(2, 132, 199, 0.06), 0 2px 4px rgba(2, 132, 199, 0.1);
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"]:is(:hover, :focus, :focus-visible, :active) {
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 2px 7px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(to right, #355C7D, #03b1fc, #00ECFF) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16) !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+
+  filter: none !important;
+  transform: none !important;
 }
 
 /* --------------------------------------------------------------------------
  * Module 35
  * -------------------------------------------------------------------------- */
-/* References search · icon-only collapsed state */
-.rm-mentions-search.rm-mentions-search--hidden .rm-mentions-search__input {
-  background: transparent !important;
-  box-shadow: none !important;
+/* Literature Notes · refined light badge */
+span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 1px 7px !important;
+  border: 1px solid #bae6fd !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(135deg, #f0f9ff, #dbeafe) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 2px rgba(2, 132, 199, 0.08) !important;
+  color: #0284c7 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  vertical-align: middle !important;
+  white-space: nowrap;
+  text-decoration: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: background 120ms ease, border-color 120ms ease, box-shadow 120ms ease !important;
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"]:is(:hover, :focus, :focus-visible, :active) {
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 1px 7px !important;
+  border: 1px solid #bae6fd !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(135deg, #e0f2fe, #bfdbfe) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.12) !important;
+  color: #0284c7 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 36
+ * -------------------------------------------------------------------------- */
+/* Fleeting Notes · refined light badge */
+span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 1px 7px !important;
+  border: 1px solid #bae6fd !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(135deg, #f0f9ff, #dbeafe) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 2px rgba(2, 132, 199, 0.08) !important;
+  color: #0284c7 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  vertical-align: middle !important;
+  white-space: nowrap;
+  text-decoration: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: background 120ms ease, border-color 120ms ease, box-shadow 120ms ease !important;
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"]:is(:hover, :focus, :focus-visible, :active) {
+  min-height: 24px !important;
+  margin: 0 1px !important;
+  padding: 1px 7px !important;
+  border: 1px solid #bae6fd !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(135deg, #e0f2fe, #bfdbfe) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.12) !important;
+  color: #0284c7 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  filter: none !important;
+  transform: none !important;
 }
