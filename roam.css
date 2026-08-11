@@ -156,6 +156,11 @@
  * Module 03
  * -------------------------------------------------------------------------- */
 /* Left sidebar · Linear-inspired light navigation */
+.roam-body .roam-app {
+  /* Width control: lower = narrower, higher = wider. */
+  --rr-left-sidebar-width: 200px;
+}
+
 .roam-body .roam-app .roam-sidebar-container.roam-sidebar-container {
   --rr-left-sidebar-bg: #ffffff;
   --rr-left-sidebar-fg: var(--primary-text-color, #202b33);
@@ -168,6 +173,9 @@
   --rr-left-sidebar-embed-bg: #ffffff;
   --rr-left-sidebar-embed-border: rgba(82, 82, 91, 0.075);
   box-sizing: border-box;
+  width: var(--rr-left-sidebar-width, 216px) !important;
+  min-width: var(--rr-left-sidebar-width, 216px) !important;
+  max-width: var(--rr-left-sidebar-width, 216px) !important;
   align-self: flex-start;
   height: calc(100% - var(--rr-linear-shell-top, 45px) - 8px) !important;
   min-height: 0;
@@ -191,6 +199,13 @@
   border-radius: 0 !important;
 }
 
+/* Pinned state · keep the workspace flush with the configured sidebar width. */
+.roam-body .roam-app
+  > .roam-sidebar-container[style*="top: 0px"][style*="bottom: 0px"]
+  ~ .flex-h-box {
+  margin-left: var(--rr-left-sidebar-width, 216px) !important;
+}
+
 /* Floating hover-open state · frame is visual only */
 .roam-body .roam-app .roam-sidebar-container.roam-sidebar-container.noselect[style*="left: 0px"][style*="top: 45px"] {
   border-radius: 0 var(--rr-linear-radius, 12px) var(--rr-linear-radius, 12px) 0 !important;
@@ -201,6 +216,12 @@
   border-radius: 0 calc(var(--rr-linear-radius, 12px) - 1px) calc(var(--rr-linear-radius, 12px) - 1px) 0 !important;
 }
 
+/* Floating corner · child paints stay transparent so the rounded parent can reveal the workspace. */
+.roam-body .roam-app .roam-sidebar-container.roam-sidebar-container.noselect[style*="left: 0px"][style*="top: 45px"] .roam-sidebar-content > .top-row,
+.roam-body .roam-app .roam-sidebar-container.roam-sidebar-container.noselect[style*="left: 0px"][style*="top: 45px"] .roam-sidebar-content > .top-row > .flex-h-box {
+  background: transparent !important;
+}
+
 .roam-body .roam-app .roam-sidebar-container.roam-sidebar-container.noselect[style*="left: 0px"][style*="top: 45px"]::after {
   content: "";
   position: absolute;
@@ -208,24 +229,16 @@
   inset: 0;
   box-sizing: border-box;
   pointer-events: none;
-  border-top: 1px solid rgba(82, 82, 91, 0.14);
-  border-right: 1px solid rgba(82, 82, 91, 0.14);
-  border-bottom: 1px solid rgba(82, 82, 91, 0.14);
+  border-top: 1px solid var(--rr-linear-hairline, rgba(82, 82, 91, 0.075));
+  border-right: 1px solid var(--rr-linear-hairline, rgba(82, 82, 91, 0.075));
+  border-bottom: 1px solid var(--rr-linear-hairline, rgba(82, 82, 91, 0.075));
   border-left: 0;
   border-radius: 0 var(--rr-linear-radius, 12px) var(--rr-linear-radius, 12px) 0;
 }
 
-/* Shared workspace top-edge seam · visible through the floating corner */
+/* Floating corner seam · disabled to avoid double-compositing the shell border. */
 .roam-body .roam-app .roam-sidebar-container.roam-sidebar-container.noselect[style*="left: 0px"][style*="top: 45px"]::before {
-  content: "";
-  position: absolute;
-  z-index: 3;
-  top: 0;
-  right: -1px;
-  width: calc(var(--rr-linear-radius, 12px) + 1px);
-  height: 1px;
-  pointer-events: none;
-  background: var(--rr-linear-hairline, rgba(82, 82, 91, 0.075));
+  content: none !important;
 }
 
 /* Workspace title · paint only; Roam keeps picker geometry */
@@ -264,10 +277,58 @@
   transition: color var(--rr-linear-motion, 160ms ease), background-color var(--rr-linear-motion, 160ms ease);
 }
 
+/* Starred pages · reserve 5px of paint-only space beyond the count. */
+.roam-body .roam-app .roam-sidebar-container .starred-pages {
+  width: calc(100% + 5px) !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container .starred-pages .page {
+  display: flex !important;
+  align-items: center;
+  min-width: 0;
+  white-space: nowrap;
+  position: relative;
+  isolation: isolate;
+  padding-right: 5px !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container .starred-pages .page > .rr-sidebar-ref-count {
+  flex: 0 0 auto;
+  min-width: 28px;
+  margin-left: auto;
+  padding-left: 10px;
+  color: var(--rr-left-sidebar-fg-muted, #69757f);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
 .roam-body .roam-app .roam-sidebar-container .roam-sidebar-content :is(.log-button, .starred-pages .page, .sidebar-nav-item):hover {
   background: var(--rr-left-sidebar-hover) !important;
   color: var(--rr-left-sidebar-fg-active) !important;
   border-radius: 6px;
+}
+
+/* Starred-page hover surface · extend paint without moving title or count. */
+.roam-body .roam-app .roam-sidebar-container .starred-pages .page:hover {
+  background: transparent !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container .starred-pages .page:hover::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--rr-left-sidebar-hover);
+  border-radius: 6px;
+  pointer-events: none;
 }
 
 .roam-body .roam-app .roam-sidebar-container .roam-sidebar-content :is(.starred-pages-wrapper .starred-pages .page:is(.bp3-active, .active, [aria-current="page"]), .starred-pages-wrapper .bp3-active, .sidebar-nav-item.bp3-active) {
