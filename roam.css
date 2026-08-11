@@ -279,7 +279,7 @@
 
 /* Starred pages · reserve 5px of paint-only space beyond the count. */
 .roam-body .roam-app .roam-sidebar-container .starred-pages {
-  width: calc(100% + 5px) !important;
+  width: calc(100% + 10px) !important;
 }
 
 .roam-body .roam-app .roam-sidebar-container .starred-pages .page {
@@ -289,7 +289,7 @@
   white-space: nowrap;
   position: relative;
   isolation: isolate;
-  padding-right: 5px !important;
+  padding-right: 10px !important;
 }
 
 .roam-body .roam-app .roam-sidebar-container .starred-pages .page > .rr-sidebar-ref-count {
