@@ -1,6 +1,6 @@
 /*
  * Morden Roam CSS
- * Generated from 36 active CSS blocks in Roam Research.
+ * Generated from 35 active CSS blocks in Roam Research.
  * Source order is preserved so later rules retain their original precedence.
  */
 
@@ -1262,28 +1262,6 @@ sup.ref-count-hidden {
 /* --------------------------------------------------------------------------
  * Module 29
  * -------------------------------------------------------------------------- */
-/* Block text · default justified alignment */
-:where(.rm-block-text, .rm-block__input, textarea.rm-block-input) {
-  text-align: justify;
-  text-justify: inter-character;
-}
-
-/* Keep structured content readable. */
-:where(
-  .rm-code-block,
-  .rm-code-block *,
-  .katex,
-  .katex *,
-  .roam-table,
-  .roam-table *
-) {
-  text-align: left;
-  text-justify: auto;
-}
-
-/* --------------------------------------------------------------------------
- * Module 30
- * -------------------------------------------------------------------------- */
 /* Relevant Notes + linked topic: stable flat capsule */
 span.rm-page-ref[data-tag="Relevant Notes"] + span {
   display: none !important;
@@ -1470,7 +1448,7 @@ span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] .rm-page-ref
 }
 
 /* --------------------------------------------------------------------------
- * Module 31
+ * Module 30
  * -------------------------------------------------------------------------- */
 /* Instant Notes · refined flat badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"] {
@@ -1527,7 +1505,7 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]:is(:hover, :focus, :
 }
 
 /* --------------------------------------------------------------------------
- * Module 32
+ * Module 31
  * -------------------------------------------------------------------------- */
 /* Project Notes · refined flat badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"] {
@@ -1588,7 +1566,7 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]:is(:hover, :focus, :
 }
 
 /* --------------------------------------------------------------------------
- * Module 33
+ * Module 32
  * -------------------------------------------------------------------------- */
 /* Plateau Notes · refined flat badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"] {
@@ -1649,7 +1627,7 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]:is(:hover, :focus, :
 }
 
 /* --------------------------------------------------------------------------
- * Module 34
+ * Module 33
  * -------------------------------------------------------------------------- */
 /* Evergreen Notes · refined flat badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"] {
@@ -1700,7 +1678,7 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"]:is(:hover, :focus,
 }
 
 /* --------------------------------------------------------------------------
- * Module 35
+ * Module 34
  * -------------------------------------------------------------------------- */
 /* Literature Notes · refined light badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"] {
@@ -1748,7 +1726,7 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"]:is(:hover, :focus
 }
 
 /* --------------------------------------------------------------------------
- * Module 36
+ * Module 35
  * -------------------------------------------------------------------------- */
 /* Fleeting Notes · refined light badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"] {

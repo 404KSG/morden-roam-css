@@ -18,7 +18,7 @@ For the complete behavior bundle, copy [`roam.js`](./roam.js) into one enabled `
 
 [`roam-history-availability.js`](./roam-history-availability.js) is retained as a standalone compatibility helper for users who only need history-button availability. Do not run it alongside the same module inside `roam.js`.
 
-The exported stylesheet preserves all 36 active modules in their original Roam order.
+The exported stylesheet preserves all 35 active modules in their original Roam order.
 
 ## Export again
 
