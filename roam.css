@@ -172,6 +172,7 @@
   --rr-left-sidebar-hairline: rgba(82, 82, 91, 0.075);
   --rr-left-sidebar-embed-bg: #ffffff;
   --rr-left-sidebar-embed-border: rgba(82, 82, 91, 0.075);
+  --rr-starred-list-offset: -48px;
   box-sizing: border-box;
   width: var(--rr-left-sidebar-width, 216px) !important;
   min-width: var(--rr-left-sidebar-width, 216px) !important;
@@ -277,19 +278,17 @@
   transition: color var(--rr-linear-motion, 160ms ease), background-color var(--rr-linear-motion, 160ms ease);
 }
 
-/* Starred pages · reserve 5px of paint-only space beyond the count. */
 .roam-body .roam-app .roam-sidebar-container .starred-pages {
   width: calc(100% + 10px) !important;
 }
 
+/* Starred pages · keep Roam's native row geometry for drag-and-drop. */
 .roam-body .roam-app .roam-sidebar-container .starred-pages .page {
   display: flex !important;
   align-items: center;
   min-width: 0;
   white-space: nowrap;
-  position: relative;
-  isolation: isolate;
-  padding-right: 10px !important;
+  padding-right: 5px !important;
 }
 
 .roam-body .roam-app .roam-sidebar-container .starred-pages .page > .rr-sidebar-ref-count {
@@ -313,24 +312,6 @@
   border-radius: 6px;
 }
 
-/* Starred-page hover surface · extend paint without moving title or count. */
-.roam-body .roam-app .roam-sidebar-container .starred-pages .page:hover {
-  background: transparent !important;
-}
-
-.roam-body .roam-app .roam-sidebar-container .starred-pages .page:hover::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--rr-left-sidebar-hover);
-  border-radius: 6px;
-  pointer-events: none;
-}
-
 .roam-body .roam-app .roam-sidebar-container .roam-sidebar-content :is(.starred-pages-wrapper .starred-pages .page:is(.bp3-active, .active, [aria-current="page"]), .starred-pages-wrapper .bp3-active, .sidebar-nav-item.bp3-active) {
   background: var(--rr-left-sidebar-active) !important;
   color: var(--rr-left-sidebar-fg-active) !important;
@@ -342,12 +323,6 @@
   outline: 1px solid var(--rr-left-sidebar-focus) !important;
   outline-offset: -1px;
   border-radius: 6px;
-}
-
-/* Native separator */
-.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > div[style*="background"] {
-  background: transparent !important;
-  border-color: transparent !important;
 }
 
 /* Sidebar embeds · same quiet surface, unchanged geometry */
@@ -375,6 +350,75 @@ ul.rm-graph-dropdown.bp3-menu :is(.bp3-menu-item, .bp3-menu-header, .rm-graph-dr
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   mix-blend-mode: normal !important;
+}
+
+/* Native separator · paint only; preserve Roam's first-position hit-testing */
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper {
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > div[style*="background"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > div[style*="border"] {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* First starred-page insertion strip · hide paint only, never geometry or hit-testing.
+   The archived Sugar Cheese Sticks theme applies a global `hr` rule and hides
+   `.starred-pages-wrapper > .title`; both can make the first drop target look
+   like a separator and prevent dropping a page before TODO. */
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content > hr,
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > hr,
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > .rm-dnd-separator,
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > .bp3-divider,
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > [role="separator"],
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > .flex-h-box {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline-color: transparent !important;
+}
+
+/* Restore the first-position target after the archived theme's display:none.
+   Opacity removes the label visually while preserving its native box and DnD
+   event path. Keep paint transparent without changing geometry or hit-testing. */
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > .title,
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > [class*="title"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 0 !important;
+  color: transparent !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  pointer-events: auto !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > .title *,
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > [class*="title"] * {
+  color: transparent !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Restore the compact pre-target spacing without touching the target box.
+   The first-position target remains in normal flow for native DnD, while the
+   visible starred-page list is painted upward into that reserved space. */
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages-wrapper > .starred-pages {
+  position: relative !important;
+  top: var(--rr-starred-list-offset, -48px) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
