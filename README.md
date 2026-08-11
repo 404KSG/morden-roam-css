@@ -6,7 +6,7 @@ A quiet, Linear-inspired Roam Research theme for writing, block navigation, and 
 
 The current design combines a shared workspace shell, compact left navigation, inset right-sidebar cards, and restrained Roam-native typography.
 
-![Latest Morden Roam CSS interface](./assets/roam-help-linear-style.png)
+![Latest Morden Roam CSS interface](./assets/morden-roam-css-preview-2026-08-11.png)
 
 ## Install
 
