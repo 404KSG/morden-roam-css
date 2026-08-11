@@ -74,87 +74,6 @@
 /* --------------------------------------------------------------------------
  * Module 02
  * -------------------------------------------------------------------------- */
-/* Right sidebar - inset inside the shared workspace shell */
-#right-sidebar {
-  box-sizing: border-box;
-  min-width: 0;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-/* Match the shell top and stop one pixel before its bottom border. */
-#roam-right-sidebar-content {
-  box-sizing: border-box;
-  flex: 0 0 calc(100% - 54px) !important;
-  height: calc(100% - 54px) !important;
-  max-height: calc(100% - 54px) !important;
-  margin-top: 13px !important;
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  scrollbar-gutter: stable;
-}
-
-#right-sidebar .sidebar-content {
-  box-sizing: border-box;
-  width: 100% !important;
-  min-width: 0 !important;
-  margin: 12px 0 20px !important;
-  padding: 0 !important;
-  background: transparent !important;
-}
-
-#right-sidebar .sidebar-content > div:not(.rm-dnd-separator) {
-  box-sizing: border-box;
-  width: auto !important;
-  min-width: 0 !important;
-  margin: 0 20px 10px 0 !important;
-  padding-block: 2px;
-  padding-inline-start: 8px;
-  border: 1px solid var(
-    --rr-linear-hairline,
-    rgba(82, 82, 91, 0.075)
-  ) !important;
-  border-radius: var(--rr-linear-radius, 12px) !important;
-  background: var(--main-area-background-color) !important;
-  background-clip: padding-box;
-  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.025);
-  transition:
-    border-color var(--rr-linear-motion, 160ms ease),
-    box-shadow var(--rr-linear-motion, 160ms ease);
-}
-
-#right-sidebar .sidebar-content > div:not(.rm-dnd-separator):last-child {
-  margin-bottom: 0 !important;
-}
-
-/* The card border replaces Roam default window dividers. */
-#roam-right-sidebar-content
-  .sidebar-content > div:not(.rm-dnd-separator)
-  > div[style*="border-bottom"] {
-  border-bottom: 0 !important;
-}
-
-#right-sidebar .sidebar-content > div:not(.rm-dnd-separator):hover,
-#right-sidebar .sidebar-content > div:not(.rm-dnd-separator):focus-within {
-  border-color: var(
-    --rr-linear-hairline-active,
-    rgba(82, 82, 91, 0.11)
-  ) !important;
-  box-shadow: 0 2px 6px rgba(16, 24, 40, 0.04);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #right-sidebar .sidebar-content > div:not(.rm-dnd-separator) {
-    transition: none;
-  }
-}
-
-/* --------------------------------------------------------------------------
- * Module 03
- * -------------------------------------------------------------------------- */
 /* Left sidebar · Linear-inspired light navigation */
 .roam-body .roam-app {
   /* Width control: lower = narrower, higher = wider. */
@@ -435,6 +354,88 @@ ul.rm-graph-dropdown.bp3-menu :is(.bp3-menu-item, .bp3-menu-header, .rm-graph-dr
     0 0 0 1px rgba(82, 82, 91, 0.14),
     0 12px 32px rgba(16, 24, 40, 0.10) !important;
   overflow: hidden !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 03
+ * -------------------------------------------------------------------------- */
+/* Right sidebar - inset inside the shared workspace shell */
+#right-sidebar {
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Match the shell top and stop one pixel before its bottom border. */
+#roam-right-sidebar-content {
+  box-sizing: border-box;
+  flex: 0 0 calc(100% - 54px) !important;
+  height: calc(100% - 54px) !important;
+  max-height: calc(100% - 54px) !important;
+  margin-top: 13px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  scrollbar-gutter: stable;
+}
+
+
+#right-sidebar .sidebar-content {
+  box-sizing: border-box;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 12px 0 20px !important;
+  padding: 0 max(0px, calc(24px - var(--rr-scrollbar-slot, 0px))) 0 0 !important;
+  background: transparent !important;
+}
+
+#right-sidebar .sidebar-content > div:not(.rm-dnd-separator) {
+  box-sizing: border-box;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 0 10px !important;
+  padding-block: 2px;
+  padding-inline-start: 8px;
+  border: 1px solid var(
+    --rr-linear-hairline,
+    rgba(82, 82, 91, 0.075)
+  ) !important;
+  border-radius: var(--rr-linear-radius, 12px) !important;
+  background: var(--main-area-background-color) !important;
+  background-clip: padding-box;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.025);
+  transition:
+    border-color var(--rr-linear-motion, 160ms ease),
+    box-shadow var(--rr-linear-motion, 160ms ease);
+}
+
+#right-sidebar .sidebar-content > div:not(.rm-dnd-separator):last-child {
+  margin-bottom: 0 !important;
+}
+
+/* The card border replaces Roam default window dividers. */
+#roam-right-sidebar-content
+  .sidebar-content > div:not(.rm-dnd-separator)
+  > div[style*="border-bottom"] {
+  border-bottom: 0 !important;
+}
+
+#right-sidebar .sidebar-content > div:not(.rm-dnd-separator):hover,
+#right-sidebar .sidebar-content > div:not(.rm-dnd-separator):focus-within {
+  border-color: var(
+    --rr-linear-hairline-active,
+    rgba(82, 82, 91, 0.11)
+  ) !important;
+  box-shadow: 0 2px 6px rgba(16, 24, 40, 0.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #right-sidebar .sidebar-content > div:not(.rm-dnd-separator) {
+    transition: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -906,6 +907,16 @@ fill: #FFFFFF;
   display: block !important;
   visibility: visible !important;
   pointer-events: auto !important;
+}
+
+/* Keep native table scrollers from covering the parent outline control. */
+.rm-block-children:has(> .rm-block > .rm-block-main.rm-block__self--horizontal-scroller .rm-table) > .rm-multibar {
+  z-index: 12 !important;
+}
+
+/* Keep table scrollers below native outline controls in the main canvas. */
+.roam-article .rm-block-main.rm-block__self--horizontal-scroller:has(.rm-table) {
+  z-index: 3 !important;
 }
 
 /* --------------------------------------------------------------------------
