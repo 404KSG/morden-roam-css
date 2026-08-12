@@ -572,7 +572,7 @@ div.rm-block[data-page-links*="DONE"]:not(
 .roam-article .rm-title-display,
 .roam-article .rm-title-textarea,
 .roam-article .roam-log-page h1.level2 {
-  margin-top: 20px !important;
+  margin-top: 30px !important;
   padding-bottom: 0px !important;
 }
 
