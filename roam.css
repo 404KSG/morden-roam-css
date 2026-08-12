@@ -441,6 +441,196 @@ ul.rm-graph-dropdown.bp3-menu :is(.bp3-menu-item, .bp3-menu-header, .rm-graph-dr
 /* --------------------------------------------------------------------------
  * Module 04
  * -------------------------------------------------------------------------- */
+/* Shared title styles */
+.roam-article .rm-title-display,
+.roam-article .rm-title-textarea,
+.roam-article .roam-log-page h1.level2,
+.rm-sidebar-outline .rm-title-display,
+.rm-sidebar-outline .rm-title-textarea,
+.rm-sidebar-outline .roam-log-page h1.level2,
+.rm-sidebar-outline .rm-title-editing-display {
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+  padding-top: 0 !important;
+  padding-bottom: 10px !important;
+  border: 1px solid transparent !important;
+}
+
+/* Main workspace */
+.roam-article {
+  padding-top: 45px !important;
+}
+
+.roam-article .rm-title-display,
+.roam-article .rm-title-textarea,
+.roam-article .roam-log-page h1.level2,
+.roam-article .rm-title-editing-display {
+  display: block !important;
+  width: 100% !important;
+  height: 45px !important;
+  min-height: 45px !important;
+  max-height: 45px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.roam-article .rm-title-textarea {
+  resize: none !important;
+  overflow: hidden !important;
+}
+
+/* Right sidebar · keep view and edit states at identical geometry */
+.rm-sidebar-outline .rm-title-display,
+.rm-sidebar-outline .rm-title-textarea,
+.rm-sidebar-outline .roam-log-page h1.level2,
+.rm-sidebar-outline .rm-title-editing-display {
+  display: block !important;
+  width: 100% !important;
+  height: 45px !important;
+  min-height: 45px !important;
+  max-height: 45px !important;
+  margin: -10px 0 0 !important;
+  box-sizing: border-box !important;
+}
+
+.rm-sidebar-outline .rm-title-textarea,
+.rm-sidebar-outline .rm-title-editing-display textarea {
+  resize: none !important;
+  overflow: hidden !important;
+}
+
+/* Right sidebar · edit mode keeps the title flow box fixed */
+.rm-sidebar-outline .rm-title-editing-display {
+  position: relative !important;
+  top: 10px !important;
+}
+
+/* Right sidebar · normalize the actual editing control */
+.rm-sidebar-outline .rm-title-editing-display > textarea,
+.rm-sidebar-outline .rm-title-editing-display textarea {
+  display: block !important;
+  width: 100% !important;
+  height: 45px !important;
+  min-height: 45px !important;
+  max-height: 45px !important;
+  margin: 0 !important;
+  padding: 0 0 10px !important;
+  border: 1px solid transparent !important;
+  box-sizing: border-box !important;
+  font: inherit !important;
+  line-height: 1.5 !important;
+  vertical-align: top !important;
+  position: relative !important;
+  top: -10px !important;
+  resize: none !important;
+  overflow: hidden !important;
+}
+
+/* Multi-line titles · allow the flow box to grow with wrapped text */
+.roam-article .rm-title-display,
+.roam-article .roam-log-page h1.level2,
+.roam-article .rm-title-editing-display,
+.rm-sidebar-outline .rm-title-display,
+.rm-sidebar-outline .roam-log-page h1.level2,
+.rm-sidebar-outline .rm-title-editing-display {
+  height: auto !important;
+  min-height: 45px !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Multi-line titles · main and sidebar editing controls */
+.roam-article .rm-title-textarea,
+.rm-sidebar-outline .rm-title-textarea,
+.rm-sidebar-outline .rm-title-editing-display > textarea,
+.rm-sidebar-outline .rm-title-editing-display textarea {
+  height: auto !important;
+  min-height: 45px !important;
+  max-height: none !important;
+  field-sizing: content !important;
+  overflow: hidden !important;
+}
+
+/* Right sidebar edit mode · remove the wrapper's duplicate flow padding/border */
+.rm-sidebar-outline .rm-title-editing-display {
+  padding-bottom: 0 !important;
+  border-width: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 05
+ * -------------------------------------------------------------------------- */
+/* Global Font — optimized */
+  html, body,
+  .roam-app,
+  .roam-body,
+  .roam-article,
+  .roam-sidebar-content,
+  .roam-topbar {
+  font-family: var(--global-font), 'Inter', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  }
+
+/* Roam search · restore native typography */
+.roam-topbar .rm-find-or-create-wrapper .bp3-input {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* Search results live in a menu and need their own override. */
+.rm-find-or-create-wrapper .bp3-menu-item,
+.rm-find-or-create__menu .bp3-menu-item {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* Advanced search is a separate modal component. */
+.rm-find-or-create-modal-body__list,
+.rm-find-or-create-modal-body__list .rm-search-query__page-row-title,
+.rm-find-or-create-modal-body__list .rm-search-query__semantic-result,
+.rm-find-or-create-modal-body__list .rm-search-list-item-detail,
+.rm-find-or-create-modal-body__list .rm-block-text {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 06
+ * -------------------------------------------------------------------------- */
+/* Native outline bars */
+.rm-multibar {
+  z-index: 4;
+  border-width: 2px;
+}
+
+/* Restore the native level-0 outline control in right-sidebar cards. */
+#right-sidebar .rm-level-0 > .rm-multibar {
+  left: -8px !important;
+  width: 12px !important;
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Keep native table scrollers from covering the parent outline control. */
+.rm-block-children:has(> .rm-block > .rm-block-main.rm-block__self--horizontal-scroller .rm-table) > .rm-multibar {
+  z-index: 12 !important;
+}
+
+/* Keep table scrollers below native outline controls in the main canvas. */
+.roam-article .rm-block-main.rm-block__self--horizontal-scroller:has(.rm-table) {
+  z-index: 3 !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 07
+ * -------------------------------------------------------------------------- */
 /* TODO checkbox · Linear-inspired, layout-safe */
 .check-container {
   position: relative;
@@ -491,48 +681,7 @@ div.rm-block[data-page-links*="DONE"]:not(
 }
 
 /* --------------------------------------------------------------------------
- * Module 05
- * -------------------------------------------------------------------------- */
-/* Global Font — optimized */
-  html, body,
-  .roam-app,
-  .roam-body,
-  .roam-article,
-  .roam-sidebar-content,
-  .roam-topbar {
-  font-family: var(--global-font), 'Inter', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  }
-
-/* Roam search · restore native typography */
-.roam-topbar .rm-find-or-create-wrapper .bp3-input {
-  font-size: 14px !important;
-  font-weight: 400 !important;
-}
-
-/* Search results live in a menu and need their own override. */
-.rm-find-or-create-wrapper .bp3-menu-item,
-.rm-find-or-create__menu .bp3-menu-item {
-  font-size: 14px !important;
-  font-weight: 400 !important;
-}
-
-/* Advanced search is a separate modal component. */
-.rm-find-or-create-modal-body__list,
-.rm-find-or-create-modal-body__list .rm-search-query__page-row-title,
-.rm-find-or-create-modal-body__list .rm-search-query__semantic-result,
-.rm-find-or-create-modal-body__list .rm-search-list-item-detail,
-.rm-find-or-create-modal-body__list .rm-block-text {
-  font-size: 14px !important;
-  font-weight: 400 !important;
-}
-
-/* --------------------------------------------------------------------------
- * Module 06
+ * Module 08
  * -------------------------------------------------------------------------- */
 /* Match Electron history icons to Roam's Daily Notes chevrons. */
 .rm-electron-nav-back-btn::before {
@@ -550,68 +699,20 @@ div.rm-block[data-page-links*="DONE"]:not(
 }
 
 /* --------------------------------------------------------------------------
- * Module 07
- * -------------------------------------------------------------------------- */
-/* Shared title styles */
-.roam-article .rm-title-display,
-.roam-article .rm-title-textarea,
-.roam-article .roam-log-page h1.level2,
-.rm-sidebar-outline .rm-title-display,
-.rm-sidebar-outline .rm-title-textarea,
-.rm-sidebar-outline .roam-log-page h1.level2 {
-  font-size: 18px !important;
-  font-weight: 800 !important;
-  line-height: 1.5 !important;
-  box-sizing: border-box !important;
-  padding-top: 0px !important;
-  padding-bottom: 11px !important;
-  border: 1px solid transparent !important;
-}
-
-/* Main workspace · keep the vertical offset on the stable wrapper. */
-.roam-article {
-  padding-top: 30px !important;
-}
-
-.roam-article .rm-title-display,
-.roam-article .rm-title-textarea,
-.roam-article .roam-log-page h1.level2 {
-  display: block !important;
-  width: 100% !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-  height: 40px !important;
-  min-height: 40px !important;
-  max-height: 40px !important;
-}
-
-.roam-article .rm-title-textarea {
-  resize: none !important;
-  overflow: hidden !important;
-}
-
-/* Right sidebar */
-.rm-sidebar-outline .rm-title-display,
-.rm-sidebar-outline .rm-title-textarea,
-.rm-sidebar-outline .roam-log-page h1.level2 {
-  margin-top: -10px !important;
-}
-
-/* --------------------------------------------------------------------------
- * Module 08
+ * Module 09
  * -------------------------------------------------------------------------- */
 /* 主页面 PDF 图标 */
 .roam-article svg[viewBox="0 0 1920 1920"]{
-  transform: translate(0px, -9px) !important; /* 改这里：X, Y */
+  transform: translate(0px, 0px) !important; /* 改这里：X, Y */
 }
 
 /* 侧边栏 PDF 图标 */
 .rm-sidebar-outline svg[viewBox="0 0 1920 1920"]{
-  transform: translate(0px, -9px) !important; /* 改这里：X, Y */
+  transform: translate(0px, -20px) !important; /* 改这里：X, Y */
 }
 
 /* --------------------------------------------------------------------------
- * Module 09
+ * Module 10
  * -------------------------------------------------------------------------- */
 /* KAN BAN */
 .kanban-board {
@@ -836,7 +937,7 @@ Images in the content area will be scaled to 100% once the reach the max width o
 }
 
 /* --------------------------------------------------------------------------
- * Module 10
+ * Module 11
  * -------------------------------------------------------------------------- */
 .rm-jump-date-picker .DayPicker-Day--today {
     outline: 2px dashed;
@@ -845,7 +946,7 @@ Images in the content area will be scaled to 100% once the reach the max width o
 }
 
 /* --------------------------------------------------------------------------
- * Module 11
+ * Module 12
  * -------------------------------------------------------------------------- */
 .rm-page-ref.rm-page-ref--tag:hover,
 .rm-page-ref.rm-page-ref--tag:focus,
@@ -854,7 +955,7 @@ Images in the content area will be scaled to 100% once the reach the max width o
 }
 
 /* --------------------------------------------------------------------------
- * Module 12
+ * Module 13
  * -------------------------------------------------------------------------- */
 /* 针对引用框内的标签进行优化 */
 div.rm-ref-page-view > div > div span.rm-page-ref:not(.bp3-icon) {
@@ -897,7 +998,7 @@ width: auto; /* 自动调整宽度 */
 }
 
 /* --------------------------------------------------------------------------
- * Module 13
+ * Module 14
  * -------------------------------------------------------------------------- */
 .bp3-tooltip .bp3-popover-content {
 background: #FFFFFF;
@@ -906,34 +1007,6 @@ color: #202B33;
 
 .bp3-tooltip .bp3-popover-arrow-fill {
 fill: #FFFFFF;
-}
-
-/* --------------------------------------------------------------------------
- * Module 14
- * -------------------------------------------------------------------------- */
-/* Native outline bars */
-.rm-multibar {
-  z-index: 4;
-  border-width: 2px;
-}
-
-/* Restore the native level-0 outline control in right-sidebar cards. */
-#right-sidebar .rm-level-0 > .rm-multibar {
-  left: -4 !important;
-  width: 12px !important;
-  display: block !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-}
-
-/* Keep native table scrollers from covering the parent outline control. */
-.rm-block-children:has(> .rm-block > .rm-block-main.rm-block__self--horizontal-scroller .rm-table) > .rm-multibar {
-  z-index: 12 !important;
-}
-
-/* Keep table scrollers below native outline controls in the main canvas. */
-.roam-article .rm-block-main.rm-block__self--horizontal-scroller:has(.rm-table) {
-  z-index: 3 !important;
 }
 
 /* --------------------------------------------------------------------------
