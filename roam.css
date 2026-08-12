@@ -564,16 +564,22 @@ div.rm-block[data-page-links*="DONE"]:not(
   line-height: 1.5 !important;
   box-sizing: border-box !important;
   padding-top: 0px !important;
-  padding-bottom: 5px !important;
+  padding-bottom: 11px !important;
   border: 1px solid transparent !important;
 }
 
-/* Main workspace */
+/* Main workspace · keep the vertical offset on the stable wrapper. */
+.roam-article {
+  padding-top: 30px !important;
+}
+
 .roam-article .rm-title-display,
 .roam-article .rm-title-textarea,
 .roam-article .roam-log-page h1.level2 {
-  margin-top: 30px !important;
-  padding-bottom: 0px !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
 }
 
 /* Right sidebar */
@@ -581,7 +587,6 @@ div.rm-block[data-page-links*="DONE"]:not(
 .rm-sidebar-outline .rm-title-textarea,
 .rm-sidebar-outline .roam-log-page h1.level2 {
   margin-top: -10px !important;
-  padding-bottom: 5px !important;
 }
 
 /* --------------------------------------------------------------------------
