@@ -552,32 +552,36 @@ div.rm-block[data-page-links*="DONE"]:not(
 /* --------------------------------------------------------------------------
  * Module 07
  * -------------------------------------------------------------------------- */
-/*
- * === 页面标题与侧边栏标题 (最终优化版) ===
- * 解决了单行标题编辑时跳动的问题。
- *
- * 核心思路：
- * 通过 box-sizing, padding, border 等属性，强制统一“显示状态”和“编辑状态”的盒模型，
- * 确保两者在任何情况下都占据完全相同的高度，从而根除跳动问题。
-*/
+/* Shared title styles */
 .roam-article .rm-title-display,
 .roam-article .rm-title-textarea,
 .roam-article .roam-log-page h1.level2,
 .rm-sidebar-outline .rm-title-display,
 .rm-sidebar-outline .rm-title-textarea,
 .rm-sidebar-outline .roam-log-page h1.level2 {
-  /* --- 你的原始样式 --- */
   font-size: 18px !important;
   font-weight: 800 !important;
-
-  /* --- 要求 1: 标题内部的行间距 --- */
   line-height: 1.5 !important;
+  box-sizing: border-box !important;
+  padding-top: 0px !important;
+  padding-bottom: 5px !important;
+  border: 1px solid transparent !important;
+}
 
-  /* --- 新增：强制统一盒模型 (解决单行跳动问题的关键) --- */
-  box-sizing: border-box !important; /* 让 padding 和 border 不会增加元素总高度 */
-  padding-top: 0px !important;      /* 统一的内边距 */
-  padding-bottom: 11px !important;   /* 统一的内边距 */
-  border: 1px solid transparent !important; /* 用透明边框为编辑框的边框预留位置 */
+/* Main workspace */
+.roam-article .rm-title-display,
+.roam-article .rm-title-textarea,
+.roam-article .roam-log-page h1.level2 {
+  margin-top: 20px !important;
+  padding-bottom: 0px !important;
+}
+
+/* Right sidebar */
+.rm-sidebar-outline .rm-title-display,
+.rm-sidebar-outline .rm-title-textarea,
+.rm-sidebar-outline .roam-log-page h1.level2 {
+  margin-top: -10px !important;
+  padding-bottom: 5px !important;
 }
 
 /* --------------------------------------------------------------------------
