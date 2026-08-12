@@ -580,6 +580,14 @@ div.rm-block[data-page-links*="DONE"]:not(
   width: 100% !important;
   margin: 0 !important;
   box-sizing: border-box !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+}
+
+.roam-article .rm-title-textarea {
+  resize: none !important;
+  overflow: hidden !important;
 }
 
 /* Right sidebar */
