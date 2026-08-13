@@ -957,44 +957,41 @@ Images in the content area will be scaled to 100% once the reach the max width o
 /* --------------------------------------------------------------------------
  * Module 13
  * -------------------------------------------------------------------------- */
-/* 针对引用框内的标签进行优化 */
+/* Linked reference label alignment. */
 div.rm-ref-page-view > div > div span.rm-page-ref:not(.bp3-icon) {
-//display: inline-block; /* 将标签设置为内联块元素 */
-  margin-top: 0px; /* 顶部外边距设为 0 */
-  margin-left: 0px; /* 左侧外边距设为 0 以保持正文不变 */
+  margin-top: 0;
+  margin-left: 0;
 }
 
-/* 优化引用框内的复选框 */
-div.rm-ref-page-view > div > div .check-container {
-  margin-left: 1px; /* 为复选框添加左侧外边距，以防止被隐藏 */
-  position: relative; /* 设置复选框相对定位，以便进行调整 */
-  left: 0px; /* 调整复选框左侧位置以保持正文不变 */
-}
-
-/* 通用优化引用内容里的面包屑标签主题样式 */
-.rm-reference-container .rm-zoom-item-content .rm-page-ref {
-  font-size: 1em; /* 设置标签的字体大小 */
-  border-radius: 5px; /* 添加圆角效果 */
-  position: relative; /* 设置复选框相对定位，以便进行调整 */
-width: auto; /* 自动调整宽度 */
-  height: auto; /* 自动调整高度 */
-  display: inline-block; /* 保持内联块元素 */
-  max-width: 100%; /* 防止宽度超过父元素 */
-  box-sizing: border-box; /* 包含内边距和边框在宽度和高度内 */
-}
-
-/* 通用复选框优化 */
+/* Checkbox alignment. */
 .check-container {
-  margin-left: 1px; /* 为复选框添加左侧外边距 */
-  position: relative; /* 设置复选框相对定位 */
-  left: 0px; /* 调整复选框左侧位置以保持正文不变 */
+  margin-left: 1px;
+  position: relative;
+  left: 0;
 }
 
-/* 针对特定选择器优化 diagram 标签样式 */
+/* Breadcrumb labels inside linked references. */
+.rm-reference-container .rm-zoom-item-content .rm-page-ref {
+  box-sizing: border-box;
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  font-size: 1em;
+  position: relative;
+  border-radius: 5px;
+}
+
+/* Diagram title badges. */
 .rm-diagram-title {
-  font-size: 1em; /* 设置字体大小 */
-  border-radius: 4px; /* 添加圆角效果 */
-  padding: 2px 4px; /* 调整标签的内边距 */
+  padding: 2px 4px;
+  font-size: 1em;
+  border-radius: 4px;
+}
+
+/* Compact linked-reference card corners. */
+.rm-reference-container :is(.rm-ref-page-view, .rm-reference-item) {
+  border-radius: 6px !important;
 }
 
 /* --------------------------------------------------------------------------
