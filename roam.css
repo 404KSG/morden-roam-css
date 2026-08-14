@@ -778,7 +778,7 @@ div.rm-block[data-page-links*="DONE"]:not(
  * -------------------------------------------------------------------------- */
 /* 主页面 PDF 图标 */
 .roam-article svg[viewBox="0 0 1920 1920"]{
-  transform: translate(0px, 0px) !important; /* 改这里：X, Y */
+  transform: translate(0px, -28px) !important; /* 改这里：X, Y */
 }
 
 /* 侧边栏 PDF 图标 */
