@@ -25,7 +25,7 @@ The JavaScript bundle contains History Navigation Helper, Left Sidebar Reference
 
 ## Version
 
-[`v1.0.0`](https://github.com/404KSG/morden-roam-css/releases/tag/v1.0.0) is the frozen stable baseline. The `main` branch follows the current active Roam setup and presently contains 35 CSS modules.
+[`v1.0.0`](https://github.com/404KSG/morden-roam-css/releases/tag/v1.0.0) is the frozen stable baseline. The `main` branch follows the current active Roam setup and presently contains 34 CSS modules and 3 JavaScript modules.
 
 ## Export from Roam
 

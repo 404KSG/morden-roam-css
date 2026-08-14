@@ -1,6 +1,6 @@
 /*
  * Morden Roam CSS
- * Generated from 35 active CSS blocks in Roam Research.
+ * Generated from 34 active CSS blocks in Roam Research.
  * Source order is preserved so later rules retain their original precedence.
  */
 
@@ -441,6 +441,116 @@ ul.rm-graph-dropdown.bp3-menu :is(.bp3-menu-item, .bp3-menu-header, .rm-graph-dr
 /* --------------------------------------------------------------------------
  * Module 04
  * -------------------------------------------------------------------------- */
+/* Global Font - optimized */
+html, body,
+.roam-app,
+.roam-body,
+.roam-article,
+.roam-sidebar-content,
+.roam-topbar {
+  font-family: var(--global-font), Inter, Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif;
+  font-size: 15.5px;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Shared Block geometry: keep view and editor in the same flow box. */
+.roam-article .rm-block__input--view,
+.rm-sidebar-outline .rm-block__input--view,
+.roam-article .roam-block.dont-unfocus-block,
+.rm-sidebar-outline .roam-block.dont-unfocus-block {
+  box-sizing: border-box !important;
+  margin: -1px 0 0 !important;
+  padding: 4px 0 !important;
+  line-height: 23px !important;
+}
+
+/* Empty Block correction: affect only that Block's own view element. */
+.roam-article .rm-block > .rm-block-main > .rm-block__input--view:has(> span:empty),
+.rm-sidebar-outline .rm-block > .rm-block-main > .rm-block__input--view:has(> span:empty),
+.rm-sidebar-window .rm-block > .rm-block-main > .rm-block__input--view:has(> span:empty) {
+  transform: translateY(0.875px) !important;
+}
+
+/* Paint-only correction: text center sits exactly on the Block center. */
+.roam-article .rm-block__input--view,
+.rm-sidebar-outline .rm-block__input--view {
+  transform: translateY(0.5px) !important;
+}
+
+/* The active editor uses the same box model, so clicking does not reflow siblings. */
+.roam-article .rm-block__input--active,
+.rm-sidebar-outline .rm-block__input--active,
+.rm-sidebar-window .rm-block__input--active {
+  box-sizing: border-box !important;
+  margin: -1px 0 0 !important;
+  padding: 4px 0 !important;
+  border: 0 !important;
+  font: inherit !important;
+  line-height: 23px !important;
+  min-height: 31.25px !important;
+  transform: translateY(0.5px) !important;
+}
+
+/* Preserve each heading's reading-state flow height while editing. */
+.roam-article .rm-heading-level-1 > .rm-block__self .rm-block__input--active,
+.rm-sidebar-outline .rm-heading-level-1 > .rm-block__self .rm-block__input--active,
+.rm-sidebar-window .rm-heading-level-1 > .rm-block__self .rm-block__input--active {
+  min-height: 35px !important;
+}
+
+.roam-article .rm-heading-level-2 > .rm-block__self .rm-block__input--active,
+.rm-sidebar-outline .rm-heading-level-2 > .rm-block__self .rm-block__input--active,
+.rm-sidebar-window .rm-heading-level-2 > .rm-block__self .rm-block__input--active,
+.roam-article .rm-heading-level-3 > .rm-block__self .rm-block__input--active,
+.rm-sidebar-outline .rm-heading-level-3 > .rm-block__self .rm-block__input--active,
+.rm-sidebar-window .rm-heading-level-3 > .rm-block__self .rm-block__input--active {
+  min-height: 32px !important;
+}
+
+/* Keep bullet centerline correction separate from breathing animation. */
+.roam-article .rm-bullet__inner,
+.rm-sidebar-outline .rm-bullet__inner {
+  position: relative !important;
+  top: 1.125px !important;
+}
+
+/* Align each Block collapse caret with its Bullet without changing flow. */
+.roam-article .rm-block .rm-caret,
+.rm-sidebar-outline .rm-block .rm-caret,
+.rm-sidebar-window .rm-block .rm-caret {
+  position: relative !important;
+  top: 0.625px !important;
+}
+
+/* Roam search - restore native typography */
+.roam-topbar .rm-find-or-create-wrapper .bp3-input {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* Search results live in a menu and need their own override. */
+.rm-find-or-create-wrapper .bp3-menu-item,
+.rm-find-or-create__menu .bp3-menu-item {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* Advanced search is a separate modal component. */
+.rm-find-or-create-modal-body__list,
+.rm-find-or-create-modal-body__list .rm-search-query__page-row-title,
+.rm-find-or-create-modal-body__list .rm-search-query__semantic-result,
+.rm-find-or-create-modal-body__list .rm-search-list-item-detail,
+.rm-find-or-create-modal-body__list .rm-block-text {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 05
+ * -------------------------------------------------------------------------- */
 /* Shared title styles */
 .roam-article .rm-title-display,
 .roam-article .rm-title-textarea,
@@ -560,76 +670,7 @@ ul.rm-graph-dropdown.bp3-menu :is(.bp3-menu-item, .bp3-menu-header, .rm-graph-dr
 }
 
 /* --------------------------------------------------------------------------
- * Module 05
- * -------------------------------------------------------------------------- */
-/* Global Font — optimized */
-  html, body,
-  .roam-app,
-  .roam-body,
-  .roam-article,
-  .roam-sidebar-content,
-  .roam-topbar {
-  font-family: var(--global-font), 'Inter', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  }
-
-/* Roam search · restore native typography */
-.roam-topbar .rm-find-or-create-wrapper .bp3-input {
-  font-size: 14px !important;
-  font-weight: 400 !important;
-}
-
-/* Search results live in a menu and need their own override. */
-.rm-find-or-create-wrapper .bp3-menu-item,
-.rm-find-or-create__menu .bp3-menu-item {
-  font-size: 14px !important;
-  font-weight: 400 !important;
-}
-
-/* Advanced search is a separate modal component. */
-.rm-find-or-create-modal-body__list,
-.rm-find-or-create-modal-body__list .rm-search-query__page-row-title,
-.rm-find-or-create-modal-body__list .rm-search-query__semantic-result,
-.rm-find-or-create-modal-body__list .rm-search-list-item-detail,
-.rm-find-or-create-modal-body__list .rm-block-text {
-  font-size: 14px !important;
-  font-weight: 400 !important;
-}
-
-/* --------------------------------------------------------------------------
  * Module 06
- * -------------------------------------------------------------------------- */
-/* Native outline bars */
-.rm-multibar {
-  z-index: 4;
-  border-width: 2px;
-}
-
-/* Restore the native level-0 outline control in right-sidebar cards. */
-#right-sidebar .rm-level-0 > .rm-multibar {
-  left: -8px !important;
-  width: 12px !important;
-  display: block !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-}
-
-/* Keep native table scrollers from covering the parent outline control. */
-.rm-block-children:has(> .rm-block > .rm-block-main.rm-block__self--horizontal-scroller .rm-table) > .rm-multibar {
-  z-index: 12 !important;
-}
-
-/* Keep table scrollers below native outline controls in the main canvas. */
-.roam-article .rm-block-main.rm-block__self--horizontal-scroller:has(.rm-table) {
-  z-index: 3 !important;
-}
-
-/* --------------------------------------------------------------------------
- * Module 07
  * -------------------------------------------------------------------------- */
 /* TODO checkbox · Linear-inspired, layout-safe */
 .check-container {
@@ -681,7 +722,7 @@ div.rm-block[data-page-links*="DONE"]:not(
 }
 
 /* --------------------------------------------------------------------------
- * Module 08
+ * Module 07
  * -------------------------------------------------------------------------- */
 /* Match Electron history icons to Roam's Daily Notes chevrons. */
 .rm-electron-nav-back-btn::before {
@@ -695,7 +736,34 @@ div.rm-block[data-page-links*="DONE"]:not(
 :is(.rm-electron-nav-back-btn, .rm-electron-nav-forward-btn).rm-history-unavailable {
   opacity: 0.3 !important;
   cursor: default !important;
-  pointer-events: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 08
+ * -------------------------------------------------------------------------- */
+/* Native outline bars */
+.rm-multibar {
+  z-index: 4;
+  border-width: 2px;
+}
+
+/* Restore the native level-0 outline control in right-sidebar cards. */
+#right-sidebar .rm-level-0 > .rm-multibar {
+  left: -8px !important;
+  width: 12px !important;
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Keep native table scrollers from covering the parent outline control. */
+.rm-block-children:has(> .rm-block > .rm-block-main.rm-block__self--horizontal-scroller .rm-table) > .rm-multibar {
+  z-index: 12 !important;
+}
+
+/* Keep table scrollers below native outline controls in the main canvas. */
+.roam-article .rm-block-main.rm-block__self--horizontal-scroller:has(.rm-table) {
+  z-index: 3 !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -713,6 +781,201 @@ div.rm-block[data-page-links*="DONE"]:not(
 
 /* --------------------------------------------------------------------------
  * Module 10
+ * -------------------------------------------------------------------------- */
+/* Roam bullet breathing and hover effects */
+
+:root {
+  --bullet-breathe-scale: 1.28;
+  --bullet-breathe-opacity: 0.82;
+  --bullet-breathe-duration: 1.8s;
+  --bullet-start-duration: 0.2s;
+}
+
+@keyframes bullet-breathe {
+  0% {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale3d(var(--bullet-breathe-scale), var(--bullet-breathe-scale), 1);
+    opacity: var(--bullet-breathe-opacity);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+}
+
+/* Base state */
+.rm-block .rm-bullet {
+  opacity: 0.4;
+  border-radius: 50%;
+  transition: opacity 0.25s ease;
+}
+
+.rm-block .rm-bullet__inner {
+  transform-origin: center;
+}
+
+.rm-block:hover > .rm-block-main > .controls > .rm-bullet,
+.rm-focused > .rm-block-main > .controls > .rm-bullet {
+  opacity: 1;
+}
+
+/* Focus breathing */
+.rm-focused > .rm-block-main > .controls > .rm-bullet > .bp3-popover-wrapper .rm-bullet__inner {
+  border-radius: 50%;
+  animation: bullet-breathe var(--bullet-breathe-duration) ease-in-out infinite;
+  will-change: transform, opacity;
+  transition: transform var(--bullet-start-duration) ease,
+              opacity var(--bullet-start-duration) ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rm-focused > .rm-block-main > .controls > .rm-bullet > .bp3-popover-wrapper .rm-bullet__inner {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Existing Roam controls */
+.rm-block .rm-multibar {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rm-block:hover > .rm-block-children > .rm-multibar,
+.rm-focused > .rm-block-children > .rm-multibar {
+  opacity: 1;
+}
+
+.rm-ref-page-view .rm-title-arrow-wrapper > .rm-caret {
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
+}
+
+.rm-ref-page-view:hover .rm-title-arrow-wrapper > .rm-caret {
+  opacity: 1;
+}
+
+/* Hover scale */
+.rm-bullet:hover .rm-bullet__inner {
+  width: 9px;
+  height: 9px;
+  border: 2px solid transparent;
+  transition: width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              height 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: scale(1.2);
+}
+
+.sidebar-content .rm-bullet.rm-bullet--closed:hover .rm-bullet__inner,
+.rm-bullet.rm-bullet--closed:hover .rm-bullet__inner {
+  border: 2px solid transparent;
+  transition: width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              height 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: scale(1.2);
+}
+
+/* --------------------------------------------------------------------------
+ * Module 11
+ * -------------------------------------------------------------------------- */
+/* Linked reference label alignment. */
+div.rm-ref-page-view > div > div span.rm-page-ref:not(.bp3-icon) {
+  margin-top: 0;
+  margin-left: 0;
+}
+
+/* Checkbox alignment. */
+.check-container {
+  margin-left: 1px;
+  position: relative;
+  left: 0;
+}
+
+/* Breadcrumb labels inside linked references. */
+.rm-reference-container .rm-zoom-item-content .rm-page-ref {
+  box-sizing: border-box;
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  font-size: 1em;
+  position: relative;
+  border-radius: 5px;
+}
+
+/* Diagram title badges. */
+.rm-diagram-title {
+  padding: 2px 4px;
+  font-size: 1em;
+  border-radius: 4px;
+}
+
+/* Compact linked-reference card corners. */
+.rm-reference-container :is(.rm-ref-page-view, .rm-reference-item) {
+  border-radius: 6px !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 12
+ * -------------------------------------------------------------------------- */
+/* --- 分隔线 (优化版) --- */
+.rm-hr {
+  border: none; /* 移除默认边框 */
+  border-top: 1px solid #eee; /* 只保留我们需要的顶部线条作为分割线 */
+  /* 关键：添加垂直外边距来撑起高度，防止编辑时下方块移动 */
+  margin-top: 0.7em;
+  margin-bottom: 0em;
+  /* 你可以根据自己的喜好，微调 margin 的值，比如 0.8em 或 1.2em */
+}
+
+/* --------------------------------------------------------------------------
+ * Module 13
+ * -------------------------------------------------------------------------- */
+/* Headings */
+
+.rm-level1, .rm-heading-level-1 > .rm-block__self .rm-block__input {
+  color: #FF9800;
+  font-size: 18px !important;
+  font-weight: bold;
+}
+
+.rm-level2, .rm-heading-level-2 > .rm-block__self .rm-block__input {
+  color: #673AB7;
+  font-size: 16px !important;
+  font-weight: bold;
+}
+
+.rm-level3, .rm-heading-level-3 > .rm-block__self .rm-block__input {
+  color: #2196F3;
+  font-size: 16px !important;
+  font-weight: bold;
+}
+
+/* Keep heading text on the Bullet centreline in both view and edit states. */
+.rm-heading-level-1 > .rm-block__self .rm-block__input {
+  position: relative !important;
+  top: 7.75px !important;
+}
+
+.rm-heading-level-2 > .rm-block__self .rm-block__input {
+  position: relative !important;
+  top: 4px !important;
+}
+
+.rm-heading-level-3 > .rm-block__self .rm-block__input {
+  position: relative !important;
+  top: 1px !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 14
  * -------------------------------------------------------------------------- */
 /* KAN BAN */
 .kanban-board {
@@ -937,7 +1200,7 @@ Images in the content area will be scaled to 100% once the reach the max width o
 }
 
 /* --------------------------------------------------------------------------
- * Module 11
+ * Module 15
  * -------------------------------------------------------------------------- */
 .rm-jump-date-picker .DayPicker-Day--today {
     outline: 2px dashed;
@@ -946,7 +1209,7 @@ Images in the content area will be scaled to 100% once the reach the max width o
 }
 
 /* --------------------------------------------------------------------------
- * Module 12
+ * Module 16
  * -------------------------------------------------------------------------- */
 .rm-page-ref.rm-page-ref--tag:hover,
 .rm-page-ref.rm-page-ref--tag:focus,
@@ -955,47 +1218,7 @@ Images in the content area will be scaled to 100% once the reach the max width o
 }
 
 /* --------------------------------------------------------------------------
- * Module 13
- * -------------------------------------------------------------------------- */
-/* Linked reference label alignment. */
-div.rm-ref-page-view > div > div span.rm-page-ref:not(.bp3-icon) {
-  margin-top: 0;
-  margin-left: 0;
-}
-
-/* Checkbox alignment. */
-.check-container {
-  margin-left: 1px;
-  position: relative;
-  left: 0;
-}
-
-/* Breadcrumb labels inside linked references. */
-.rm-reference-container .rm-zoom-item-content .rm-page-ref {
-  box-sizing: border-box;
-  display: inline-block;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  font-size: 1em;
-  position: relative;
-  border-radius: 5px;
-}
-
-/* Diagram title badges. */
-.rm-diagram-title {
-  padding: 2px 4px;
-  font-size: 1em;
-  border-radius: 4px;
-}
-
-/* Compact linked-reference card corners. */
-.rm-reference-container :is(.rm-ref-page-view, .rm-reference-item) {
-  border-radius: 6px !important;
-}
-
-/* --------------------------------------------------------------------------
- * Module 14
+ * Module 17
  * -------------------------------------------------------------------------- */
 .bp3-tooltip .bp3-popover-content {
 background: #FFFFFF;
@@ -1004,141 +1227,6 @@ color: #202B33;
 
 .bp3-tooltip .bp3-popover-arrow-fill {
 fill: #FFFFFF;
-}
-
-/* --------------------------------------------------------------------------
- * Module 15
- * -------------------------------------------------------------------------- */
-/*
- * === Roam Bullet 呼吸特效 (最终版 V3) ===
- * * 结合了 V2 的 CSS 变量、GPU 加速、辅助功能
- * 并加入了“平滑启动”过渡 (Scheme 2)
- */
-
-:root {
-  /* 动画关键帧参数 */
-  --bullet-breathe-scale: 1.28;
-  --bullet-breathe-opacity: 0.82;
-  --bullet-breathe-duration: 1.8s;
-
-  /* (新增) 动画“平滑启动”的过渡时间 */
-  --bullet-start-duration: 0.2s;
-}
-
-/* 1. 定义 "呼吸" 动画 (来自 V2, 使用 scale3d) */
-@keyframes bullet-breathe {
-  0% {
-    transform: scale3d(1, 1, 1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale3d(var(--bullet-breathe-scale), var(--bullet-breathe-scale), 1);
-    opacity: var(--bullet-breathe-opacity);
-  }
-  100% {
-    transform: scale3d(1, 1, 1);
-    opacity: 1;
-  }
-}
-
-/* 2. Bullet 默认、悬停、聚焦 (来自 V2) */
-.rm-block .rm-bullet {
-  opacity: 0.4;
-  border-radius: 50%;
-  transition: opacity 0.25s ease;
-  transform-origin: center; /* 确保缩放居中 */
-}
-
-.rm-block:hover > .rm-block-main > .controls > .rm-bullet,
-.rm-focused > .rm-block-main > .controls > .rm-bullet {
-  opacity: 1;
-}
-
-/* 3. Bullet 键入 (focused) 时的呼吸效果 (核心优化) */
-.rm-focused > .rm-block-main > .controls > .rm-bullet > .bp3-popover-wrapper .rm-bullet__inner {
-  border-radius: 50%;
-
-  /* * (来自 V2) 应用呼吸动画 */
-  animation: bullet-breathe var(--bullet-breathe-duration) ease-in-out infinite;
-
-  /* * (来自 V2) 性能优化：告知浏览器即将发生变化 */
-  will-change: transform, opacity;
-
-  /* * (来自 方案2) 启动优化：
-   * 平滑地从默认状态过渡到动画的第一帧，消除"跳跃感"。
-   */
-  transition: transform var(--bullet-start-duration) ease,
-              opacity var(--bullet-start-duration) ease;
-}
-
-/* 4. (来自 V2) 辅助功能：减少动态效果 */
-@media (prefers-reduced-motion: reduce) {
-  .rm-focused > .rm-block-main > .controls > .rm-bullet > .bp3-popover-wrapper .rm-bullet__inner {
-    animation: none;
-    transition: none; /* 同时禁用启动过渡 */
-  }
-}
-
-/* 5. 你原来的其他代码 (保持不变) */
-.rm-block .rm-multibar {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.rm-block:hover > .rm-block-children > .rm-multibar,
-.rm-focused > .rm-block-children > .rm-multibar {
-  opacity: 1;
-}
-
-.rm-ref-page-view .rm-title-arrow-wrapper > .rm-caret {
-  opacity: 0.2;
-  transition: opacity 0.3s ease;
-}
-
-.rm-ref-page-view:hover .rm-title-arrow-wrapper > .rm-caret {
-  opacity: 1;
-}
-
-/* --------------------------------------------------------------------------
- * Module 16
- * -------------------------------------------------------------------------- */
-/* Bullet effect */
-.rm-bullet:hover .rm-bullet__inner {
-  width: 9px;
-  height: 9px;
-  border: 2px solid transparent;
-  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); /* 更平滑的过渡效果 */
-  transform: scale(1.2); /* 添加缩放效果 */
-}
-
-.sidebar-content .rm-bullet.rm-bullet--closed:hover .rm-bullet__inner,
-.rm-bullet.rm-bullet--closed:hover .rm-bullet__inner {
-  border: 2px solid transparent;
-  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); /* 更平滑的过渡效果 */
-  transform: scale(1.2); /* 添加缩放效果 */
-}
-
-/* --------------------------------------------------------------------------
- * Module 17
- * -------------------------------------------------------------------------- */
-/* Headings */
-
-.rm-level1, .rm-heading-level-1>.rm-block__self .rm-block__input{
-    color: #FF9800;
-    font-size: 18px !important;
-    font-weight: bold;
-}
-
-.rm-level2, .rm-heading-level-2>.rm-block__self .rm-block__input{
-    color: #673AB7;
-    font-size: 16px !important;
-    font-weight: bold;
-}
-
-.rm-level3, .rm-heading-level-3>.rm-block__self .rm-block__input{
-    color: #2196F3;
-    font-size: 16px !important;
-    font-weight: bold;
 }
 
 /* --------------------------------------------------------------------------
@@ -1296,19 +1384,6 @@ fill: #FFFFFF;
 /* --------------------------------------------------------------------------
  * Module 24
  * -------------------------------------------------------------------------- */
-/* --- 分隔线 (优化版) --- */
-.rm-hr {
-  border: none; /* 移除默认边框 */
-  border-top: 1px solid #eee; /* 只保留我们需要的顶部线条作为分割线 */
-  /* 关键：添加垂直外边距来撑起高度，防止编辑时下方块移动 */
-  margin-top: 0.65em;
-  margin-bottom: 0em;
-  /* 你可以根据自己的喜好，微调 margin 的值，比如 0.8em 或 1.2em */
-}
-
-/* --------------------------------------------------------------------------
- * Module 25
- * -------------------------------------------------------------------------- */
 .rm-block__ref-count-footnote {
     font-size: 10px; /* Adjust the size as you prefer */
     color: #74898A; /* Change to your desired color */
@@ -1322,7 +1397,7 @@ sup.ref-count-hidden {
 }
 
 /* --------------------------------------------------------------------------
- * Module 26
+ * Module 25
  * -------------------------------------------------------------------------- */
 .bp3-icon.bp3-icon-pin svg path {
     /* 设置星星图标的颜色 */
@@ -1333,12 +1408,12 @@ sup.ref-count-hidden {
 }
 
 /* --------------------------------------------------------------------------
- * Module 27
+ * Module 26
  * -------------------------------------------------------------------------- */
 .speech-ui-row1 .speech-record-button{ display:none !important; }
 
 /* --------------------------------------------------------------------------
- * Module 28
+ * Module 27
  * -------------------------------------------------------------------------- */
 /* References search · icon-only collapsed state */
 .rm-mentions-search.rm-mentions-search--hidden .rm-mentions-search__input {
@@ -1347,29 +1422,33 @@ sup.ref-count-hidden {
 }
 
 /* --------------------------------------------------------------------------
- * Module 29
+ * Module 28
  * -------------------------------------------------------------------------- */
-/* Relevant Notes + linked topic: stable flat capsule */
+/*
+ * Relevant Notes + TODO
+ * Stable two-part capsule: interactive states never change inline geometry.
+ */
 span.rm-page-ref[data-tag="Relevant Notes"] + span {
   display: none !important;
 }
 
+/* Shared outer geometry: exactly the same in normal and interactive states. */
 span.rm-page-ref[data-tag="Relevant Notes"],
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref[data-tag]:not([data-tag="Relevant Notes"]),
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] {
+span.rm-page-ref[data-tag="Relevant Notes"]:is(:hover, :focus, :focus-visible, :active),
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title],
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]:is(:hover, :focus, :focus-visible, :active) {
   display: inline-flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
+  position: relative !important;
+  top: 0.75px !important;
   width: auto !important;
-  height: 24px !important;
-  min-height: 24px !important;
-  max-height: 24px !important;
+  height: 21.5px !important;
+  min-height: 21.5px !important;
+  max-height: 21.5px !important;
   margin: 0 !important;
-  padding: 0 8px !important;
   border: 0 !important;
   outline: 0 !important;
-  background: #f1f4f6 !important;
-  background-image: none !important;
   box-shadow: none !important;
   filter: none !important;
   transform: none !important;
@@ -1377,91 +1456,162 @@ span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] {
   font-size: 14px !important;
   font-weight: 600 !important;
   font-synthesis: none !important;
-  line-height: 24px !important;
-  vertical-align: middle !important;
+  line-height: 17.5px !important;
+  vertical-align: baseline !important;
   white-space: nowrap !important;
   text-decoration: none !important;
-  transition: color 120ms ease, background-color 120ms ease !important;
+  transition: none !important;
 }
 
-span.rm-page-ref[data-tag="Relevant Notes"] {
-  color: #7f8d99 !important;
-  border-radius: 7px 0 0 7px !important;
-}
-
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref[data-tag]:not([data-tag="Relevant Notes"]),
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] {
-  color: #106ba3 !important;
-  border-left: 1px solid #d7dee4 !important;
-  border-radius: 0 7px 7px 0 !important;
-}
-
-/* Keep hover/focus/active on exactly the same box model. */
-span.rm-page-ref.rm-page-ref--tag[data-tag="Relevant Notes"]:is(:hover, :focus, :focus-visible, :active),
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref.rm-page-ref--tag[data-tag]:not([data-tag="Relevant Notes"]):is(:hover, :focus, :focus-visible, :active),
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title]:is(:hover, :focus, :focus-visible, :active) {
-  box-sizing: border-box !important;
-  width: auto !important;
-  height: 24px !important;
-  min-height: 24px !important;
-  max-height: 24px !important;
-  margin: 0 !important;
-  padding: 0 8px !important;
-  outline: 0 !important;
+/* Unified Literature-blue composite: one shared surface across both halves. */
+span.rm-page-ref[data-tag="Relevant Notes"],
+span.rm-page-ref[data-tag="Relevant Notes"]:is(:hover, :focus, :focus-visible, :active) {
+  padding: 1px 8px !important;
+  border-radius: 6px 0 0 6px !important;
+  background-color: #eaf4ff !important;
   background-image: none !important;
+  box-shadow: inset 1px 0 0 #bae6fd, inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 2px rgba(2, 132, 199, 0.08) !important;
+  color: #0284c7 !important;
+  transition: background 120ms ease, box-shadow 120ms ease !important;
+}
+
+/* The outer TODO wrapper remains transparent so the count stays outside. */
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title],
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]:is(:hover, :focus, :focus-visible, :active) {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #0284c7 !important;
+}
+
+/* Native TODO nodes: [[, TODO, ]]. All states use one immutable box model. */
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets:is(:hover, :focus, :focus-visible, :active),
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:is(:hover, :focus, :focus-visible, :active),
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span > sup.rc-notvoid-page):hover,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span + span > sup.rc-notvoid-page):hover {
+  display: inline-flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  top: 0 !important;
+  width: auto !important;
+  height: 21.5px !important;
+  min-height: 21.5px !important;
+  max-height: 21.5px !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
   box-shadow: none !important;
   filter: none !important;
   transform: none !important;
+  text-shadow: none !important;
   font-size: 14px !important;
   font-weight: 600 !important;
-  line-height: 24px !important;
-  vertical-align: middle !important;
+  font-synthesis: none !important;
+  line-height: 17.5px !important;
+  vertical-align: baseline !important;
+  white-space: nowrap !important;
   text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-thickness: 0 !important;
+  text-underline-offset: 0 !important;
+  transition: none !important;
 }
 
-span.rm-page-ref.rm-page-ref--tag[data-tag="Relevant Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  border: 0 !important;
-  color: #71808d !important;
-  background: #e9eef2 !important;
+/* Opening bracket and the composition divider. */
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets:first-child,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets:first-child:is(:hover, :focus, :focus-visible, :active) {
+  padding: 1px 0 1px 8px !important;
+  border-left: 1px solid #bae6fd !important;
+  background-color: #eaf4ff !important;
+  background-image: none !important;
+  box-shadow: inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 2px rgba(2, 132, 199, 0.08) !important;
+  color: #0284c7 !important;
+  transition: background 120ms ease, box-shadow 120ms ease !important;
 }
 
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref.rm-page-ref--tag[data-tag]:not([data-tag="Relevant Notes"]):is(:hover, :focus, :focus-visible, :active),
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title]:is(:hover, :focus, :focus-visible, :active) {
-  border: 0 !important;
-  border-left: 1px solid #d7dee4 !important;
-  color: #0d5f93 !important;
-  background: #e9eef2 !important;
+/* The direct page link inherits the Literature Notes visual language. */
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:is(:hover, :focus, :focus-visible, :active),
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span > sup.rc-notvoid-page):hover,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span + span > sup.rc-notvoid-page):hover {
+  padding: 1px 0 !important;
+  background-color: #eaf4ff !important;
+  background-image: none !important;
+  box-shadow: inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 2px rgba(2, 132, 199, 0.08) !important;
+  color: #0284c7 !important;
+  transition: background 120ms ease, box-shadow 120ms ease !important;
 }
 
+/* Closing bracket ends the visible composite; the reference count stays outside. */
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref + .rm-page-ref__brackets,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref + .rm-page-ref__brackets:is(:hover, :focus, :focus-visible, :active) {
+  padding: 1px 6px 1px 0 !important;
+  border-radius: 0 6px 6px 0 !important;
+  background-color: #eaf4ff !important;
+  background-image: none !important;
+  box-shadow: inset -1px 0 0 #bae6fd, inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 2px rgba(2, 132, 199, 0.08) !important;
+  color: #0284c7 !important;
+  transition: background 120ms ease, box-shadow 120ms ease !important;
+}
+
+/* Hover is paint-only across the whole native right-hand capsule. */
+span.rm-page-ref[data-tag="Relevant Notes"]:is(:hover, :focus, :focus-visible, :active) {
+  background-color: #dceeff !important;
+  background-image: none !important;
+  box-shadow: inset 1px 0 0 #bae6fd, inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 3px rgba(2, 132, 199, 0.12) !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]:is(:hover, :focus-within, :active) > .rm-page-ref__brackets:first-child,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets:first-child:is(:hover, :focus, :focus-visible, :active) {
+  background-color: #dceeff !important;
+  background-image: none !important;
+  box-shadow: inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 3px rgba(2, 132, 199, 0.12) !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]:is(:hover, :focus-within, :active) > .rm-page-ref,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:is(:hover, :focus, :focus-visible, :active),
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span > sup.rc-notvoid-page):hover,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span + span > sup.rc-notvoid-page):hover {
+  background-color: #dceeff !important;
+  background-image: none !important;
+  box-shadow: inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 3px rgba(2, 132, 199, 0.12) !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]:is(:hover, :focus-within, :active) > .rm-page-ref + .rm-page-ref__brackets,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref + .rm-page-ref__brackets:is(:hover, :focus, :focus-visible, :active) {
+  background-color: #dceeff !important;
+  background-image: none !important;
+  box-shadow: inset -1px 0 0 #bae6fd, inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 3px rgba(2, 132, 199, 0.12) !important;
+}
+
+/* No theme pseudo-element may create a hover edge beyond the capsule. */
 span.rm-page-ref[data-tag="Relevant Notes"]::before,
 span.rm-page-ref[data-tag="Relevant Notes"]::after,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref[data-tag]:not([data-tag="Relevant Notes"])::before,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span.rm-page-ref[data-tag]:not([data-tag="Relevant Notes"])::after,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title]::before,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title]::after {
-  border: 0 !important;
-  outline: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  filter: none !important;
-  transform: none !important;
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]::before,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]::after,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref::before,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref::after,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets::before,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets::after {
+  content: none !important;
+  display: none !important;
 }
 
-span.rm-page-ref[data-tag="Relevant Notes"] ~ sup,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ .rm-page-ref-count,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ .rm-block-ref-count,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ * sup,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ * .rm-page-ref-count,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ * .rm-block-ref-count {
+/* Linked-topic count: stays in normal flow and outside the painted capsule. */
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > span:last-child > sup,
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > sup {
   position: relative !important;
   top: -0.35em !important;
   display: inline !important;
-  padding: 0 !important;
   margin: 0 0 0 2px !important;
+  padding: 0 !important;
   border: 0 !important;
   outline: 0 !important;
   background: transparent !important;
-  background-image: none !important;
   box-shadow: none !important;
   filter: none !important;
   transform: none !important;
@@ -1474,77 +1624,21 @@ span.rm-page-ref[data-tag="Relevant Notes"] ~ * .rm-block-ref-count {
   transition: none !important;
 }
 
-span.rm-page-ref[data-tag="Relevant Notes"] ~ .rm-block-ref,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ * .rm-block-ref,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ .rm-block-ref:is(:hover, :focus, :active),
-span.rm-page-ref[data-tag="Relevant Notes"] ~ * .rm-block-ref:is(:hover, :focus, :active) {
-  padding: 0 !important;
-  margin: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  background: transparent !important;
-  background-image: none !important;
-  box-shadow: none !important;
-  filter: none !important;
-  transform: none !important;
-  text-shadow: none !important;
-  color: #9aa5af !important;
-  text-decoration: none !important;
-  transition: none !important;
-}
-
-
-/* Reset the nested Roam page link inside the right capsule. */
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] .rm-page-ref,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] .rm-page-ref:is(:hover, :focus, :focus-visible, :active) {
-  display: inline !important;
-  box-sizing: border-box !important;
-  width: auto !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  outline: 0 !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  box-shadow: none !important;
-  filter: none !important;
-  transform: none !important;
-  color: inherit !important;
-  font: inherit !important;
-  line-height: inherit !important;
-  vertical-align: baseline !important;
-  text-shadow: none !important;
-  text-decoration: none !important;
-  transition: none !important;
-}
-
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] .rm-page-ref::before,
-span.rm-page-ref[data-tag="Relevant Notes"] ~ span[data-link-title] .rm-page-ref::after {
-  border: 0 !important;
-  outline: 0 !important;
-  background: transparent !important;
-  background-image: none !important;
-  box-shadow: none !important;
-  filter: none !important;
-  text-shadow: none !important;
-}
-
 /* --------------------------------------------------------------------------
- * Module 30
+ * Module 29
  * -------------------------------------------------------------------------- */
 /* Instant Notes · refined flat badge */
+
 span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"] {
   display: inline-flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
-  min-height: 24px !important;
+  position: relative !important;
+  /* Baseline stabilizes render/edit line boxes; top preserves the badge position. */
+  top: 0.75px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
-  padding: 2px 7px !important;
+  padding: 1px 7px !important;
   border: 0 !important;
   border-radius: 6px !important;
   outline: 0 !important;
@@ -1553,14 +1647,13 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"] {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
-  vertical-align: middle !important;
+  vertical-align: baseline !important;
   white-space: nowrap;
   text-decoration: none !important;
   filter: none !important;
   transform: none !important;
-  transition: box-shadow 120ms ease !important;
 }
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]::before {
@@ -1573,35 +1666,59 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]::before {
 }
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 24px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
-  padding: 2px 7px !important;
+  padding: 1px 7px !important;
   border: 0 !important;
   border-radius: 6px !important;
   outline: 0 !important;
   background: linear-gradient(to right, #483D8B, #6A5ACD, #8472FF) !important;
   background-size: 100% 100% !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16) !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
   text-decoration: none !important;
   filter: none !important;
   transform: none !important;
 }
 
+span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]::after {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: 7px !important;
+  right: 7px !important;
+  bottom: 2px !important;
+  height: 1px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  opacity: 0 !important;
+  transform: scaleX(0.45) !important;
+  transform-origin: center !important;
+  pointer-events: none !important;
+  transition: opacity 150ms ease, transform 150ms ease !important;
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]:is(:hover, :focus-visible)::after {
+  opacity: 1 !important;
+  transform: scaleX(1) !important;
+}
+
 /* --------------------------------------------------------------------------
- * Module 31
+ * Module 30
  * -------------------------------------------------------------------------- */
 /* Project Notes · refined flat badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"] {
   display: inline-flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
-  min-height: 24px !important;
+  position: relative !important;
+  /* Stabilize render/edit line boxes; retain the existing visual center. */
+  top: 0.75px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
-  padding: 2px 7px !important;
+  padding: 1px 7px !important;
   border: 0 !important;
   border-radius: 6px !important;
   outline: 0 !important;
@@ -1610,17 +1727,14 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"] {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
-  vertical-align: middle !important;
+  vertical-align: baseline !important;
   white-space: nowrap;
   text-decoration: none !important;
-
   filter: none !important;
   transform: none !important;
-  transition: box-shadow 120ms ease !important;
 }
-
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]::before {
   content: "🦾";
@@ -1631,38 +1745,60 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]::before {
   transform: translateY(-0.25px);
 }
 
-
 span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 24px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
-  padding: 2px 7px !important;
+  padding: 1px 7px !important;
   border: 0 !important;
   border-radius: 6px !important;
   outline: 0 !important;
   background: linear-gradient(to right, #000000, #252525, #545454) !important;
   background-size: 100% 100% !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16) !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
   text-decoration: none !important;
-
   filter: none !important;
   transform: none !important;
 }
 
+span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]::after {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: 7px !important;
+  right: 7px !important;
+  bottom: 2px !important;
+  height: 1px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  opacity: 0 !important;
+  transform: scaleX(0.45) !important;
+  transform-origin: center !important;
+  pointer-events: none !important;
+  transition: opacity 150ms ease, transform 150ms ease !important;
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]:is(:hover, :focus-visible)::after {
+  opacity: 1 !important;
+  transform: scaleX(1) !important;
+}
+
 /* --------------------------------------------------------------------------
- * Module 32
+ * Module 31
  * -------------------------------------------------------------------------- */
 /* Plateau Notes · refined flat badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"] {
   display: inline-flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
-  min-height: 24px !important;
+  position: relative !important;
+  /* Stabilize render/edit line boxes; retain the existing visual center. */
+  top: 0.75px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
-  padding: 2px 7px !important;
+  padding: 1px 7px !important;
   border: 0 !important;
   border-radius: 6px !important;
   outline: 0 !important;
@@ -1671,17 +1807,15 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"] {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
-  vertical-align: middle !important;
+  vertical-align: baseline !important;
   white-space: nowrap;
   text-decoration: none !important;
   text-shadow: none !important;
   filter: none !important;
   transform: none !important;
-  transition: box-shadow 120ms ease !important;
 }
-
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]::before {
   content: "✨";
@@ -1692,20 +1826,18 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]::before {
   transform: translateY(-0.25px);
 }
 
-
 span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 24px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
-  padding: 2px 7px !important;
+  padding: 1px 7px !important;
   border: 0 !important;
   border-radius: 6px !important;
   outline: 0 !important;
   background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
   background-size: 100% 100% !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16) !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
   text-decoration: none !important;
   text-shadow: none !important;
@@ -1713,17 +1845,42 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]:is(:hover, :focus, :
   transform: none !important;
 }
 
+span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]::after {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: 7px !important;
+  right: 7px !important;
+  bottom: 2px !important;
+  height: 1px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  opacity: 0 !important;
+  transform: scaleX(0.45) !important;
+  transform-origin: center !important;
+  pointer-events: none !important;
+  transition: opacity 150ms ease, transform 150ms ease !important;
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]:is(:hover, :focus-visible)::after {
+  opacity: 1 !important;
+  transform: scaleX(1) !important;
+}
+
 /* --------------------------------------------------------------------------
- * Module 33
+ * Module 32
  * -------------------------------------------------------------------------- */
 /* Evergreen Notes · refined flat badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"] {
   display: inline-flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
-  min-height: 24px !important;
+  position: relative !important;
+  /* Stabilize render/edit line boxes; retain the existing visual center. */
+  top: 0.75px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
-  padding: 2px 7px !important;
+  padding: 1px 7px !important;
   border: 0 !important;
   border-radius: 6px !important;
   outline: 0 !important;
@@ -1732,47 +1889,67 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"] {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
-  vertical-align: middle !important;
+  vertical-align: baseline !important;
   white-space: nowrap;
   text-decoration: none !important;
-
   filter: none !important;
   transform: none !important;
-  transition: box-shadow 120ms ease !important;
 }
 
-
 span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 24px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
-  padding: 2px 7px !important;
+  padding: 1px 7px !important;
   border: 0 !important;
   border-radius: 6px !important;
   outline: 0 !important;
   background: linear-gradient(to right, #355C7D, #03b1fc, #00ECFF) !important;
   background-size: 100% 100% !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16) !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
   text-decoration: none !important;
-
   filter: none !important;
   transform: none !important;
 }
 
+span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"]::after {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: 7px !important;
+  right: 7px !important;
+  bottom: 2px !important;
+  height: 1px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  opacity: 0 !important;
+  transform: scaleX(0.45) !important;
+  transform-origin: center !important;
+  pointer-events: none !important;
+  transition: opacity 150ms ease, transform 150ms ease !important;
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"]:is(:hover, :focus-visible)::after {
+  opacity: 1 !important;
+  transform: scaleX(1) !important;
+}
+
 /* --------------------------------------------------------------------------
- * Module 34
+ * Module 33
  * -------------------------------------------------------------------------- */
 /* Literature Notes · refined light badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"] {
   display: inline-flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
-  min-height: 24px !important;
+  position: relative !important;
+  /* Stabilize render/edit line boxes; retain the existing visual center. */
+  top: 0.75px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 1px solid #bae6fd !important;
@@ -1783,9 +1960,9 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"] {
   box-shadow: 0 1px 2px rgba(2, 132, 199, 0.08) !important;
   color: #0284c7 !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
-  vertical-align: middle !important;
+  vertical-align: baseline !important;
   white-space: nowrap;
   text-decoration: none !important;
   filter: none !important;
@@ -1794,7 +1971,7 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"] {
 }
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 24px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 1px solid #bae6fd !important;
@@ -1805,7 +1982,7 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"]:is(:hover, :focus
   box-shadow: 0 1px 3px rgba(2, 132, 199, 0.12) !important;
   color: #0284c7 !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
   text-decoration: none !important;
   filter: none !important;
@@ -1813,14 +1990,17 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"]:is(:hover, :focus
 }
 
 /* --------------------------------------------------------------------------
- * Module 35
+ * Module 34
  * -------------------------------------------------------------------------- */
 /* Fleeting Notes · refined light badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"] {
   display: inline-flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
-  min-height: 24px !important;
+  position: relative !important;
+  /* Stabilize render/edit line boxes; retain the existing visual center. */
+  top: 0.75px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 1px solid #bae6fd !important;
@@ -1831,9 +2011,9 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"] {
   box-shadow: 0 1px 2px rgba(2, 132, 199, 0.08) !important;
   color: #0284c7 !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
-  vertical-align: middle !important;
+  vertical-align: baseline !important;
   white-space: nowrap;
   text-decoration: none !important;
   filter: none !important;
@@ -1842,7 +2022,7 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"] {
 }
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 24px !important;
+  min-height: 21.5px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 1px solid #bae6fd !important;
@@ -1853,7 +2033,7 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"]:is(:hover, :focus, 
   box-shadow: 0 1px 3px rgba(2, 132, 199, 0.12) !important;
   color: #0284c7 !important;
   font-size: 14px !important;
-  line-height: 20px !important;
+  line-height: 17.5px !important;
   font-weight: 600 !important;
   text-decoration: none !important;
   filter: none !important;
