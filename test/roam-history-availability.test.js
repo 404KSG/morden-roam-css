@@ -14,11 +14,27 @@ const buttonSelector =
 
 const makeButton = (selector) => {
   const classes = new Set();
-  let clicks = 0;
+  const listeners = new Map();
+  let nativeClicks = 0;
 
-  return {
+  const button = {
     nodeType: 1,
     selector,
+    addEventListener(type, listener, options = {}) {
+      const handlers = listeners.get(type) ?? [];
+      handlers.push(listener);
+      listeners.set(type, handlers);
+      options.signal?.addEventListener(
+        "abort",
+        () => {
+          listeners.set(
+            type,
+            (listeners.get(type) ?? []).filter((handler) => handler !== listener),
+          );
+        },
+        { once: true },
+      );
+    },
     classList: {
       contains: (name) => classes.has(name),
       remove: (...names) => names.forEach((name) => classes.delete(name)),
@@ -28,15 +44,32 @@ const makeButton = (selector) => {
       },
     },
     click: () => {
-      clicks += 1;
+      const event = {
+        defaultPrevented: false,
+        immediatePropagationStopped: false,
+        preventDefault() {
+          this.defaultPrevented = true;
+        },
+        stopImmediatePropagation() {
+          this.immediatePropagationStopped = true;
+        },
+      };
+      for (const listener of listeners.get("click") ?? []) {
+        listener(event);
+        if (event.immediatePropagationStopped) break;
+      }
+      if (!event.immediatePropagationStopped) nativeClicks += 1;
+      return event;
     },
     closest: () => null,
     matches: (value) => value.split(", ").includes(selector),
     querySelector: () => null,
-    get clicks() {
-      return clicks;
+    get nativeClicks() {
+      return nativeClicks;
     },
   };
+
+  return button;
 };
 
 const runHelper = (source) => {
@@ -48,6 +81,7 @@ const runHelper = (source) => {
   const observers = [];
   const navigationListeners = new Map();
   const windowListeners = new Map();
+  const traversals = [];
   const app = {
     isConnected: true,
     nodeType: 1,
@@ -57,14 +91,30 @@ const runHelper = (source) => {
       return null;
     },
   };
+  const makeEntries = (urls) =>
+    urls.map((url, index) => ({ index, key: `entry-${index}`, url }));
+  let entries = makeEntries([
+    "https://roamresearch.com/#/app/exuberantia/page/a",
+    "https://roamresearch.com/#/app/exuberantia/page/b",
+  ]);
   const navigation = {
-    canGoBack: false,
-    canGoForward: true,
+    currentEntry: entries[0],
+    entries: () => entries,
     addEventListener(type, listener) {
       navigationListeners.set(type, listener);
     },
     emit(type) {
       navigationListeners.get(type)?.();
+    },
+    setEntries(urls, currentIndex) {
+      entries = makeEntries(urls);
+      this.currentEntry = entries[currentIndex];
+    },
+    traverseTo(key) {
+      traversals.push(key);
+      this.currentEntry = entries.find((entry) => entry.key === key);
+      this.emit("currententrychange");
+      return { finished: Promise.resolve() };
     },
   };
   const window = {
@@ -130,6 +180,7 @@ const runHelper = (source) => {
     AbortController,
     document,
     MutationObserver,
+    URL,
     window,
   });
 
@@ -145,6 +196,7 @@ const runHelper = (source) => {
     },
     navigation,
     observers,
+    traversals,
     get pendingFrames() {
       return frames.size;
     },
@@ -175,7 +227,7 @@ const runHelper = (source) => {
   };
 };
 
-test("uses the Navigation API only as a visual availability signal", () => {
+test("uses one semantic history source for both availability and traversal", () => {
   const source = fs.readFileSync(helperPath, "utf8");
   const result = runHelper(source);
 
@@ -183,15 +235,87 @@ test("uses the Navigation API only as a visual availability signal", () => {
   assert.equal(result.back.classList.contains("rm-history-unavailable"), true);
   assert.equal(result.forward.classList.contains("rm-history-unavailable"), false);
 
-  result.back.click();
-  assert.equal(result.back.clicks, 1, "the native first click remains untouched");
+  const unavailableClick = result.back.click();
+  assert.equal(unavailableClick.defaultPrevented, true);
+  assert.equal(result.back.nativeClicks, 0);
+  assert.deepEqual(result.traversals, []);
 
-  result.navigation.canGoBack = true;
-  result.navigation.canGoForward = false;
-  result.navigation.emit("currententrychange");
+  const forwardClick = result.forward.click();
+  assert.equal(forwardClick.defaultPrevented, true);
+  assert.equal(result.forward.nativeClicks, 0);
+  assert.deepEqual(result.traversals, ["entry-1"]);
   result.flushFrames();
   assert.equal(result.back.classList.contains("rm-history-unavailable"), false);
   assert.equal(result.forward.classList.contains("rm-history-unavailable"), true);
+});
+
+test("skips adjacent entries with the same visible Roam destination", () => {
+  const source = fs.readFileSync(helperPath, "utf8");
+  const result = runHelper(source);
+  const pageA = "https://roamresearch.com/#/app/exuberantia/page/a";
+  const pageB = "https://roamresearch.com/#/app/exuberantia/page/b";
+  const pageC = "https://roamresearch.com/#/app/exuberantia/page/c";
+
+  result.navigation.setEntries([pageA, pageB, pageB, pageC], 2);
+  result.navigation.emit("currententrychange");
+  result.flushFrames();
+
+  result.back.click();
+  assert.deepEqual(result.traversals, ["entry-0"]);
+  assert.equal(result.back.nativeClicks, 0);
+
+  result.flushFrames();
+  result.forward.click();
+  assert.deepEqual(result.traversals, ["entry-0", "entry-1"]);
+  assert.equal(result.forward.nativeClicks, 0);
+
+  result.flushFrames();
+  result.forward.click();
+  assert.deepEqual(result.traversals, ["entry-0", "entry-1", "entry-3"]);
+  assert.equal(result.forward.nativeClicks, 0);
+});
+
+test("marks a direction unavailable when it contains only duplicate destinations", () => {
+  const source = fs.readFileSync(helperPath, "utf8");
+  const result = runHelper(source);
+  const pageA = "https://roamresearch.com/#/app/exuberantia/page/a";
+
+  result.navigation.setEntries([pageA, pageA, pageA], 2);
+  result.navigation.emit("currententrychange");
+  result.flushFrames();
+
+  assert.equal(result.back.classList.contains("rm-history-unavailable"), true);
+  const click = result.back.click();
+  assert.equal(click.defaultPrevented, true);
+  assert.deepEqual(result.traversals, []);
+  assert.equal(result.back.nativeClicks, 0);
+});
+
+test("leaves Roam's native click untouched when semantic navigation is unavailable", () => {
+  const source = fs.readFileSync(helperPath, "utf8");
+  const result = runHelper(source);
+
+  result.navigation.entries = undefined;
+  result.rebuild();
+  const click = result.forward.click();
+
+  assert.equal(click.defaultPrevented, false);
+  assert.equal(result.forward.nativeClicks, 1);
+  assert.deepEqual(result.traversals, []);
+});
+
+test("falls back to Roam's native click when semantic traversal cannot start", () => {
+  const source = fs.readFileSync(helperPath, "utf8");
+  const result = runHelper(source);
+
+  result.navigation.traverseTo = () => {
+    throw new Error("Traversal unavailable");
+  };
+  const click = result.forward.click();
+
+  assert.equal(click.defaultPrevented, false);
+  assert.equal(result.forward.nativeClicks, 1);
+  assert.deepEqual(result.traversals, []);
 });
 
 test("reapplies visual state when Roam rebuilds the top bar", () => {
@@ -201,6 +325,10 @@ test("reapplies visual state when Roam rebuilds the top bar", () => {
   result.rebuild();
   assert.equal(result.back.classList.contains("rm-history-unavailable"), true);
   assert.equal(result.forward.classList.contains("rm-history-unavailable"), false);
+
+  result.forward.click();
+  assert.deepEqual(result.traversals, ["entry-1"]);
+  assert.equal(result.forward.nativeClicks, 0);
 });
 
 test("ignores unrelated Roam mutations and never polls", () => {
@@ -226,6 +354,9 @@ test("destroy removes visual state and all helper observers", () => {
   assert.equal(result.forward.classList.contains("rm-history-unavailable"), false);
   assert.equal("__roamHistoryAvailability" in result.window, false);
   assert.equal(result.observers.every((observer) => !observer.connected), true);
+
+  result.forward.click();
+  assert.equal(result.forward.nativeClicks, 1, "destroy restores the native click");
 });
 
 test("the bundled first module keeps the same visual behavior", () => {
@@ -237,7 +368,9 @@ test("the bundled first module keeps the same visual behavior", () => {
 
   assert.ok(firstHeader >= 0 && secondHeader > firstHeader);
   assert.ok(secondSeparator > firstBody);
-  const result = runHelper(bundle.slice(firstBody, secondSeparator));
+  const firstModule = bundle.slice(firstBody, secondSeparator).trim();
+  assert.equal(firstModule, fs.readFileSync(helperPath, "utf8").trim());
+  const result = runHelper(firstModule);
   assert.equal(result.destroyed, 1);
   assert.equal(result.back.classList.contains("rm-history-unavailable"), true);
   assert.equal(result.forward.classList.contains("rm-history-unavailable"), false);

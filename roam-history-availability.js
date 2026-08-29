@@ -8,18 +8,102 @@
   const NAV_ROOT_SELECTOR =
     "#app-header, .rm-electron-nav, .rm-topbar, header";
   const buttons = [
-    [".rm-electron-nav-back-btn", "canGoBack"],
-    [".rm-electron-nav-forward-btn", "canGoForward"],
+    [".rm-electron-nav-back-btn", -1, "canGoBack"],
+    [".rm-electron-nav-forward-btn", 1, "canGoForward"],
   ];
   const controller = new AbortController();
+  const boundButtons = new WeakSet();
   let frame = 0;
   let observedRoot = null;
 
+  const normalizeDestination = (url) => {
+    try {
+      const base = window.location?.href;
+      const destination = base ? new URL(url, base) : new URL(url);
+      return `${destination.origin}${destination.pathname}${destination.search}${destination.hash}`;
+    } catch {
+      return String(url ?? "");
+    }
+  };
+
+  // `null` means that the semantic history is supported but contains no
+  // visually distinct target. `undefined` keeps Roam native behavior as a
+  // compatibility fallback when the Navigation API is unavailable.
+  const getDistinctTarget = (direction) => {
+    const navigation = window.navigation;
+    if (
+      typeof navigation?.entries !== "function" ||
+      typeof navigation?.traverseTo !== "function" ||
+      !navigation.currentEntry
+    ) {
+      return undefined;
+    }
+
+    const entries = navigation.entries();
+    const current = navigation.currentEntry;
+    let currentIndex = current.index;
+    if (
+      !Number.isInteger(currentIndex) ||
+      entries[currentIndex]?.key !== current.key
+    ) {
+      currentIndex = entries.findIndex((entry) => entry.key === current.key);
+    }
+    if (currentIndex < 0) return undefined;
+
+    const currentDestination = normalizeDestination(current.url);
+    for (
+      let index = currentIndex + direction;
+      index >= 0 && index < entries.length;
+      index += direction
+    ) {
+      if (normalizeDestination(entries[index].url) !== currentDestination) {
+        return entries[index];
+      }
+    }
+    return null;
+  };
+
+  const stopNativeTraversal = (event) => {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  };
+
+  const bindButton = (button, direction) => {
+    if (!button || boundButtons.has(button)) return;
+    boundButtons.add(button);
+    button.addEventListener(
+      "click",
+      (event) => {
+        const target = getDistinctTarget(direction);
+        if (target === undefined) return;
+        if (target === null) {
+          stopNativeTraversal(event);
+          return;
+        }
+
+        try {
+          const transition = window.navigation.traverseTo(target.key);
+          stopNativeTraversal(event);
+          transition?.finished?.catch(() => {}).finally(schedule);
+        } catch {
+          // If traversal cannot start, leave the event untouched so the Roam
+          // native Electron handler remains the final fallback.
+        }
+      },
+      { capture: true, signal: controller.signal },
+    );
+  };
+
   const sync = () => {
     const navigation = window.navigation;
-    buttons.forEach(([selector, state]) => {
+    buttons.forEach(([selector, direction, fallbackState]) => {
       const button = document.querySelector(selector);
-      button?.classList.toggle(CLASS, navigation?.[state] === false);
+      const target = getDistinctTarget(direction);
+      const unavailable =
+        target === null ||
+        (target === undefined && navigation?.[fallbackState] === false);
+      button?.classList.toggle(CLASS, unavailable);
+      bindButton(button, direction);
     });
   };
 

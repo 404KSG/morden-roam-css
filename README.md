@@ -12,16 +12,16 @@ Designed for long-form writing, block navigation, Daily Notes, and side-by-side 
 - Compact left navigation that preserves native starring and drag-and-drop behavior
 - Inset right-sidebar cards with stable sizing, spacing, and scrolling
 - Refined checkboxes, outline rails, references, tag badges, headings, and typography
-- Optional JavaScript helpers for history availability hints, sidebar reference counts, and consistent scrollbars
+- Optional JavaScript helpers for semantic history navigation, sidebar reference counts, and consistent scrollbars
 
 ## Install
 
 1. Copy [`roam.css`](./roam.css) into a CSS code block on your `roam/css` page.
 2. Optionally copy [`roam.js`](./roam.js) into one enabled `{{[[roam/js]]}}` code block on your `roam/js` page.
 
-The JavaScript bundle contains History Availability Hint, Left Sidebar Reference Counts, and Roam Scroll in their original Roam order.
+The JavaScript bundle contains Semantic History Navigation, Left Sidebar Reference Counts, and Roam Scroll in their original Roam order.
 
-[`roam-history-availability.js`](./roam-history-availability.js) is retained for users who only need the standalone color hint. It reads the standard Navigation API for presentation only; Roam/Electron continues to own button clicks and navigation. Do not run it together with the same module inside `roam.js`.
+[`roam-history-availability.js`](./roam-history-availability.js) is retained for users who only need semantic history navigation. It uses the standard Navigation API for both availability and top-bar button traversal, skipping adjacent entries that resolve to the same visible Roam destination. When that API is unavailable, the helper leaves Roam/Electron's native click behavior untouched. Do not run it together with the same module inside `roam.js`.
 
 ## Version
 
