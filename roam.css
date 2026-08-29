@@ -745,7 +745,8 @@ div.rm-block[data-page-links*="DONE"]:not(
   [aria-disabled="true"],
   .bp3-disabled,
   .bp4-disabled,
-  .bp5-disabled
+  .bp5-disabled,
+  .rm-history-unavailable
 ) {
   opacity: 0.3 !important;
   cursor: default !important;
