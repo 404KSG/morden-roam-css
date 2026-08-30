@@ -4,7 +4,7 @@ A quiet, Linear-inspired visual layer for Roam Research. It brings the main work
 
 Designed for long-form writing, block navigation, Daily Notes, and side-by-side research.
 
-![Latest Morden Roam CSS interface](./assets/morden-roam-css-preview-2026-08-29.png)
+![Latest Morden Roam CSS interface](./assets/morden-roam-css-preview-2026-08-30.png)
 
 ## Highlights
 
