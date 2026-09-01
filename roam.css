@@ -456,8 +456,8 @@ html, body,
 .roam-sidebar-content,
 .roam-topbar {
   font-family: var(--global-font), Inter, Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, sans-serif;
-  font-size: 15.5px;
-  font-weight: bold;
+  font-size: 15px;
+  //font-weight: bold;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -466,12 +466,15 @@ html, body,
 /* Shared Block geometry: keep view and editor in the same flow box. */
 .roam-article .rm-block__input--view,
 .rm-sidebar-outline .rm-block__input--view,
+.rm-sidebar-window .rm-reference-container .rm-block__input--view,
 .roam-article .roam-block.dont-unfocus-block,
-.rm-sidebar-outline .roam-block.dont-unfocus-block {
+.rm-sidebar-outline .roam-block.dont-unfocus-block,
+.rm-sidebar-window .rm-reference-container .roam-block.dont-unfocus-block {
   box-sizing: border-box !important;
   margin: -1px 0 0 !important;
   padding: 4px 0 !important;
   line-height: 23px !important;
+  min-height: 31px !important;
 }
 
 /* Empty Block correction: affect only that Block's own view element. */
@@ -483,7 +486,8 @@ html, body,
 
 /* Paint-only correction: text center sits exactly on the Block center. */
 .roam-article .rm-block__input--view,
-.rm-sidebar-outline .rm-block__input--view {
+.rm-sidebar-outline .rm-block__input--view,
+.rm-sidebar-window .rm-reference-container .rm-block__input--view {
   transform: translateY(0.5px) !important;
 }
 
@@ -497,15 +501,15 @@ html, body,
   border: 0 !important;
   font: inherit !important;
   line-height: 23px !important;
-  min-height: 31.25px !important;
+  min-height: 31px !important;
   transform: translateY(0.5px) !important;
 }
 
-/* Preserve each heading's reading-state flow height while editing. */
+/* Keep every heading editor in the same 31px flow box as its reading state. */
 .roam-article .rm-heading-level-1 > .rm-block__self .rm-block__input--active,
 .rm-sidebar-outline .rm-heading-level-1 > .rm-block__self .rm-block__input--active,
 .rm-sidebar-window .rm-heading-level-1 > .rm-block__self .rm-block__input--active {
-  min-height: 35px !important;
+  min-height: 31px !important;
 }
 
 .roam-article .rm-heading-level-2 > .rm-block__self .rm-block__input--active,
@@ -514,12 +518,13 @@ html, body,
 .roam-article .rm-heading-level-3 > .rm-block__self .rm-block__input--active,
 .rm-sidebar-outline .rm-heading-level-3 > .rm-block__self .rm-block__input--active,
 .rm-sidebar-window .rm-heading-level-3 > .rm-block__self .rm-block__input--active {
-  min-height: 32px !important;
+  min-height: 31px !important;
 }
 
 /* Keep bullet centerline correction separate from breathing animation. */
 .roam-article .rm-bullet__inner,
-.rm-sidebar-outline .rm-bullet__inner {
+.rm-sidebar-outline .rm-bullet__inner,
+.rm-sidebar-window .rm-reference-container .rm-bullet__inner {
   position: relative !important;
   top: 1.125px !important;
 }
