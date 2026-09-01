@@ -917,6 +917,13 @@ div.rm-ref-page-view > div > div span.rm-page-ref:not(.bp3-icon) {
   left: 0;
 }
 
+/* Restore Roam's native checkbox offset in linked-reference blocks and breadcrumbs. */
+.rm-ref-page-view .rm-block__input--view .check-container,
+.rm-reference-container .rm-zoom-item-content .check-container {
+  position: relative !important;
+  top: 1px !important;
+}
+
 /* Breadcrumb labels inside linked references. */
 .rm-reference-container .rm-zoom-item-content .rm-page-ref {
   box-sizing: border-box;
