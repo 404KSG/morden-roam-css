@@ -1469,204 +1469,306 @@ fill: #FFFFFF;
  * Module 28
  * -------------------------------------------------------------------------- */
 /*
- * Relevant Notes + TODO
- * Stable two-part capsule: interactive states never change inline geometry.
+ * Relevant Notes relation chip
+ * One quiet surface: muted relationship label, native-link target.
+ * Interaction states are paint-only: geometry never changes on hover/focus.
  */
-span.rm-page-ref[data-tag="Relevant Notes"] + span {
+
+/* Hide Roam's intermediate span only while a linked target follows. */
+span.rm-page-ref[data-tag="Relevant Notes"]:has(
+    + span + span[data-link-title]
+  )
+  + span {
   display: none !important;
 }
 
-/* Shared outer geometry: exactly the same in normal and interactive states. */
+/* Fixed relationship label. */
 span.rm-page-ref[data-tag="Relevant Notes"],
 span.rm-page-ref[data-tag="Relevant Notes"]:is(:hover, :focus, :focus-visible, :active),
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title],
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]:is(:hover, :focus, :focus-visible, :active) {
+span.rm-page-ref[data-tag="Relevant Notes"]:has(
+    + span + span[data-link-title]:is(:hover, :focus-within, :active)
+  ) {
   display: inline-flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
   position: relative !important;
-  top: 0.75px !important;
+  top: -1px !important;
   width: auto !important;
-  height: 21.5px !important;
-  min-height: 21.5px !important;
-  max-height: 21.5px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 !important;
-  border: 0 !important;
+  padding: 1px 8px !important;
+  border: 1px solid #dde1e7 !important;
+  border-right: 1px solid #dde1e7 !important;
+  border-radius: 6px !important;
   outline: 0 !important;
+  background: #f7f8fa !important;
   box-shadow: none !important;
   filter: none !important;
   transform: none !important;
   text-shadow: none !important;
+  color: #7c8491 !important;
   font-size: 14px !important;
   font-weight: 600 !important;
   font-synthesis: none !important;
-  line-height: 17.5px !important;
+  line-height: 18px !important;
   vertical-align: baseline !important;
   white-space: nowrap !important;
+  overflow: visible !important;
   text-decoration: none !important;
   transition: none !important;
 }
 
-/* Unified Literature-blue composite: one shared surface across both halves. */
-span.rm-page-ref[data-tag="Relevant Notes"],
-span.rm-page-ref[data-tag="Relevant Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  padding: 1px 8px !important;
+/* Open the right seam only when a dynamic linked target is present. */
+span.rm-page-ref[data-tag="Relevant Notes"]:has(
+    + span + span[data-link-title]
+  ),
+span.rm-page-ref[data-tag="Relevant Notes"]:has(
+    + span + span[data-link-title]
+  ):is(:hover, :focus, :focus-visible, :active),
+span.rm-page-ref[data-tag="Relevant Notes"]:has(
+    + span + span[data-link-title]:is(:hover, :focus-within, :active)
+  ) {
+  padding: 1px 3px 1px 8px !important;
+  border-right: 0 !important;
   border-radius: 6px 0 0 6px !important;
-  background-color: #eaf4ff !important;
-  background-image: none !important;
-  box-shadow: inset 1px 0 0 #bae6fd, inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 2px rgba(2, 132, 199, 0.08) !important;
-  color: #0284c7 !important;
-  transition: background 120ms ease, box-shadow 120ms ease !important;
 }
 
-/* The outer TODO wrapper remains transparent so the count stays outside. */
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title],
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]:is(:hover, :focus, :focus-visible, :active) {
+/* Semantic connector: relation, not decoration. */
+span.rm-page-ref[data-tag="Relevant Notes"]::before {
+  content: none !important;
+  display: none !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"]::after {
+  content: none !important;
+  display: none !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"]:has(
+    + span + span[data-link-title]
+  )::after {
+  content: "›" !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  position: static !important;
+  width: auto !important;
+  height: 18px !important;
+  margin: 0 0 0 5px !important;
   padding: 0 !important;
-  border-radius: 0 !important;
+  border: 0 !important;
   background: transparent !important;
-  color: #0284c7 !important;
+  box-shadow: none !important;
+  color: #a3a9b3 !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  line-height: 18px !important;
+  transform: none !important;
+  pointer-events: none !important;
 }
 
-/* Native TODO nodes: [[, TODO, ]]. All states use one immutable box model. */
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets:is(:hover, :focus, :focus-visible, :active),
+/* Transparent native wrapper keeps the linked-page count outside the chip. */
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title],
+span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]:is(
+    :hover,
+    :focus,
+    :focus-within,
+    :active
+  ) {
+  display: inline-flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  top: -1px !important;
+  width: auto !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  vertical-align: baseline !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  transition: none !important;
+}
+
+/* Hide Roam's [[ ]] while preserving the native page-link interaction. */
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref__brackets {
+  display: none !important;
+}
+
+/*
+ * Dynamic target. Counted page references receive extra native hover rules in
+ * Roam, so every known count shape and interaction state is pinned explicitly.
+ */
 span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:is(:hover, :focus, :focus-visible, :active),
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span > sup.rc-notvoid-page):hover,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span + span > sup.rc-notvoid-page):hover {
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref:is(:hover, :focus, :focus-visible, :active),
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref:has(+ span > sup.rc-notvoid-page),
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref:has(+ span > sup.rc-notvoid-page):is(:hover, :focus, :focus-visible, :active),
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref:has(+ span + span > sup.rc-notvoid-page),
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref:has(+ span + span > sup.rc-notvoid-page):is(
+    :hover,
+    :focus,
+    :focus-visible,
+    :active
+  ) {
   display: inline-flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
   position: relative !important;
   top: 0 !important;
   width: auto !important;
-  height: 21.5px !important;
-  min-height: 21.5px !important;
-  max-height: 21.5px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
+  padding: 1px 8px 1px 2px !important;
+  border: 1px solid #dde1e7 !important;
+  border-left: 0 !important;
+  border-radius: 0 6px 6px 0 !important;
   outline: 0 !important;
+  background: #f7f8fa !important;
   box-shadow: none !important;
   filter: none !important;
   transform: none !important;
   text-shadow: none !important;
+  color: #137cbd !important;
   font-size: 14px !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   font-synthesis: none !important;
-  line-height: 17.5px !important;
+  line-height: 18px !important;
   vertical-align: baseline !important;
   white-space: nowrap !important;
+  overflow: visible !important;
   text-decoration: none !important;
-  text-decoration-line: none !important;
-  text-decoration-thickness: 0 !important;
-  text-underline-offset: 0 !important;
   transition: none !important;
 }
 
-/* Opening bracket and the composition divider. */
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets:first-child,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets:first-child:is(:hover, :focus, :focus-visible, :active) {
-  padding: 1px 0 1px 8px !important;
-  border-left: 1px solid #bae6fd !important;
-  background-color: #eaf4ff !important;
-  background-image: none !important;
-  box-shadow: inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 2px rgba(2, 132, 199, 0.08) !important;
-  color: #0284c7 !important;
-  transition: background 120ms ease, box-shadow 120ms ease !important;
-}
-
-/* The direct page link inherits the Literature Notes visual language. */
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:is(:hover, :focus, :focus-visible, :active),
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span > sup.rc-notvoid-page):hover,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span + span > sup.rc-notvoid-page):hover {
-  padding: 1px 0 !important;
-  background-color: #eaf4ff !important;
-  background-image: none !important;
-  box-shadow: inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 2px rgba(2, 132, 199, 0.08) !important;
-  color: #0284c7 !important;
-  transition: background 120ms ease, box-shadow 120ms ease !important;
-}
-
-/* Closing bracket ends the visible composite; the reference count stays outside. */
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref + .rm-page-ref__brackets,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref + .rm-page-ref__brackets:is(:hover, :focus, :focus-visible, :active) {
-  padding: 1px 6px 1px 0 !important;
-  border-radius: 0 6px 6px 0 !important;
-  background-color: #eaf4ff !important;
-  background-image: none !important;
-  box-shadow: inset -1px 0 0 #bae6fd, inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 2px rgba(2, 132, 199, 0.08) !important;
-  color: #0284c7 !important;
-  transition: background 120ms ease, box-shadow 120ms ease !important;
-}
-
-/* Hover is paint-only across the whole native right-hand capsule. */
-span.rm-page-ref[data-tag="Relevant Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  background-color: #dceeff !important;
-  background-image: none !important;
-  box-shadow: inset 1px 0 0 #bae6fd, inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 3px rgba(2, 132, 199, 0.12) !important;
-}
-
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]:is(:hover, :focus-within, :active) > .rm-page-ref__brackets:first-child,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets:first-child:is(:hover, :focus, :focus-visible, :active) {
-  background-color: #dceeff !important;
-  background-image: none !important;
-  box-shadow: inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 3px rgba(2, 132, 199, 0.12) !important;
-}
-
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]:is(:hover, :focus-within, :active) > .rm-page-ref,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:is(:hover, :focus, :focus-visible, :active),
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span > sup.rc-notvoid-page):hover,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref:has(+ span + span > sup.rc-notvoid-page):hover {
-  background-color: #dceeff !important;
-  background-image: none !important;
-  box-shadow: inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 3px rgba(2, 132, 199, 0.12) !important;
-}
-
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]:is(:hover, :focus-within, :active) > .rm-page-ref + .rm-page-ref__brackets,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref + .rm-page-ref__brackets:is(:hover, :focus, :focus-visible, :active) {
-  background-color: #dceeff !important;
-  background-image: none !important;
-  box-shadow: inset -1px 0 0 #bae6fd, inset 0 1px 0 #bae6fd, inset 0 -1px 0 #bae6fd, 0 1px 3px rgba(2, 132, 199, 0.12) !important;
-}
-
-/* No theme pseudo-element may create a hover edge beyond the capsule. */
-span.rm-page-ref[data-tag="Relevant Notes"]::before,
-span.rm-page-ref[data-tag="Relevant Notes"]::after,
 span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]::before,
 span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title]::after,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref::before,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref::after,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets::before,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > .rm-page-ref__brackets::after {
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref::before,
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref::after,
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref__brackets::before,
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref__brackets::after {
   content: none !important;
   display: none !important;
 }
 
-/* Linked-topic count: stays in normal flow and outside the painted capsule. */
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > span:last-child > sup,
-span.rm-page-ref[data-tag="Relevant Notes"] + span + span[data-link-title] > sup {
-  position: relative !important;
-  top: -0.35em !important;
-  display: inline !important;
-  margin: 0 0 0 2px !important;
-  padding: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  filter: none !important;
-  transform: none !important;
-  text-shadow: none !important;
-  color: #a3adb7 !important;
-  font-size: 0.68em !important;
-  font-weight: 600 !important;
-  line-height: 0 !important;
-  vertical-align: baseline !important;
-  transition: none !important;
+/* Paint-only hover: quiet neutral surface with the graph's native link blue. */
+span.rm-page-ref[data-tag="Relevant Notes"]:is(:hover, :focus, :active),
+span.rm-page-ref[data-tag="Relevant Notes"]:has(
+    + span + span[data-link-title]:is(:hover, :focus-within, :active)
+  ) {
+  background-color: #f1f3f6 !important;
 }
+
+span.rm-page-ref[data-tag="Relevant Notes"]:is(:hover, :focus, :active)
+  + span
+  + span[data-link-title]
+  > .rm-page-ref,
+span.rm-page-ref[data-tag="Relevant Notes"]:is(:hover, :focus, :active)
+  + span
+  + span[data-link-title]
+  > .rm-page-ref:has(+ span > sup.rc-notvoid-page),
+span.rm-page-ref[data-tag="Relevant Notes"]:is(:hover, :focus, :active)
+  + span
+  + span[data-link-title]
+  > .rm-page-ref:has(+ span + span > sup.rc-notvoid-page),
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]:is(:hover, :focus-within, :active)
+  > .rm-page-ref,
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]:is(:hover, :focus-within, :active)
+  > .rm-page-ref:has(+ span > sup.rc-notvoid-page),
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]:is(:hover, :focus-within, :active)
+  > .rm-page-ref:has(+ span + span > sup.rc-notvoid-page) {
+  background-color: #f1f3f6 !important;
+  color: #106ba3 !important;
+}
+
+/* Inset keyboard focus is visible but never changes the outer dimensions. */
+span.rm-page-ref[data-tag="Relevant Notes"]:focus-visible {
+  box-shadow: inset 0 0 0 1px rgba(19, 124, 189, 0.24) !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"]:has(
+    + span + span[data-link-title]
+  ):focus-visible {
+  box-shadow: inset 1px 0 0 rgba(19, 124, 189, 0.24),
+    inset 0 1px 0 rgba(19, 124, 189, 0.24),
+    inset 0 -1px 0 rgba(19, 124, 189, 0.24) !important;
+}
+
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref:focus-visible {
+  box-shadow: inset -1px 0 0 rgba(19, 124, 189, 0.24),
+    inset 0 1px 0 rgba(19, 124, 189, 0.24),
+    inset 0 -1px 0 rgba(19, 124, 189, 0.24) !important;
+}
+
+
+/* Keep Relevant Notes' native page count on the Roam baseline. */
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref
+  + span:has(> sup.rc-notvoid-page),
+span.rm-page-ref[data-tag="Relevant Notes"]
+  + span
+  + span[data-link-title]
+  > .rm-page-ref
+  + span
+  + span:has(> sup.rc-notvoid-page) {
+  position: relative !important;
+  top: 2.5px !important;
+}
+
 
 /* --------------------------------------------------------------------------
  * Module 29
