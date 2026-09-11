@@ -1,6 +1,6 @@
 /*
  * Morden Roam CSS
- * Generated from 34 active CSS blocks in Roam Research.
+ * Generated from 35 active CSS blocks in Roam Research.
  * Source order is preserved so later rules retain their original precedence.
  */
 
@@ -2184,4 +2184,187 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"]:is(:hover, :focus, 
   text-decoration: none !important;
   filter: none !important;
   transform: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 35
+ * -------------------------------------------------------------------------- */
+/* Discourse Graph candidates · Literature Notes light badge
+ * Exact tags only: clm-candidate, que-candidate, evd-candidate, src-candidate.
+ * DG paints these tags with inline styles from Canvas color (getNodeTagStyles);
+ * !important is required to beat that inline capsule without changing DG config.
+ */
+span.rm-page-ref.rm-page-ref--tag[data-tag="clm-candidate"] {
+  --dg-candidate-fg: #7C3AED;
+  --dg-candidate-border: #ddd6fe;
+  --dg-candidate-fill-start: #f5f3ff;
+  --dg-candidate-fill-end: #ede9fe;
+  --dg-candidate-hover-start: #ede9fe;
+  --dg-candidate-hover-end: #ddd6fe;
+  --dg-candidate-shadow: rgba(124, 58, 237, 0.08);
+  --dg-candidate-shadow-hover: rgba(124, 58, 237, 0.12);
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="que-candidate"] {
+  --dg-candidate-fg: #C2410C;
+  --dg-candidate-border: #fed7aa;
+  --dg-candidate-fill-start: #fff7ed;
+  --dg-candidate-fill-end: #ffedd5;
+  --dg-candidate-hover-start: #ffedd5;
+  --dg-candidate-hover-end: #fed7aa;
+  --dg-candidate-shadow: rgba(194, 65, 12, 0.08);
+  --dg-candidate-shadow-hover: rgba(194, 65, 12, 0.12);
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="evd-candidate"] {
+  --dg-candidate-fg: #0284C7;
+  --dg-candidate-border: #bae6fd;
+  --dg-candidate-fill-start: #f0f9ff;
+  --dg-candidate-fill-end: #dbeafe;
+  --dg-candidate-hover-start: #e0f2fe;
+  --dg-candidate-hover-end: #bfdbfe;
+  --dg-candidate-shadow: rgba(2, 132, 199, 0.08);
+  --dg-candidate-shadow-hover: rgba(2, 132, 199, 0.12);
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="src-candidate"] {
+  --dg-candidate-fg: #15803D;
+  --dg-candidate-border: #bbf7d0;
+  --dg-candidate-fill-start: #f0fdf4;
+  --dg-candidate-fill-end: #dcfce7;
+  --dg-candidate-hover-start: #dcfce7;
+  --dg-candidate-hover-end: #bbf7d0;
+  --dg-candidate-shadow: rgba(21, 128, 61, 0.08);
+  --dg-candidate-shadow-hover: rgba(21, 128, 61, 0.12);
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="clm-candidate"],
+span.rm-page-ref.rm-page-ref--tag[data-tag="que-candidate"],
+span.rm-page-ref.rm-page-ref--tag[data-tag="evd-candidate"],
+span.rm-page-ref.rm-page-ref--tag[data-tag="src-candidate"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  /* Live Literature Notes geometry ((4SQIvL090)): color only. */
+  top: 0 !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+  margin: 0 1px !important;
+  padding: 1px 7px !important;
+  border: 1px solid var(--dg-candidate-border) !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(
+    135deg,
+    var(--dg-candidate-fill-start),
+    var(--dg-candidate-fill-end)
+  ) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 2px var(--dg-candidate-shadow) !important;
+  color: var(--dg-candidate-fg) !important;
+  font-size: 14px !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
+  vertical-align: baseline !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-decoration: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: background 120ms ease, border-color 120ms ease, box-shadow 120ms ease !important;
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="clm-candidate"]:is(:hover, :focus, :focus-visible, :active),
+span:has(> span.rm-page-ref.rm-page-ref--tag[data-tag="clm-candidate"]):is(:hover, :focus-within)
+  > span.rm-page-ref.rm-page-ref--tag[data-tag="clm-candidate"],
+span.rm-page-ref.rm-page-ref--tag[data-tag="que-candidate"]:is(:hover, :focus, :focus-visible, :active),
+span:has(> span.rm-page-ref.rm-page-ref--tag[data-tag="que-candidate"]):is(:hover, :focus-within)
+  > span.rm-page-ref.rm-page-ref--tag[data-tag="que-candidate"],
+span.rm-page-ref.rm-page-ref--tag[data-tag="evd-candidate"]:is(:hover, :focus, :focus-visible, :active),
+span:has(> span.rm-page-ref.rm-page-ref--tag[data-tag="evd-candidate"]):is(:hover, :focus-within)
+  > span.rm-page-ref.rm-page-ref--tag[data-tag="evd-candidate"],
+span.rm-page-ref.rm-page-ref--tag[data-tag="src-candidate"]:is(:hover, :focus, :focus-visible, :active),
+span:has(> span.rm-page-ref.rm-page-ref--tag[data-tag="src-candidate"]):is(:hover, :focus-within)
+  > span.rm-page-ref.rm-page-ref--tag[data-tag="src-candidate"] {
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+  margin: 0 1px !important;
+  padding: 1px 7px !important;
+  border: 1px solid var(--dg-candidate-border) !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(
+    135deg,
+    var(--dg-candidate-hover-start),
+    var(--dg-candidate-hover-end)
+  ) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 3px var(--dg-candidate-shadow-hover) !important;
+  color: var(--dg-candidate-fg) !important;
+  font-size: 14px !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+/* Keyboard focus: extra ring only. Geometry stays locked. */
+span.rm-page-ref.rm-page-ref--tag[data-tag="clm-candidate"]:focus-visible,
+span:has(> span.rm-page-ref.rm-page-ref--tag[data-tag="clm-candidate"]):focus-within
+  > span.rm-page-ref.rm-page-ref--tag[data-tag="clm-candidate"],
+span.rm-page-ref.rm-page-ref--tag[data-tag="que-candidate"]:focus-visible,
+span:has(> span.rm-page-ref.rm-page-ref--tag[data-tag="que-candidate"]):focus-within
+  > span.rm-page-ref.rm-page-ref--tag[data-tag="que-candidate"],
+span.rm-page-ref.rm-page-ref--tag[data-tag="evd-candidate"]:focus-visible,
+span:has(> span.rm-page-ref.rm-page-ref--tag[data-tag="evd-candidate"]):focus-within
+  > span.rm-page-ref.rm-page-ref--tag[data-tag="evd-candidate"],
+span.rm-page-ref.rm-page-ref--tag[data-tag="src-candidate"]:focus-visible,
+span:has(> span.rm-page-ref.rm-page-ref--tag[data-tag="src-candidate"]):focus-within
+  > span.rm-page-ref.rm-page-ref--tag[data-tag="src-candidate"] {
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+  margin: 0 1px !important;
+  padding: 1px 7px !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  box-shadow:
+    0 1px 3px var(--dg-candidate-shadow-hover),
+    0 0 0 2px color-mix(in srgb, var(--dg-candidate-fg) 35%, transparent) !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  span.rm-page-ref.rm-page-ref--tag[data-tag="clm-candidate"],
+  span.rm-page-ref.rm-page-ref--tag[data-tag="que-candidate"],
+  span.rm-page-ref.rm-page-ref--tag[data-tag="evd-candidate"],
+  span.rm-page-ref.rm-page-ref--tag[data-tag="src-candidate"] {
+    transition: none !important;
+  }
+}
+
+/* Node Menu dots: same candidate colors. Do not restyle .bp3-active. */
+.bp3-menu-item[data-tag="clm-candidate"] .bp3-icon > div,
+.bp3-menu-item[data-tag="clm-candidate"] .rounded-full {
+  background-color: #7C3AED !important;
+}
+
+.bp3-menu-item[data-tag="que-candidate"] .bp3-icon > div,
+.bp3-menu-item[data-tag="que-candidate"] .rounded-full {
+  background-color: #C2410C !important;
+}
+
+.bp3-menu-item[data-tag="evd-candidate"] .bp3-icon > div,
+.bp3-menu-item[data-tag="evd-candidate"] .rounded-full {
+  background-color: #0284C7 !important;
+}
+
+.bp3-menu-item[data-tag="src-candidate"] .bp3-icon > div,
+.bp3-menu-item[data-tag="src-candidate"] .rounded-full {
+  background-color: #15803D !important;
 }

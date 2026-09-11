@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>DG candidate overlay hover fixture</title>
+</head>
+<body>
+  <!-- Real DG renderNodeTagPopupButton structure. Overlay keeps pointer-events. -->
+  <span id="wrapper" style="position:relative;display:inline-block">
+    <span
+      class="rm-page-ref rm-page-ref--tag"
+      data-tag="clm-candidate"
+      data-attribute-button-rendered="true"
+      tabindex="-1"
+      id="candidate"
+    >#clm-candidate</span>
+    <span style="position:absolute;top:0;left:0;width:125.375px;height:22px;pointer-events:none;z-index:10">
+      <span class="bp3-popover-wrapper">
+        <span class="bp3-popover-target">
+          <span
+            id="overlay-target"
+            tabindex="0"
+            style="display:block;position:absolute;top:0;left:0;width:125.375px;height:22px;pointer-events:auto"
+          ></span>
+        </span>
+      </span>
+    </span>
+  </span>
+</body>
+</html>
