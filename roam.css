@@ -7,11 +7,13 @@
 /* --------------------------------------------------------------------------
  * Module 01
  * -------------------------------------------------------------------------- */
-/* Shared Roam · Linear-inspired design tokens */
+/* Shared Roam · native Desk borders, existing layout tokens.
+   Keep the token names so the sidebar modules stay compatible. */
 .roam-app {
   --rr-linear-shell-tint: #6b6f76;
-  --rr-linear-hairline: rgba(82, 82, 91, 0.075);
-  --rr-linear-hairline-active: rgba(82, 82, 91, 0.11);
+  --rr-linear-hairline: #e1e8ed; /* Blueprint light-gray3 / Desk default */
+  --rr-linear-hairline-active: #a7b6c2; /* Blueprint gray5 / Desk hover */
+  --rr-native-border-motion: 120ms ease-in;
   --rr-linear-radius: 12px;
   --rr-linear-inset: 12px;
   --rr-linear-shell-top: 45px;
@@ -33,7 +35,7 @@
   pointer-events: none;
   border: 1px solid var(
     --rr-linear-hairline,
-    rgba(82, 82, 91, 0.075)
+    #e1e8ed
   );
   border-radius: var(--rr-linear-radius, 12px);
   background-color: var(--main-area-background-color);
@@ -74,7 +76,7 @@
 /* --------------------------------------------------------------------------
  * Module 02
  * -------------------------------------------------------------------------- */
-/* Left sidebar · Linear-inspired light navigation */
+/* Left sidebar · existing light navigation, native Desk borders */
 .roam-body .roam-app {
   /* Width control: lower = narrower, higher = wider. */
   --rr-left-sidebar-width: 200px;
@@ -88,9 +90,9 @@
   --rr-left-sidebar-hover: rgba(82, 82, 91, 0.055);
   --rr-left-sidebar-active: rgba(82, 82, 91, 0.09);
   --rr-left-sidebar-focus: rgba(82, 82, 91, 0.16);
-  --rr-left-sidebar-hairline: rgba(82, 82, 91, 0.075);
+  --rr-left-sidebar-hairline: var(--rr-linear-hairline, #e1e8ed);
   --rr-left-sidebar-embed-bg: #ffffff;
-  --rr-left-sidebar-embed-border: rgba(82, 82, 91, 0.075);
+  --rr-left-sidebar-embed-border: var(--rr-linear-hairline, #e1e8ed);
   --rr-starred-list-offset: -48px;
   box-sizing: border-box;
   width: var(--rr-left-sidebar-width, 216px) !important;
@@ -149,9 +151,9 @@
   inset: 0;
   box-sizing: border-box;
   pointer-events: none;
-  border-top: 1px solid var(--rr-linear-hairline, rgba(82, 82, 91, 0.075));
-  border-right: 1px solid var(--rr-linear-hairline, rgba(82, 82, 91, 0.075));
-  border-bottom: 1px solid var(--rr-linear-hairline, rgba(82, 82, 91, 0.075));
+  border-top: 1px solid var(--rr-left-sidebar-hairline, #e1e8ed);
+  border-right: 1px solid var(--rr-left-sidebar-hairline, #e1e8ed);
+  border-bottom: 1px solid var(--rr-left-sidebar-hairline, #e1e8ed);
   border-left: 0;
   border-radius: 0 var(--rr-linear-radius, 12px) var(--rr-linear-radius, 12px) 0;
 }
@@ -359,7 +361,7 @@ ul.rm-graph-dropdown.bp3-menu :is(.bp3-menu-item, .bp3-menu-header, .rm-graph-dr
 /* --------------------------------------------------------------------------
  * Module 03
  * -------------------------------------------------------------------------- */
-/* Right sidebar - inset inside the shared workspace shell */
+/* Right sidebar · native Desk borders, existing inset layout */
 #right-sidebar {
   box-sizing: border-box;
   min-width: 0;
@@ -408,14 +410,14 @@ ul.rm-graph-dropdown.bp3-menu :is(.bp3-menu-item, .bp3-menu-header, .rm-graph-dr
   padding-inline-start: 8px;
   border: 1px solid var(
     --rr-linear-hairline,
-    rgba(82, 82, 91, 0.075)
+    #e1e8ed
   ) !important;
   border-radius: var(--rr-linear-radius, 12px) !important;
   background: var(--main-area-background-color) !important;
   background-clip: padding-box;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.025);
   transition:
-    border-color var(--rr-linear-motion, 160ms ease),
+    border-color var(--rr-native-border-motion, 120ms ease-in),
     box-shadow var(--rr-linear-motion, 160ms ease);
 }
 
@@ -434,7 +436,7 @@ ul.rm-graph-dropdown.bp3-menu :is(.bp3-menu-item, .bp3-menu-header, .rm-graph-dr
 #right-sidebar .sidebar-content > div:not(.rm-dnd-separator):focus-within {
   border-color: var(
     --rr-linear-hairline-active,
-    rgba(82, 82, 91, 0.11)
+    #a7b6c2
   ) !important;
   box-shadow: 0 2px 6px rgba(16, 24, 40, 0.04);
 }
@@ -563,6 +565,109 @@ html, body,
 /* --------------------------------------------------------------------------
  * Module 05
  * -------------------------------------------------------------------------- */
+/* Roam bullet breathing and hover effects */
+
+:root {
+  --bullet-breathe-scale: 1.28;
+  --bullet-breathe-opacity: 0.82;
+  --bullet-breathe-duration: 1.8s;
+  --bullet-start-duration: 0.2s;
+}
+
+@keyframes bullet-breathe {
+  0% {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale3d(var(--bullet-breathe-scale), var(--bullet-breathe-scale), 1);
+    opacity: var(--bullet-breathe-opacity);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+}
+
+/* Base state */
+.rm-block .rm-bullet {
+  opacity: 0.4;
+  border-radius: 50%;
+  transition: opacity 0.25s ease;
+}
+
+.rm-block .rm-bullet__inner {
+  transform-origin: center;
+}
+
+.rm-block:hover > .rm-block-main > .controls > .rm-bullet,
+.rm-focused > .rm-block-main > .controls > .rm-bullet {
+  opacity: 1;
+}
+
+/* Focus breathing */
+.rm-focused > .rm-block-main > .controls > .rm-bullet > .bp3-popover-wrapper .rm-bullet__inner {
+  border-radius: 50%;
+  animation: bullet-breathe var(--bullet-breathe-duration) ease-in-out infinite;
+  will-change: transform, opacity;
+  transition: transform var(--bullet-start-duration) ease,
+              opacity var(--bullet-start-duration) ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rm-focused > .rm-block-main > .controls > .rm-bullet > .bp3-popover-wrapper .rm-bullet__inner {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Existing Roam controls */
+.rm-block .rm-multibar {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rm-block:hover > .rm-block-children > .rm-multibar,
+.rm-focused > .rm-block-children > .rm-multibar {
+  opacity: 1;
+}
+
+.rm-ref-page-view .rm-title-arrow-wrapper > .rm-caret {
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
+}
+
+.rm-ref-page-view:hover .rm-title-arrow-wrapper > .rm-caret {
+  opacity: 1;
+}
+
+/* Hover scale */
+.rm-bullet:hover .rm-bullet__inner {
+  width: 9px;
+  height: 9px;
+  border: 2px solid transparent;
+  transition: width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              height 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: scale(1.2);
+}
+
+.sidebar-content .rm-bullet.rm-bullet--closed:hover .rm-bullet__inner,
+.rm-bullet.rm-bullet--closed:hover .rm-bullet__inner {
+  border: 2px solid transparent;
+  transition: width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              height 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: scale(1.2);
+}
+
+/* --------------------------------------------------------------------------
+ * Module 06
+ * -------------------------------------------------------------------------- */
 /* Shared title styles */
 .roam-article .rm-title-display,
 .roam-article .rm-title-textarea,
@@ -572,7 +677,7 @@ html, body,
 .rm-sidebar-outline .roam-log-page h1.level2,
 .rm-sidebar-outline .rm-title-editing-display {
   font-size: 18px !important;
-  font-weight: 800 !important;
+  //font-weight: bold;
   line-height: 1.5 !important;
   box-sizing: border-box !important;
   padding-top: 0 !important;
@@ -682,7 +787,7 @@ html, body,
 }
 
 /* --------------------------------------------------------------------------
- * Module 06
+ * Module 07
  * -------------------------------------------------------------------------- */
 /* TODO checkbox · Linear-inspired, layout-safe */
 .check-container {
@@ -734,7 +839,7 @@ div.rm-block[data-page-links*="DONE"]:not(
 }
 
 /* --------------------------------------------------------------------------
- * Module 07
+ * Module 08
  * -------------------------------------------------------------------------- */
 /* Match Electron history icons to Roam's Daily Notes chevrons. */
 .rm-electron-nav-back-btn::before {
@@ -758,7 +863,7 @@ div.rm-block[data-page-links*="DONE"]:not(
 }
 
 /* --------------------------------------------------------------------------
- * Module 08
+ * Module 09
  * -------------------------------------------------------------------------- */
 /* Native outline bars */
 .rm-multibar {
@@ -786,7 +891,7 @@ div.rm-block[data-page-links*="DONE"]:not(
 }
 
 /* --------------------------------------------------------------------------
- * Module 09
+ * Module 10
  * -------------------------------------------------------------------------- */
 /* 主页面 PDF 图标 */
 .roam-article svg[viewBox="0 0 1920 1920"]{
@@ -796,109 +901,6 @@ div.rm-block[data-page-links*="DONE"]:not(
 /* 侧边栏 PDF 图标 */
 .rm-sidebar-outline svg[viewBox="0 0 1920 1920"]{
   transform: translate(0px, -20px) !important; /* 改这里：X, Y */
-}
-
-/* --------------------------------------------------------------------------
- * Module 10
- * -------------------------------------------------------------------------- */
-/* Roam bullet breathing and hover effects */
-
-:root {
-  --bullet-breathe-scale: 1.28;
-  --bullet-breathe-opacity: 0.82;
-  --bullet-breathe-duration: 1.8s;
-  --bullet-start-duration: 0.2s;
-}
-
-@keyframes bullet-breathe {
-  0% {
-    transform: scale3d(1, 1, 1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale3d(var(--bullet-breathe-scale), var(--bullet-breathe-scale), 1);
-    opacity: var(--bullet-breathe-opacity);
-  }
-  100% {
-    transform: scale3d(1, 1, 1);
-    opacity: 1;
-  }
-}
-
-/* Base state */
-.rm-block .rm-bullet {
-  opacity: 0.4;
-  border-radius: 50%;
-  transition: opacity 0.25s ease;
-}
-
-.rm-block .rm-bullet__inner {
-  transform-origin: center;
-}
-
-.rm-block:hover > .rm-block-main > .controls > .rm-bullet,
-.rm-focused > .rm-block-main > .controls > .rm-bullet {
-  opacity: 1;
-}
-
-/* Focus breathing */
-.rm-focused > .rm-block-main > .controls > .rm-bullet > .bp3-popover-wrapper .rm-bullet__inner {
-  border-radius: 50%;
-  animation: bullet-breathe var(--bullet-breathe-duration) ease-in-out infinite;
-  will-change: transform, opacity;
-  transition: transform var(--bullet-start-duration) ease,
-              opacity var(--bullet-start-duration) ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .rm-focused > .rm-block-main > .controls > .rm-bullet > .bp3-popover-wrapper .rm-bullet__inner {
-    animation: none;
-    transition: none;
-  }
-}
-
-/* Existing Roam controls */
-.rm-block .rm-multibar {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.rm-block:hover > .rm-block-children > .rm-multibar,
-.rm-focused > .rm-block-children > .rm-multibar {
-  opacity: 1;
-}
-
-.rm-ref-page-view .rm-title-arrow-wrapper > .rm-caret {
-  opacity: 0.2;
-  transition: opacity 0.3s ease;
-}
-
-.rm-ref-page-view:hover .rm-title-arrow-wrapper > .rm-caret {
-  opacity: 1;
-}
-
-/* Hover scale */
-.rm-bullet:hover .rm-bullet__inner {
-  width: 9px;
-  height: 9px;
-  border: 2px solid transparent;
-  transition: width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
-              height 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
-              border-width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
-              border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
-              transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-  transform: scale(1.2);
-}
-
-.sidebar-content .rm-bullet.rm-bullet--closed:hover .rm-bullet__inner,
-.rm-bullet.rm-bullet--closed:hover .rm-bullet__inner {
-  border: 2px solid transparent;
-  transition: width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
-              height 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
-              border-width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
-              border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
-              transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-  transform: scale(1.2);
 }
 
 /* --------------------------------------------------------------------------
@@ -1769,7 +1771,6 @@ span.rm-page-ref[data-tag="Relevant Notes"]
   top: 2.5px !important;
 }
 
-
 /* --------------------------------------------------------------------------
  * Module 29
  * -------------------------------------------------------------------------- */
@@ -1780,9 +1781,11 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"] {
   align-items: center !important;
   box-sizing: border-box !important;
   position: relative !important;
-  /* Baseline stabilizes render/edit line boxes; top preserves the badge position. */
-  top: 0.75px !important;
-  min-height: 21.5px !important;
+  /* Fixed outer geometry: alignment no longer depends on text or Emoji baselines. */
+  top: 0 !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 0 !important;
@@ -1793,10 +1796,11 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"] {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
   vertical-align: baseline !important;
   white-space: nowrap;
+  overflow: visible !important;
   text-decoration: none !important;
   filter: none !important;
   transform: none !important;
@@ -1804,15 +1808,22 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"] {
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]::before {
   content: "🫧";
-  display: inline-block;
-  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
   margin: 0 4px 0 0;
-  line-height: 1;
-  transform: translateY(-0.25px);
+  line-height: 18px;
+  transform: none;
 }
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 21.5px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 0 !important;
@@ -1822,8 +1833,8 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]:is(:hover, :focus, :
   background-size: 100% 100% !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
   text-decoration: none !important;
   filter: none !important;
   transform: none !important;
@@ -1854,15 +1865,93 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Instant Notes"]:is(:hover, :focus-vi
 /* --------------------------------------------------------------------------
  * Module 30
  * -------------------------------------------------------------------------- */
+/* Evergreen Notes · refined flat badge */
+span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  /* Fixed outer geometry: alignment no longer depends on text or Emoji baselines. */
+  top: 0 !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+  margin: 0 1px !important;
+  padding: 1px 7px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(to right, #355C7D, #03b1fc, #00ECFF) !important;
+  background-size: 100% 100% !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
+  vertical-align: baseline !important;
+  white-space: nowrap;
+  overflow: visible !important;
+  text-decoration: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"]:is(:hover, :focus, :focus-visible, :active) {
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+  margin: 0 1px !important;
+  padding: 1px 7px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  outline: 0 !important;
+  background: linear-gradient(to right, #355C7D, #03b1fc, #00ECFF) !important;
+  background-size: 100% 100% !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"]::after {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: 7px !important;
+  right: 7px !important;
+  bottom: 2px !important;
+  height: 1px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  opacity: 0 !important;
+  transform: scaleX(0.45) !important;
+  transform-origin: center !important;
+  pointer-events: none !important;
+  transition: opacity 150ms ease, transform 150ms ease !important;
+}
+
+span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"]:is(:hover, :focus-visible)::after {
+  opacity: 1 !important;
+  transform: scaleX(1) !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Module 31
+ * -------------------------------------------------------------------------- */
 /* Project Notes · refined flat badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"] {
   display: inline-flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
   position: relative !important;
-  /* Stabilize render/edit line boxes; retain the existing visual center. */
-  top: 0.75px !important;
-  min-height: 21.5px !important;
+  /* Fixed outer geometry: alignment no longer depends on text or Emoji baselines. */
+  top: 0 !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 0 !important;
@@ -1873,10 +1962,11 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"] {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
   vertical-align: baseline !important;
   white-space: nowrap;
+  overflow: visible !important;
   text-decoration: none !important;
   filter: none !important;
   transform: none !important;
@@ -1884,15 +1974,22 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"] {
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]::before {
   content: "🦾";
-  display: inline-block;
-  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
   margin: 0 4px 0 0;
-  line-height: 1;
-  transform: translateY(-0.25px);
+  line-height: 18px;
+  transform: none;
 }
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 21.5px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 0 !important;
@@ -1902,8 +1999,8 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]:is(:hover, :focus, :
   background-size: 100% 100% !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
   text-decoration: none !important;
   filter: none !important;
   transform: none !important;
@@ -1932,7 +2029,7 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Project Notes"]:is(:hover, :focus-vi
 }
 
 /* --------------------------------------------------------------------------
- * Module 31
+ * Module 32
  * -------------------------------------------------------------------------- */
 /* Plateau Notes · refined flat badge */
 span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"] {
@@ -1940,9 +2037,11 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"] {
   align-items: center !important;
   box-sizing: border-box !important;
   position: relative !important;
-  /* Stabilize render/edit line boxes; retain the existing visual center. */
-  top: 0.75px !important;
-  min-height: 21.5px !important;
+  /* Fixed outer geometry: alignment no longer depends on text or Emoji baselines. */
+  top: 0 !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 0 !important;
@@ -1953,10 +2052,11 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"] {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
   vertical-align: baseline !important;
   white-space: nowrap;
+  overflow: visible !important;
   text-decoration: none !important;
   text-shadow: none !important;
   filter: none !important;
@@ -1965,15 +2065,22 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"] {
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]::before {
   content: "✨";
-  display: inline-block;
-  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
   margin: 0 4px 0 0;
-  line-height: 1;
-  transform: translateY(-0.25px);
+  line-height: 18px;
+  transform: none;
 }
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 21.5px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 0 !important;
@@ -1983,8 +2090,8 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]:is(:hover, :focus, :
   background-size: 100% 100% !important;
   color: #FFFFFF !important;
   font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
   text-decoration: none !important;
   text-shadow: none !important;
   filter: none !important;
@@ -2014,77 +2121,6 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Plateau Notes"]:is(:hover, :focus-vi
 }
 
 /* --------------------------------------------------------------------------
- * Module 32
- * -------------------------------------------------------------------------- */
-/* Evergreen Notes · refined flat badge */
-span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"] {
-  display: inline-flex !important;
-  align-items: center !important;
-  box-sizing: border-box !important;
-  position: relative !important;
-  /* Stabilize render/edit line boxes; retain the existing visual center. */
-  top: 0.75px !important;
-  min-height: 21.5px !important;
-  margin: 0 1px !important;
-  padding: 1px 7px !important;
-  border: 0 !important;
-  border-radius: 6px !important;
-  outline: 0 !important;
-  background: linear-gradient(to right, #355C7D, #03b1fc, #00ECFF) !important;
-  background-size: 100% 100% !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
-  color: #FFFFFF !important;
-  font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
-  vertical-align: baseline !important;
-  white-space: nowrap;
-  text-decoration: none !important;
-  filter: none !important;
-  transform: none !important;
-}
-
-span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 21.5px !important;
-  margin: 0 1px !important;
-  padding: 1px 7px !important;
-  border: 0 !important;
-  border-radius: 6px !important;
-  outline: 0 !important;
-  background: linear-gradient(to right, #355C7D, #03b1fc, #00ECFF) !important;
-  background-size: 100% 100% !important;
-  color: #FFFFFF !important;
-  font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
-  filter: none !important;
-  transform: none !important;
-}
-
-span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"]::after {
-  content: "" !important;
-  position: absolute !important;
-  display: block !important;
-  left: 7px !important;
-  right: 7px !important;
-  bottom: 2px !important;
-  height: 1px !important;
-  border-radius: 999px !important;
-  background: rgba(255, 255, 255, 0.9) !important;
-  opacity: 0 !important;
-  transform: scaleX(0.45) !important;
-  transform-origin: center !important;
-  pointer-events: none !important;
-  transition: opacity 150ms ease, transform 150ms ease !important;
-}
-
-span.rm-page-ref.rm-page-ref--tag[data-tag="Evergreen Notes"]:is(:hover, :focus-visible)::after {
-  opacity: 1 !important;
-  transform: scaleX(1) !important;
-}
-
-/* --------------------------------------------------------------------------
  * Module 33
  * -------------------------------------------------------------------------- */
 /* Literature Notes · refined light badge */
@@ -2093,9 +2129,11 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"] {
   align-items: center !important;
   box-sizing: border-box !important;
   position: relative !important;
-  /* Stabilize render/edit line boxes; retain the existing visual center. */
-  top: 0.75px !important;
-  min-height: 21.5px !important;
+  /* Fixed outer geometry: alignment no longer depends on text or Emoji baselines. */
+  top: 0 !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 1px solid #bae6fd !important;
@@ -2106,10 +2144,11 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"] {
   box-shadow: 0 1px 2px rgba(2, 132, 199, 0.08) !important;
   color: #0284c7 !important;
   font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
   vertical-align: baseline !important;
   white-space: nowrap;
+  overflow: visible !important;
   text-decoration: none !important;
   filter: none !important;
   transform: none !important;
@@ -2117,7 +2156,9 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"] {
 }
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 21.5px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 1px solid #bae6fd !important;
@@ -2128,8 +2169,8 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Literature Notes"]:is(:hover, :focus
   box-shadow: 0 1px 3px rgba(2, 132, 199, 0.12) !important;
   color: #0284c7 !important;
   font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
   text-decoration: none !important;
   filter: none !important;
   transform: none !important;
@@ -2144,9 +2185,11 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"] {
   align-items: center !important;
   box-sizing: border-box !important;
   position: relative !important;
-  /* Stabilize render/edit line boxes; retain the existing visual center. */
-  top: 0.75px !important;
-  min-height: 21.5px !important;
+  /* Fixed outer geometry: alignment no longer depends on text or Emoji baselines. */
+  top: 0 !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 1px solid #bae6fd !important;
@@ -2157,10 +2200,11 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"] {
   box-shadow: 0 1px 2px rgba(2, 132, 199, 0.08) !important;
   color: #0284c7 !important;
   font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
   vertical-align: baseline !important;
   white-space: nowrap;
+  overflow: visible !important;
   text-decoration: none !important;
   filter: none !important;
   transform: none !important;
@@ -2168,7 +2212,9 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"] {
 }
 
 span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"]:is(:hover, :focus, :focus-visible, :active) {
-  min-height: 21.5px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
   margin: 0 1px !important;
   padding: 1px 7px !important;
   border: 1px solid #bae6fd !important;
@@ -2179,8 +2225,8 @@ span.rm-page-ref.rm-page-ref--tag[data-tag="Fleeting Notes"]:is(:hover, :focus, 
   box-shadow: 0 1px 3px rgba(2, 132, 199, 0.12) !important;
   color: #0284c7 !important;
   font-size: 14px !important;
-  line-height: 17.5px !important;
-  font-weight: 600 !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
   text-decoration: none !important;
   filter: none !important;
   transform: none !important;
