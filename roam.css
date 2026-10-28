@@ -239,7 +239,13 @@
   border-radius: 6px;
 }
 
-.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content :is(.log-button, .starred-pages .page, .bp3-button.bp3-minimal):focus-visible {
+/* Chromium 147+ paints the native anchor focus ring on mouse clicks.
+   Shortcuts focus their outer link; preserve the theme cue for keyboard use. */
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content .starred-pages > a:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
+.roam-body .roam-app .roam-sidebar-container .roam-sidebar-content :is(.log-button, .starred-pages > a, .starred-pages .page, .bp3-button.bp3-minimal):focus-visible {
   color: var(--rr-left-sidebar-fg-active) !important;
   outline: 1px solid var(--rr-left-sidebar-focus) !important;
   outline-offset: -1px;
