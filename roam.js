@@ -434,6 +434,12 @@
   const states = new Map();
   const supportsScrollEnd = "onscrollend" in document;
   const persistentTargetSelector = "#roam-right-sidebar-content";
+  // Match only the native Desk's outer scroller, not cards or other views.
+  const deskTargetSelector =
+    ".roam-body-main > .rm-article-wrapper:has(> .roam-article > .rm-desk-page)";
+  // Keep base-rule specificity unchanged so the activity color still wins.
+  const scrollbarSelector =
+    `:is(.${CONFIG.MANAGED_CLASS}, :where(${deskTargetSelector}))`;
   let persistentTarget = null;
   let persistentResizeObserver = null;
   let slotFrame = 0;
@@ -447,14 +453,18 @@
     "  --sb-m: " + CONFIG.COLOR_MAIN + ";",
     "  --sb-h: " + CONFIG.COLOR_HOVER + ";",
     "}",
-    "." + CONFIG.MANAGED_CLASS + "::-webkit-scrollbar {",
+    // Reserve the final gutter before the first scroll; only the thumb fades.
+    deskTargetSelector + " {",
+    "  scrollbar-gutter: stable;",
+    "}",
+    scrollbarSelector + "::-webkit-scrollbar {",
     "  width: var(--sb-w) !important;",
     "  height: var(--sb-w) !important;",
     "}",
-    "." + CONFIG.MANAGED_CLASS + "::-webkit-scrollbar-track {",
+    scrollbarSelector + "::-webkit-scrollbar-track {",
     "  background: transparent !important;",
     "}",
-    "." + CONFIG.MANAGED_CLASS + "::-webkit-scrollbar-thumb {",
+    scrollbarSelector + "::-webkit-scrollbar-thumb {",
     "  background-color: transparent !important;",
     "  border: 0 !important;",
     "  border-radius: 12px !important;",
@@ -468,7 +478,7 @@
     "  background-color: var(--sb-h) !important;",
     "  cursor: pointer;",
     "}",
-  ].join("\n");
+  ].join(String.fromCharCode(10));
   if (!style.isConnected) document.head.appendChild(style);
 
   const syncPersistentSlot = (target = persistentTarget) => {

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Desk scrollbar geometry fixture</title>
+<style>
+  * { box-sizing: border-box; }
+  *::-webkit-scrollbar { width: 0; height: 0; }
+  body { margin: 20px; font: 14px system-ui; color: #334155; background: #f8fafc; }
+  .roam-body-main { width: max-content; }
+  .rm-article-wrapper { height: 180px; overflow-x: auto; overflow-y: scroll; background: white; }
+  .roam-article { padding: 12px; }
+  .rm-desk-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; }
+  .rm-desk-tile { min-width: 0; height: 64px; padding: 8px; border: 1px solid #e1e8ed; border-radius: 8px; }
+  #roam-right-sidebar-content { position: absolute; top: 300px; left: 20px; width: 260px; height: 120px; overflow-y: auto; overflow-x: hidden; scrollbar-gutter: stable; }
+  .sidebar-content { padding-right: max(0px, calc(24px - var(--rr-scrollbar-slot, 0px))); }
+  .sidebar-content > div { height: 360px; background: #eef2f6; }
+  .nested-scroll { width: 80px; height: 30px; overflow: auto; }
+  .nested-scroll > div { width: 180px; height: 100px; }
+  #report { margin-top: 230px; white-space: pre-wrap; font: 12px ui-monospace, monospace; }
+</style>
+<h1>Desk scrollbar geometry</h1>
+<div id="stage"></div>
+<div id="roam-right-sidebar-content"><div class="sidebar-content"><div></div></div></div>
+<pre id="report">Ready.</pre>
+<script type="module" src="./scrollbar-desk.js"></script>
+</html>
